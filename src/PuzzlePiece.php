@@ -25,14 +25,14 @@ final readonly class PuzzlePiece
         );
     }
 
-    public function matchVertically(self $secondPiece): bool
+    public function matchVertically(self $puzzlePiece): bool
     {
-        return $this->bottom != 0 && $this->bottom == $secondPiece->top;
+        return $this->bottom != 0 && $this->bottom == $puzzlePiece->top;
     }
 
 
-    public function matchHorizontally(self $secondPiece): bool
+    public function matchHorizontally(self $puzzlePiece): bool
     {
-        return $this->right != 0 && $this->right == $secondPiece->left;
+        return $this->right != 0 && $this->right == $puzzlePiece->left;
     }
 }
