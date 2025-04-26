@@ -14,7 +14,7 @@ final readonly class PuzzleSolution
     ) {
     }
 
-    public static function formatPuzzleSolution(?self $puzzleSolution): string
+    public static function format(?self $puzzleSolution): string
     {
         $puzzleSolutionIndex = $puzzleSolution->puzzleSolutionIndex;
         $puzzleSolutionIndexRows = [];

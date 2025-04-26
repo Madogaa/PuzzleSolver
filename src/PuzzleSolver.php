@@ -15,7 +15,7 @@ final readonly class PuzzleSolver
 
         $puzzleSolutionIndex = self::buildPuzzleSolution($puzzlePieces);
 
-        return PuzzleSolution::formatPuzzleSolution($puzzleSolutionIndex);
+        return PuzzleSolution::format($puzzleSolutionIndex);
     }
 
     /**
