@@ -19,9 +19,7 @@ final readonly class PuzzleSolver
     }
 
     /**
-     * @param array $puzzlePieces
-     *
-     * @return PuzzleSolution
+     * @param PuzzlePiece[] $puzzlePieces
      */
     public function buildPuzzleSolution(array $puzzlePieces): PuzzleSolution
     {
