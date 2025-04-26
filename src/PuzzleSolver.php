@@ -13,7 +13,7 @@ final readonly class PuzzleSolver
         $puzzleConfiguration = PuzzleConfiguration::parse($puzzleContext);
         $puzzlePieces = $puzzleConfiguration->puzzlePieces;
 
-        $puzzleSolutionIndex = $this->buildPuzzleSolution($puzzlePieces);
+        $puzzleSolutionIndex = self::buildPuzzleSolution($puzzlePieces);
 
         return self::formatPuzzleSolution($puzzleSolutionIndex);
     }
@@ -21,7 +21,7 @@ final readonly class PuzzleSolver
     /**
      * @param PuzzlePiece[] $puzzlePieces
      */
-    public function buildPuzzleSolution(array $puzzlePieces): PuzzleSolution
+    public static function buildPuzzleSolution(array $puzzlePieces): PuzzleSolution
     {
         if (count($puzzlePieces) === 1) {
             $puzzleSolutionIndex = new PuzzleSolution([[1]]);
