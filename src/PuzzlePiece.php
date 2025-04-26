@@ -31,8 +31,8 @@ final readonly class PuzzlePiece
     }
 
 
-    public static function matchHorizontally(self $firstPiece, self $secondPiece): bool
+    public function matchHorizontally(self $secondPiece): bool
     {
-        return $firstPiece->right != 0 && $firstPiece->right == $secondPiece->left;
+        return $this->right != 0 && $this->right == $secondPiece->left;
     }
 }

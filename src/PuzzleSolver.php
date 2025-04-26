@@ -32,9 +32,9 @@ final readonly class PuzzleSolver
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
                 $puzzleSolutionIndex = new PuzzleSolution([[1],[2]]);
-            } elseif (PuzzlePiece::matchHorizontally($firstPiece, $secondPiece)) {
+            } elseif ($firstPiece->matchHorizontally($secondPiece)) {
                 $puzzleSolutionIndex = new PuzzleSolution([[1,2]]);
-            } elseif (PuzzlePiece::matchHorizontally($secondPiece, $firstPiece)) {
+            } elseif ($secondPiece->matchHorizontally($firstPiece)) {
                 $puzzleSolutionIndex = new PuzzleSolution([[2,1]]);
             } else {
                 $puzzleSolutionIndex = new PuzzleSolution([[2],[1]]);
