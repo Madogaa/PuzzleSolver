@@ -23,15 +23,15 @@ final readonly class PuzzleSolver
      */
     private static function buildPuzzleSolution(array $puzzlePieces): ?PuzzleSolution
     {
+        $puzzleSolution = new PuzzleSolution([]);
+
         if (count($puzzlePieces) === 1) {
-            $puzzleSolution = new PuzzleSolution([]);
             $firstPiece = $puzzlePieces[0];
             $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
             return $puzzleSolution;
         }
 
         if (count($puzzlePieces) === 2) {
-            $puzzleSolution = new PuzzleSolution([]);
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
@@ -54,7 +54,6 @@ final readonly class PuzzleSolver
         }
 
         if (count($puzzlePieces) === 3) {
-            $puzzleSolution = new PuzzleSolution([]);
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             $thirdPiece = $puzzlePieces[2];
