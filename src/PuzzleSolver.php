@@ -35,7 +35,9 @@ final readonly class PuzzleSolver
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
-                return new PuzzleSolution([[$firstPiece->id],[$secondPiece->id]]);
+                $puzzleSolution->addPuzzlePieceVertically($firstPiece);
+                $puzzleSolution->addPuzzlePieceVertically($secondPiece);
+                return $puzzleSolution;
             } elseif ($firstPiece->matchHorizontally($secondPiece)) {
                 $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
                 $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
@@ -45,7 +47,10 @@ final readonly class PuzzleSolver
                 $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
                 return $puzzleSolution;
             }
-            return new PuzzleSolution([[$secondPiece->id],[$firstPiece->id]]);
+
+            $puzzleSolution->addPuzzlePieceVertically($secondPiece);
+            $puzzleSolution->addPuzzlePieceVertically($firstPiece);
+            return $puzzleSolution;
         }
 
         if (count($puzzlePieces) === 3) {

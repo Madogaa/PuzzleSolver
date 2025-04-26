@@ -29,4 +29,9 @@ final class PuzzleSolution
     {
         $this->puzzleSolutionIndex[0][] = $puzzlePiece->id;
     }
+
+    public function addPuzzlePieceVertically(PuzzlePiece $puzzlePiece): void
+    {
+        $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
+    }
 }
