@@ -13,6 +13,18 @@ final readonly class PuzzleSolver
         $puzzleConfiguration = PuzzleConfiguration::parse($puzzleContext);
         $puzzlePieces = $puzzleConfiguration->puzzlePieces;
 
+        $puzzleSolutionIndex = $this->buildPuzzleSolution($puzzlePieces);
+
+        return self::formatPuzzleSolution($puzzleSolutionIndex);
+    }
+
+    /**
+     * @param array $puzzlePieces
+     *
+     * @return PuzzleSolution
+     */
+    public function buildPuzzleSolution(array $puzzlePieces): PuzzleSolution
+    {
         if (count($puzzlePieces) === 1) {
             $puzzleSolutionIndex = new PuzzleSolution([[1]]);
         }
@@ -34,8 +46,7 @@ final readonly class PuzzleSolver
         if (count($puzzlePieces) === 3) {
             $puzzleSolutionIndex = new PuzzleSolution([[1,2,3]]);
         }
-
-        return self::formatPuzzleSolution($puzzleSolutionIndex);
+        return $puzzleSolutionIndex;
     }
 
     private static function matchVertically(PuzzlePiece $firstPiece, PuzzlePiece $secondPiece): bool
