@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
+use function count;
+
 final class PuzzleSolution
 {
     /**
@@ -33,5 +35,14 @@ final class PuzzleSolution
     public function addPuzzlePieceVertically(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
+    }
+
+    public function solvedPiecesCount(): int
+    {
+        return array_reduce(
+            $this->puzzleSolutionIndex,
+            static fn (int $carry, array $row) => $carry + count($row),
+            0
+        );
     }
 }
