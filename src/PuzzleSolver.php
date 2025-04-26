@@ -24,7 +24,8 @@ final readonly class PuzzleSolver
     private static function buildPuzzleSolution(array $puzzlePieces): ?PuzzleSolution
     {
         if (count($puzzlePieces) === 1) {
-            $puzzleSolutionIndex = new PuzzleSolution([[1]]);
+            $firstPiece = $puzzlePieces[0];
+            $puzzleSolutionIndex = new PuzzleSolution([[$firstPiece->id]]);
         }
 
         if (count($puzzlePieces) === 2) {
