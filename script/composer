@@ -1,0 +1,6 @@
+docker compose \
+    run \
+    --rm \
+    php \
+    composer \
+    "$@"

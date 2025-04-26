@@ -1,0 +1,78 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Unit;
+
+use App\PuzzleSolver;
+use PHPUnit\Framework\TestCase;
+
+class PuzzleSolverTest extends TestCase
+{
+    public function test_it_solves1x1_puzzle(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "1 1\n0 0 0 0";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = '1';
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
+
+    public function test_it_solves2x1_puzzle(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "2 1\n0 0 1 0\n1 0 0 0";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = "1\n2";
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
+
+    public function test_it_solves2x1_puzzle_when_pieces_are_unordered(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "2 1\n1 0 0 0\n0 0 1 0";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = "2\n1";
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
+
+    public function test_it_solves1x2_puzzle(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "1 2\n0 1 0 0\n0 0 0 1";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = '1 2';
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
+
+    public function test_it_solves1x2_puzzle_unordered(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "1 2\n0 0 0 1\n0 1 0 0";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = '2 1';
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
+
+    public function test_it_solves1x3_puzzle(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "1 3\n0 1 0 0\n0 2 0 1\n0 0 0 2";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = '1 2 3';
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
+    // TODO: Create testPuzzleWithNoSolution
+}
