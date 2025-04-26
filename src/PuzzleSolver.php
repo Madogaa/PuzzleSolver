@@ -37,11 +37,13 @@ final readonly class PuzzleSolver
                 $puzzleSolution->addPuzzlePieceVertically($puzzlePieces[0]);
                 $puzzleSolution->addPuzzlePieceVertically($secondPiece);
                 return $puzzleSolution;
-            } elseif ($firstPiece->matchHorizontally($secondPiece)) {
+            }
+            if ($firstPiece->matchHorizontally($secondPiece)) {
                 $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[0]);
                 $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
                 return $puzzleSolution;
-            } elseif ($secondPiece->matchHorizontally($puzzlePieces[0])) {
+            }
+            if ($secondPiece->matchHorizontally($puzzlePieces[0])) {
                 $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
                 $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[0]);
                 return $puzzleSolution;
