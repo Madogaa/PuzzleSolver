@@ -21,7 +21,7 @@ final readonly class PuzzleSolver
     /**
      * @param PuzzlePiece[] $puzzlePieces
      */
-    public static function buildPuzzleSolution(array $puzzlePieces): PuzzleSolution
+    public static function buildPuzzleSolution(array $puzzlePieces): ?PuzzleSolution
     {
         if (count($puzzlePieces) === 1) {
             $puzzleSolutionIndex = new PuzzleSolution([[1]]);
@@ -57,12 +57,7 @@ final readonly class PuzzleSolver
         return $firstPiece->right != 0 && $firstPiece->right == $secondPiece->left;
     }
 
-    /**
-     * @param PuzzleSolution $puzzleSolution
-     *
-     * @return string
-     */
-    private static function formatPuzzleSolution(PuzzleSolution $puzzleSolution): string
+    private static function formatPuzzleSolution(?PuzzleSolution $puzzleSolution): string
     {
         $puzzleSolutionIndex = $puzzleSolution->puzzleSolutionIndex;
         $puzzleSolutionIndexRows = [];
