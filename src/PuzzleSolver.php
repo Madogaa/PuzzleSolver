@@ -31,18 +31,21 @@ final readonly class PuzzleSolver
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
-                $puzzleSolutionIndex = new PuzzleSolution([[1],[2]]);
+                $puzzleSolutionIndex = new PuzzleSolution([[$firstPiece->id],[$secondPiece->id]]);
             } elseif ($firstPiece->matchHorizontally($secondPiece)) {
-                $puzzleSolutionIndex = new PuzzleSolution([[1,2]]);
+                $puzzleSolutionIndex = new PuzzleSolution([[$firstPiece->id,$secondPiece->id]]);
             } elseif ($secondPiece->matchHorizontally($firstPiece)) {
-                $puzzleSolutionIndex = new PuzzleSolution([[2,1]]);
+                $puzzleSolutionIndex = new PuzzleSolution([[$secondPiece->id,$firstPiece->id]]);
             } else {
-                $puzzleSolutionIndex = new PuzzleSolution([[2],[1]]);
+                $puzzleSolutionIndex = new PuzzleSolution([[$secondPiece->id],[$firstPiece->id]]);
             }
         }
 
         if (count($puzzlePieces) === 3) {
-            $puzzleSolutionIndex = new PuzzleSolution([[1,2,3]]);
+            $firstPiece = $puzzlePieces[0];
+            $secondPiece = $puzzlePieces[1];
+            $thirdPiece = $puzzlePieces[2];
+            $puzzleSolutionIndex = new PuzzleSolution([[$firstPiece->id,$secondPiece->id,$thirdPiece->id]]);
         }
         return $puzzleSolutionIndex;
     }
