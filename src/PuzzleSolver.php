@@ -14,7 +14,7 @@ final readonly class PuzzleSolver
         $puzzlePieces = $puzzleConfiguration->puzzlePieces;
 
         if (count($puzzlePieces) === 1) {
-            return '1';
+            $puzzleSolutionIndex = new PuzzleSolution([[1]]);
         }
 
         if (count($puzzlePieces) === 2) {
