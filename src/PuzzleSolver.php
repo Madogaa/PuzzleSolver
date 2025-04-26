@@ -24,19 +24,26 @@ final readonly class PuzzleSolver
     private static function buildPuzzleSolution(array $puzzlePieces): ?PuzzleSolution
     {
         if (count($puzzlePieces) === 1) {
+            $puzzleSolution = new PuzzleSolution([]);
             $firstPiece = $puzzlePieces[0];
-            return new PuzzleSolution([[$firstPiece->id]]);
+            $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
+            return $puzzleSolution;
         }
 
         if (count($puzzlePieces) === 2) {
+            $puzzleSolution = new PuzzleSolution([]);
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
                 return new PuzzleSolution([[$firstPiece->id],[$secondPiece->id]]);
             } elseif ($firstPiece->matchHorizontally($secondPiece)) {
-                return new PuzzleSolution([[$firstPiece->id,$secondPiece->id]]);
+                $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
+                $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
+                return $puzzleSolution;
             } elseif ($secondPiece->matchHorizontally($firstPiece)) {
-                return new PuzzleSolution([[$secondPiece->id,$firstPiece->id]]);
+                $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
+                $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
+                return $puzzleSolution;
             }
             return new PuzzleSolution([[$secondPiece->id],[$firstPiece->id]]);
         }

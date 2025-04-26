@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
-final readonly class PuzzleSolution
+final class PuzzleSolution
 {
     /**
      * @param int[][] $puzzleSolutionIndex
@@ -23,5 +23,10 @@ final readonly class PuzzleSolution
         }
 
         return implode("\n", $puzzleSolutionIndexRows);
+    }
+
+    public function addPuzzlePieceHorizontally(PuzzlePiece $puzzlePiece): void
+    {
+        $this->puzzleSolutionIndex[0][] = $puzzlePiece->id;
     }
 }
