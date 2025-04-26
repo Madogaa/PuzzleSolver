@@ -30,7 +30,7 @@ final readonly class PuzzleSolver
         if (count($puzzlePieces) === 2) {
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
-            if (PuzzlePiece::matchVertically($firstPiece, $secondPiece)) {
+            if ($firstPiece->matchVertically($secondPiece)) {
                 $puzzleSolutionIndex = new PuzzleSolution([[1],[2]]);
             } elseif (PuzzlePiece::matchHorizontally($firstPiece, $secondPiece)) {
                 $puzzleSolutionIndex = new PuzzleSolution([[1,2]]);

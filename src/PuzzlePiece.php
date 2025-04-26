@@ -25,10 +25,11 @@ final readonly class PuzzlePiece
         );
     }
 
-    public static function matchVertically(self $firstPiece, self $secondPiece): bool
+    public function matchVertically(self $secondPiece): bool
     {
-        return $firstPiece->bottom != 0 && $firstPiece->bottom == $secondPiece->top;
+        return $this->bottom != 0 && $this->bottom == $secondPiece->top;
     }
+
 
     public static function matchHorizontally(self $firstPiece, self $secondPiece): bool
     {
