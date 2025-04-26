@@ -54,10 +54,14 @@ final readonly class PuzzleSolver
         }
 
         if (count($puzzlePieces) === 3) {
+            $puzzleSolution = new PuzzleSolution([]);
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             $thirdPiece = $puzzlePieces[2];
-            return new PuzzleSolution([[$firstPiece->id,$secondPiece->id,$thirdPiece->id]]);
+            $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
+            $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
+            $puzzleSolution->addPuzzlePieceHorizontally($thirdPiece);
+            return $puzzleSolution;
         }
 
         return null;
