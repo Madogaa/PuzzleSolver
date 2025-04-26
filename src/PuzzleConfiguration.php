@@ -8,6 +8,7 @@ use function array_slice;
 
 final readonly class PuzzleConfiguration
 {
+    private const int PUZZLE_PIECES_INDEX_OFFSET = 1;
     /**
      * @param PuzzlePiece[] $puzzlePieces
      */
@@ -23,8 +24,9 @@ final readonly class PuzzleConfiguration
 
         return new self(
             array_map(
-                static fn (string $puzzlePieceAsString) => PuzzlePiece::parse($puzzlePieceAsString),
-                $puzzlePieces
+                static fn (string $puzzlePieceAsString, int $puzzlePiecePosition) => PuzzlePiece::parse($puzzlePieceAsString, $puzzlePiecePosition + self::PUZZLE_PIECES_INDEX_OFFSET),
+                $puzzlePieces,
+                array_keys($puzzlePieces)
             )
         );
     }

@@ -7,6 +7,7 @@ namespace App;
 final readonly class PuzzlePiece
 {
     public function __construct(
+        public int $id,
         public int $top,
         public int $right,
         public int $bottom,
@@ -14,14 +15,15 @@ final readonly class PuzzlePiece
     ) {
     }
 
-    public static function parse(string $pieceAsString): self
+    public static function parse(string $pieceAsString, int $piecePosition): self
     {
         $pieceShapes = explode(' ', $pieceAsString);
         return new self(
-            (int) $pieceShapes[0],
-            (int) $pieceShapes[1],
-            (int) $pieceShapes[2],
-            (int) $pieceShapes[3]
+            $piecePosition,
+            (int)$pieceShapes[0],
+            (int)$pieceShapes[1],
+            (int)$pieceShapes[2],
+            (int)$pieceShapes[3]
         );
     }
 
