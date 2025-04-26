@@ -13,4 +13,15 @@ final readonly class PuzzleSolution
         public array $puzzleSolutionIndex
     ) {
     }
+
+    public static function formatPuzzleSolution(?self $puzzleSolution): string
+    {
+        $puzzleSolutionIndex = $puzzleSolution->puzzleSolutionIndex;
+        $puzzleSolutionIndexRows = [];
+        foreach ($puzzleSolutionIndex as $puzzleSolution) {
+            $puzzleSolutionIndexRows[] = implode(' ', $puzzleSolution);
+        }
+
+        return implode("\n", $puzzleSolutionIndexRows);
+    }
 }

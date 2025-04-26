@@ -15,7 +15,7 @@ final readonly class PuzzleSolver
 
         $puzzleSolutionIndex = self::buildPuzzleSolution($puzzlePieces);
 
-        return self::formatPuzzleSolution($puzzleSolutionIndex);
+        return PuzzleSolution::formatPuzzleSolution($puzzleSolutionIndex);
     }
 
     /**
@@ -55,16 +55,5 @@ final readonly class PuzzleSolver
     private static function matchHorizontally(PuzzlePiece $firstPiece, PuzzlePiece $secondPiece): bool
     {
         return $firstPiece->right != 0 && $firstPiece->right == $secondPiece->left;
-    }
-
-    private static function formatPuzzleSolution(?PuzzleSolution $puzzleSolution): string
-    {
-        $puzzleSolutionIndex = $puzzleSolution->puzzleSolutionIndex;
-        $puzzleSolutionIndexRows = [];
-        foreach ($puzzleSolutionIndex as $puzzleSolution) {
-            $puzzleSolutionIndexRows[] = implode(' ', $puzzleSolution);
-        }
-
-        return implode("\n", $puzzleSolutionIndexRows);
     }
 }
