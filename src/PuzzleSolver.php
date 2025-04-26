@@ -26,8 +26,7 @@ final readonly class PuzzleSolver
         $puzzleSolution = new PuzzleSolution([]);
 
         if (count($puzzlePieces) === 1) {
-            $firstPiece = $puzzlePieces[0];
-            $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
+            $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[0]);
             return $puzzleSolution;
         }
 
@@ -35,16 +34,16 @@ final readonly class PuzzleSolver
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
-                $puzzleSolution->addPuzzlePieceVertically($firstPiece);
+                $puzzleSolution->addPuzzlePieceVertically($puzzlePieces[0]);
                 $puzzleSolution->addPuzzlePieceVertically($secondPiece);
                 return $puzzleSolution;
             } elseif ($firstPiece->matchHorizontally($secondPiece)) {
-                $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
+                $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[0]);
                 $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
                 return $puzzleSolution;
-            } elseif ($secondPiece->matchHorizontally($firstPiece)) {
+            } elseif ($secondPiece->matchHorizontally($puzzlePieces[0])) {
                 $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
-                $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
+                $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[0]);
                 return $puzzleSolution;
             }
 
@@ -54,12 +53,9 @@ final readonly class PuzzleSolver
         }
 
         if (count($puzzlePieces) === 3) {
-            $firstPiece = $puzzlePieces[0];
-            $secondPiece = $puzzlePieces[1];
-            $thirdPiece = $puzzlePieces[2];
-            $puzzleSolution->addPuzzlePieceHorizontally($firstPiece);
-            $puzzleSolution->addPuzzlePieceHorizontally($secondPiece);
-            $puzzleSolution->addPuzzlePieceHorizontally($thirdPiece);
+            $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[0]);
+            $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[1]);
+            $puzzleSolution->addPuzzlePieceHorizontally($puzzlePieces[2]);
             return $puzzleSolution;
         }
 
