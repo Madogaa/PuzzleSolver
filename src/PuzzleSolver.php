@@ -23,7 +23,7 @@ final readonly class PuzzleSolver
         $puzzleSolution = new PuzzleSolution([]);
 
         if (count($puzzlePieces) === 1) {
-            $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePieces[0]);
+            $puzzleSolution->addPuzzlePieceAtNewRow($puzzlePieces[0]);
             return $puzzleSolution;
         }
 
@@ -36,12 +36,12 @@ final readonly class PuzzleSolver
                 return $puzzleSolution;
             }
             if ($firstPiece->matchHorizontally($secondPiece)) {
-                $puzzleSolution->addPuzzlePieceAtSameRow($firstPiece);
+                $puzzleSolution->addPuzzlePieceAtNewRow($firstPiece);
                 $puzzleSolution->addPuzzlePieceAtSameRow($secondPiece);
                 return $puzzleSolution;
             }
             if ($secondPiece->matchHorizontally($firstPiece)) {
-                $puzzleSolution->addPuzzlePieceAtSameRow($secondPiece);
+                $puzzleSolution->addPuzzlePieceAtNewRow($secondPiece);
                 $puzzleSolution->addPuzzlePieceAtSameRow($firstPiece);
                 return $puzzleSolution;
             }
@@ -52,7 +52,7 @@ final readonly class PuzzleSolver
         }
 
         if (count($puzzlePieces) === 3) {
-            $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePieces[0]);
+            $puzzleSolution->addPuzzlePieceAtNewRow($puzzlePieces[0]);
             $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePieces[1]);
             $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePieces[2]);
             return $puzzleSolution;
