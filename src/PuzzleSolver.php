@@ -11,18 +11,15 @@ final readonly class PuzzleSolver
     public function solve(string $puzzleContext): string
     {
         $puzzleConfiguration = PuzzleConfiguration::parse($puzzleContext);
-        $puzzlePieces = $puzzleConfiguration->puzzlePieces;
 
-        $puzzleSolutionIndex = self::buildPuzzleSolution($puzzlePieces);
+        $puzzleSolutionIndex = self::buildPuzzleSolution($puzzleConfiguration);
 
         return PuzzleSolution::format($puzzleSolutionIndex);
     }
 
-    /**
-     * @param PuzzlePiece[] $puzzlePieces
-     */
-    private static function buildPuzzleSolution(array $puzzlePieces): ?PuzzleSolution
+    private static function buildPuzzleSolution(PuzzleConfiguration $puzzleConfiguration): ?PuzzleSolution
     {
+        $puzzlePieces = $puzzleConfiguration->puzzlePieces;
         $puzzleSolution = new PuzzleSolution([]);
 
         if (count($puzzlePieces) === 1) {
