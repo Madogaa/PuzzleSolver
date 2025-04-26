@@ -21,7 +21,7 @@ final readonly class PuzzleSolver
     /**
      * @param PuzzlePiece[] $puzzlePieces
      */
-    public static function buildPuzzleSolution(array $puzzlePieces): ?PuzzleSolution
+    private static function buildPuzzleSolution(array $puzzlePieces): ?PuzzleSolution
     {
         if (count($puzzlePieces) === 1) {
             $puzzleSolutionIndex = new PuzzleSolution([[1]]);
