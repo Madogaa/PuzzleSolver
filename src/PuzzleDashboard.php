@@ -87,6 +87,11 @@ final readonly class PuzzleDashboard
         return false;
     }
 
+    public function isSolved(): bool
+    {
+        return $this->puzzleSolution->solvedPiecesCount() === $this->width * $this->heigh;
+    }
+
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
         $previousPuzzlePieceId = $this->getPuzzleSolutionPreviousPieceId();
