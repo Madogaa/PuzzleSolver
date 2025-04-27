@@ -149,8 +149,9 @@ final readonly class PuzzleDashboard
 
     private function getPuzzleCurrentRowIndex(): int
     {
-        $nextPieceStartsOnNewRow = $this->isNextPieceAtFirstColumn();
-        $rowOffset = $nextPieceStartsOnNewRow ? 1 : 0;
-        return (count($this->puzzleSolution->puzzleSolutionIndex) - 1) + $rowOffset;
+        $isNewRow = $this->isNextPieceAtFirstColumn();
+        $lastRowIndex = count($this->puzzleSolution->puzzleSolutionIndex) - 1;
+        $rowOffset = $isNewRow ? 1 : 0;
+        return $lastRowIndex + $rowOffset;
     }
 }
