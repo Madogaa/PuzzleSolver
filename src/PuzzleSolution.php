@@ -42,6 +42,10 @@ final class PuzzleSolution
     {
         $lastRow = end($this->puzzleSolutionIndex);
 
+        if (!$lastRow) {
+            return null;
+        }
+
         return end($lastRow) !== false ? end($lastRow) : null;
     }
 

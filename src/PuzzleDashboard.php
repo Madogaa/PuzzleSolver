@@ -55,16 +55,17 @@ final readonly class PuzzleDashboard
 
     public function canPuzzlePieceBeAdded(PuzzlePiece $puzzlePiece): bool
     {
-        if ($puzzlePiece->id === 1) {
+        $previousPuzzlePiece = $this->getPreviousPuzzlePiece();
+        $topPuzzlePiece = $this->getTopPuzzlePiece();
+        if (!$previousPuzzlePiece && !$topPuzzlePiece) {
             return true;
         }
 
-        $previousPuzzlePiece = $this->getPreviousPuzzlePiece();
+
         if ($previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
             return true;
         }
 
-        $topPuzzlePiece = $this->getTopPuzzlePiece();
         if ($topPuzzlePiece->matchVertically($puzzlePiece)) {
             return true;
         }
