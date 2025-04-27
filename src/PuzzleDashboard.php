@@ -70,6 +70,10 @@ final readonly class PuzzleDashboard
             return true;
         }
 
+        if ($previousPuzzlePiece->matchHorizontally($puzzlePiece) && $topPuzzlePiece->matchVertically($puzzlePiece)) {
+            return true;
+        }
+
         return false;
     }
 

@@ -45,4 +45,21 @@ class PuzzleDashboardTest extends TestCase
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
+
+    public function test_it_can_puzzle_piece_be_added_when_matches_top_and_previous(): void
+    {
+        $puzzleContext = "2 2\n0 2 4 0\n0 0 3 2\n4 1 0 0\n3 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $firstPiece = $puzzleDashboard->puzzlePieces[0];
+        $secondPiece = $puzzleDashboard->puzzlePieces[1];
+        $thirdPiece = $puzzleDashboard->puzzlePieces[2];
+        $fourthPiece = $puzzleDashboard->puzzlePieces[3];
+
+        $puzzleDashboard->addPuzzlePiece($firstPiece);
+        $puzzleDashboard->addPuzzlePiece($secondPiece);
+        $puzzleDashboard->addPuzzlePiece($thirdPiece);
+        $canPuzzlePieceBeAddedResult = $puzzleDashboard->canPuzzlePieceBeAdded($fourthPiece);
+
+        $this->assertTrue($canPuzzlePieceBeAddedResult);
+    }
 }
