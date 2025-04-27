@@ -54,6 +54,11 @@ final readonly class PuzzleDashboard
         }
     }
 
+    public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
+    {
+        $this->puzzleSolution->removePuzzlePieceById($puzzlePiece->id);
+    }
+
     public function canPuzzlePieceBeAdded(PuzzlePiece $puzzlePiece): bool
     {
         $previousPuzzlePiece = $this->getPreviousPuzzlePiece();
