@@ -120,7 +120,7 @@ class PuzzleSolverTest extends TestCase
     public function test_it_solves3x3_puzzle(): void
     {
         $puzzleSolver = new PuzzleSolver();
-        $puzzlePieces = "3 3\n0 1 2 0\n0 3 4 1\n0 0 5 3\n2 6 7 0\n4 8 9 6\n5 0 10 8\n7 11 0 0\n9 12 0 11\n10 0 0 12";
+        $puzzlePieces = "3 3\n0 1 2 0\n0 3 4 1\n0 0 1 3\n2 2 3 0\n4 1 1 2\n1 0 3 1\n3 3 0 0\n1 1 0 3\n3 0 0 1";
 
         $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
 
