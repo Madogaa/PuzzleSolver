@@ -74,5 +74,15 @@ class PuzzleSolverTest extends TestCase
         $expectedPuzzleSolution = '1 2 3';
         self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
     }
-    // TODO: Create testPuzzleWithNoSolution
+
+    public function test_it_solves1x3_puzzle_with_pieces_unordered(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "1 3\n0 0 0 2\n0 1 0 0\n0 2 0 1";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = '2 3 1';
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
 }
