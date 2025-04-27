@@ -83,7 +83,7 @@ final readonly class PuzzleDashboard
 
     private function getTopPuzzlePiece(): ?PuzzlePiece
     {
-        $hasToBeAddedToNewRow = $this->hasNextPieceBeAddedToNewRow();
+        $hasToBeAddedToNewRow = $this->isNextPieceFirstOneAtRow();
         $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePieceIndex($hasToBeAddedToNewRow);
 
         return $topPuzzlePieceId !== null
@@ -102,7 +102,7 @@ final readonly class PuzzleDashboard
     }
 
 
-    private function hasNextPieceBeAddedToNewRow(): bool
+    private function isNextPieceFirstOneAtRow(): bool
     {
         return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
     }
