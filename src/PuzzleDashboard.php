@@ -52,10 +52,8 @@ final class PuzzleDashboard
         $puzzleSolutionSolvedPiecesCount = $this->puzzleSolution->solvedPiecesCount();
 
         if ($puzzleSolutionSolvedPiecesCount % $this->width === 0) {
-            var_dump("add puzzle puzzle piece with id {$puzzlePiece->id} at NEW row");
             $this->puzzleSolution->addPuzzlePieceAtNewRow($puzzlePiece);
         } else {
-            var_dump("add puzzle puzzle piece with id {$puzzlePiece->id} at SAME row");
             $this->puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece, $this->getPuzzleCurrentRowIndex());
         }
 
