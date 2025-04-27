@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
+use function array_key_exists;
 use function array_slice;
+use function count;
 
 final readonly class PuzzleDashboard
 {
@@ -85,7 +87,7 @@ final readonly class PuzzleDashboard
     private function getTopPuzzlePiece(): ?PuzzlePiece
     {
         $hasToBeAddedToNewRow = $this->isNextPieceFirstOneAtRow();
-        $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePieceId($hasToBeAddedToNewRow);
+        $topPuzzlePieceId = $this->getTopPuzzlePieceId($hasToBeAddedToNewRow);
 
         return $topPuzzlePieceId !== null
             ? $this->findPuzzlePieceById($topPuzzlePieceId)
@@ -106,5 +108,24 @@ final readonly class PuzzleDashboard
     private function isNextPieceFirstOneAtRow(): bool
     {
         return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
+    }
+
+    private function getTopPuzzlePieceId(bool $nextPieceStartsOnNewRow): ?int
+    {
+        $rowOffset = $nextPieceStartsOnNewRow ? 0 : 1;
+        $puzzleCurrentRowIndex = count($this->puzzleSolution->puzzleSolutionIndex) - $rowOffset;
+
+        if ($puzzleCurrentRowIndex === 0) {
+            return null;
+        }
+
+        $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
+        $puzzleCurrentColumnIndex = !$nextPieceStartsOnNewRow ? count($puzzleCurrentRow) : 0;
+        $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex - 1] ?? null;
+        if ($currentUpperRow === null || !array_key_exists($puzzleCurrentColumnIndex, $currentUpperRow)) {
+            return null;
+        }
+
+        return $currentUpperRow[$puzzleCurrentColumnIndex];
     }
 }
