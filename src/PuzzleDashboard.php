@@ -55,7 +55,7 @@ final readonly class PuzzleDashboard
 
     public function canPuzzlePieceBeAdded(PuzzlePiece $puzzlePiece): bool
     {
-        if ($puzzlePiece->id === 0) {
+        if ($puzzlePiece->id === 1) {
             return true;
         }
 

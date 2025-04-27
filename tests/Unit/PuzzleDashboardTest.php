@@ -14,7 +14,7 @@ class PuzzleDashboardTest extends TestCase
     {
         $puzzleContext = "1 3\n0 2 0 0\n0 1 0 2\n1 0 0 1";
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
-        $puzzlePiece = new PuzzlePiece(0, 0, 0, 0, 0);
+        $puzzlePiece = $puzzleDashboard->puzzlePieces[0];
 
         $canPuzzlePieceBeAddedResult = $puzzleDashboard->canPuzzlePieceBeAdded($puzzlePiece);
 
