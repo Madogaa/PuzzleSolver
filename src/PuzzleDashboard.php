@@ -85,8 +85,7 @@ final readonly class PuzzleDashboard
 
     private function getTopPuzzlePiece(): ?PuzzlePiece
     {
-        $hasToBeAddedToNewRow = $this->isNextPieceFirstOneAtRow();
-        $topPuzzlePieceId = $this->getTopPuzzlePieceId($hasToBeAddedToNewRow);
+        $topPuzzlePieceId = $this->getTopPuzzlePieceId();
 
         return $topPuzzlePieceId !== null
             ? $this->findPuzzlePieceById($topPuzzlePieceId)
@@ -109,16 +108,16 @@ final readonly class PuzzleDashboard
         return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
     }
 
-    private function getTopPuzzlePieceId(bool $nextPieceStartsOnNewRow): ?int
+    private function getTopPuzzlePieceId(): ?int
     {
-        $rowOffset = $nextPieceStartsOnNewRow ? 0 : 1;
-        $puzzleCurrentRowIndex = count($this->puzzleSolution->puzzleSolutionIndex) - $rowOffset;
+        $puzzleCurrentRowIndex = $this->getPuzzleCurrentRowIndex();
 
         if ($puzzleCurrentRowIndex === 0) {
             return null;
         }
 
         $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
+        $nextPieceStartsOnNewRow = $this->isNextPieceFirstOneAtRow();
         $puzzleCurrentColumnIndex = !$nextPieceStartsOnNewRow ? count($puzzleCurrentRow) : 0;
         $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex - 1] ?? null;
         if ($currentUpperRow === null || !array_key_exists($puzzleCurrentColumnIndex, $currentUpperRow)) {
@@ -137,5 +136,12 @@ final readonly class PuzzleDashboard
 
         $lastRowValue = end($lastRow);
         return $lastRowValue !== false ? $lastRowValue : null;
+    }
+
+    private function getPuzzleCurrentRowIndex(): int
+    {
+        $nextPieceStartsOnNewRow = $this->isNextPieceFirstOneAtRow();
+        $rowOffset = $nextPieceStartsOnNewRow ? 0 : 1;
+        return count($this->puzzleSolution->puzzleSolutionIndex) - $rowOffset;
     }
 }
