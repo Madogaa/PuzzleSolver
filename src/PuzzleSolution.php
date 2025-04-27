@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use function count;
+use function in_array;
 
 final class PuzzleSolution
 {
@@ -35,6 +36,14 @@ final class PuzzleSolution
     public function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
+    }
+
+    public function removePuzzlePieceById(int $puzzlePieceId): void
+    {
+        $this->puzzleSolutionIndex = array_filter(
+            $this->puzzleSolutionIndex,
+            static fn (array $row) => !in_array($puzzlePieceId, $row)
+        );
     }
 
     public function solvedPiecesCount(): int
