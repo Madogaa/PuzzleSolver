@@ -80,8 +80,8 @@ final readonly class PuzzleDashboard
     private function getPuzzleCurrentColumnIndex(): int
     {
         $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
-        $nextPieceStartsOnNewRow = $this->isNextPieceAtFirstColumn();
-        $puzzleCurrentColumnIndex = !$nextPieceStartsOnNewRow ? count($puzzleCurrentRow) : 0;
+        $isNewLine = $this->isNextPieceAtFirstColumn();
+        $puzzleCurrentColumnIndex = !$isNewLine ? count($puzzleCurrentRow) : 0;
         return $puzzleCurrentColumnIndex;
     }
 
