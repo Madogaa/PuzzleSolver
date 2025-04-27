@@ -31,30 +31,30 @@ final readonly class PuzzleSolver
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
-                $puzzleSolution->addPuzzlePieceAtNewRow($firstPiece);
-                $puzzleSolution->addPuzzlePieceAtNewRow($secondPiece);
+                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
+                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
                 return $puzzleSolution;
             }
             if ($firstPiece->matchHorizontally($secondPiece)) {
-                $puzzleSolution->addPuzzlePieceAtNewRow($firstPiece);
-                $puzzleSolution->addPuzzlePieceAtSameRow($secondPiece);
+                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
+                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
                 return $puzzleSolution;
             }
             if ($secondPiece->matchHorizontally($firstPiece)) {
-                $puzzleSolution->addPuzzlePieceAtNewRow($secondPiece);
-                $puzzleSolution->addPuzzlePieceAtSameRow($firstPiece);
+                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
+                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
                 return $puzzleSolution;
             }
 
-            $puzzleSolution->addPuzzlePieceAtNewRow($secondPiece);
-            $puzzleSolution->addPuzzlePieceAtNewRow($firstPiece);
+            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
+            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
             return $puzzleSolution;
         }
 
         if (count($puzzlePieces) === 3) {
-            $puzzleSolution->addPuzzlePieceAtNewRow($puzzlePieces[0]);
-            $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePieces[1]);
-            $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePieces[2]);
+            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $puzzlePieces[0]);
+            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $puzzlePieces[1]);
+            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $puzzlePieces[2]);
             return $puzzleSolution;
         }
 

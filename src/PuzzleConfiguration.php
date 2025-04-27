@@ -39,4 +39,15 @@ final readonly class PuzzleConfiguration
             $puzzleWidth
         );
     }
+
+    public function addPuzzlePiece(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): void
+    {
+        $puzzleSolutionSolvedPiecesCount = $puzzleSolution->solvedPiecesCount();
+
+        if ($puzzleSolutionSolvedPiecesCount % $this->width === 0) {
+            $puzzleSolution->addPuzzlePieceAtNewRow($puzzlePiece);
+        } else {
+            $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
+        }
+    }
 }
