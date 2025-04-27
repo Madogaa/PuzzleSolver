@@ -37,17 +37,6 @@ final class PuzzleSolution
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
     }
 
-    public function getPuzzleSolutionPreviousPieceId(): ?int
-    {
-        $lastRow = end($this->puzzleSolutionIndex);
-        if (!$lastRow) {
-            return null;
-        }
-
-        $lastRowValue = end($lastRow);
-        return $lastRowValue !== false ? $lastRowValue : null;
-    }
-
     public function solvedPiecesCount(): int
     {
         return array_reduce(

@@ -77,7 +77,7 @@ final readonly class PuzzleDashboard
 
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
-        $previousPuzzlePieceId = $this->puzzleSolution->getPuzzleSolutionPreviousPieceId();
+        $previousPuzzlePieceId = $this->getPuzzleSolutionPreviousPieceId();
 
         return $previousPuzzlePieceId !== null
             ? $this->findPuzzlePieceById($previousPuzzlePieceId)
@@ -127,5 +127,16 @@ final readonly class PuzzleDashboard
         }
 
         return $currentUpperRow[$puzzleCurrentColumnIndex];
+    }
+
+    private function getPuzzleSolutionPreviousPieceId(): ?int
+    {
+        $lastRow = end($this->puzzleSolution->puzzleSolutionIndex);
+        if (!$lastRow) {
+            return null;
+        }
+
+        $lastRowValue = end($lastRow);
+        return $lastRowValue !== false ? $lastRowValue : null;
     }
 }
