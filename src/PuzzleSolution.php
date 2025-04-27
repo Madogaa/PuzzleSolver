@@ -41,12 +41,12 @@ final class PuzzleSolution
     public function getPuzzleSolutionPreviousPieceId(): ?int
     {
         $lastRow = end($this->puzzleSolutionIndex);
-
         if (!$lastRow) {
             return null;
         }
 
-        return end($lastRow) !== false ? end($lastRow) : null;
+        $lastRowValue = end($lastRow);
+        return $lastRowValue !== false ? $lastRowValue : null;
     }
 
     public function getTopPuzzlePieceIndex(bool $nextPieceStartsOnNewRow): ?int
