@@ -49,7 +49,7 @@ final class PuzzleSolution
         return $lastRowValue !== false ? $lastRowValue : null;
     }
 
-    public function getTopPuzzlePieceIndex(bool $nextPieceStartsOnNewRow): ?int
+    public function getTopPuzzlePieceId(bool $nextPieceStartsOnNewRow): ?int
     {
         $rowOffset = $nextPieceStartsOnNewRow ? 0 : 1;
         $puzzleCurrentRowIndex = count($this->puzzleSolutionIndex) - $rowOffset;

@@ -85,7 +85,7 @@ final readonly class PuzzleDashboard
     private function getTopPuzzlePiece(): ?PuzzlePiece
     {
         $hasToBeAddedToNewRow = $this->isNextPieceFirstOneAtRow();
-        $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePieceIndex($hasToBeAddedToNewRow);
+        $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePieceId($hasToBeAddedToNewRow);
 
         return $topPuzzlePieceId !== null
             ? $this->findPuzzlePieceById($topPuzzlePieceId)
