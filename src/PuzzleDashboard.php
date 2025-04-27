@@ -63,7 +63,6 @@ final readonly class PuzzleDashboard
             return true;
         }
 
-
         if ($previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
             return true;
         }
