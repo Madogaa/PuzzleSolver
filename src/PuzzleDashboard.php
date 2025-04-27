@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use function array_key_exists;
 use function array_slice;
 use function count;
 
@@ -116,18 +115,10 @@ final readonly class PuzzleDashboard
     private function getTopPuzzlePieceId(): ?int
     {
         $puzzleCurrentRowIndex = $this->getPuzzleCurrentRowIndex();
-
-        if ($puzzleCurrentRowIndex === 0) {
-            return null;
-        }
-
-        $puzzleCurrentColumnIndex = $this->getPuzzleCurrentColumnIndex();
         $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex - 1] ?? null;
-        if ($currentUpperRow === null || !array_key_exists($puzzleCurrentColumnIndex, $currentUpperRow)) {
-            return null;
-        }
+        $puzzleCurrentColumnIndex = $this->getPuzzleCurrentColumnIndex();
 
-        return $currentUpperRow[$puzzleCurrentColumnIndex];
+        return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
     }
 
     private function getPuzzleCurrentRowIndex(): int
