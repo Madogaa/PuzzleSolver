@@ -26,7 +26,7 @@ final readonly class PuzzleSolver
         if ($puzzleDashboard->isSolved()) {
             return $puzzleDashboard->puzzleSolution;
         }
-        foreach ($puzzleDashboard->puzzlePieces as $puzzlePiece) {
+        foreach ($puzzleDashboard->availablePuzzlePieces as $puzzlePiece) {
             if (!$puzzleDashboard->canPuzzlePieceBeAdded($puzzlePiece)) {
                 continue;
             }

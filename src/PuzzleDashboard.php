@@ -7,19 +7,23 @@ namespace App;
 use function array_slice;
 use function count;
 
-final readonly class PuzzleDashboard
+final class PuzzleDashboard
 {
     private const int PUZZLE_PIECES_INDEX_OFFSET = 1;
 
+    /** @var PuzzlePiece[] */
+    public readonly array $puzzlePieces;
+
     /**
-     * @param PuzzlePiece[] $puzzlePieces
+     * @param PuzzlePiece[] $availablePuzzlePieces
      */
     private function __construct(
-        public array $puzzlePieces,
-        public PuzzleSolution $puzzleSolution,
-        private int $heigh,
-        private int $width
+        public array $availablePuzzlePieces,
+        public readonly PuzzleSolution $puzzleSolution,
+        private readonly int $heigh,
+        private readonly int $width
     ) {
+        $this->puzzlePieces = $availablePuzzlePieces;
     }
 
     public static function parse(string $puzzleContext): self
@@ -52,11 +56,17 @@ final readonly class PuzzleDashboard
         } else {
             $this->puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
         }
+
+        $this->availablePuzzlePieces = array_filter(
+            $this->availablePuzzlePieces,
+            static fn (PuzzlePiece $availablePuzzlePiece) => $availablePuzzlePiece->id !== $puzzlePiece->id
+        );
     }
 
     public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolution->removePuzzlePieceById($puzzlePiece->id);
+        $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 
     public function canPuzzlePieceBeAdded(PuzzlePiece $puzzlePiece): bool
