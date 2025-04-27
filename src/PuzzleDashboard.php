@@ -28,8 +28,8 @@ final readonly class PuzzleDashboard
         $splitPuzzleContext = explode("\n", $puzzleContext);
         $puzzleMeasurements = $splitPuzzleContext[0];
         $splitPuzzleMeasurements = explode(' ', $puzzleMeasurements);
-        $puzzleHeight = (int) $splitPuzzleMeasurements[0];
-        $puzzleWidth = (int) $splitPuzzleMeasurements[1];
+        $puzzleHeight = (int)$splitPuzzleMeasurements[0];
+        $puzzleWidth = (int)$splitPuzzleMeasurements[1];
         $puzzlePieces = array_slice($splitPuzzleContext, 1);
 
         return new self(
@@ -74,13 +74,6 @@ final readonly class PuzzleDashboard
         return false;
     }
 
-    private function getPuzzleCurrentColumnIndex(): int
-    {
-        $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
-        $isNewLine = $this->isNextPieceAtFirstColumn();
-        return $isNewLine ? 0 : count($puzzleCurrentRow);
-    }
-
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
         $previousPuzzlePieceId = $this->getPuzzleSolutionPreviousPieceId();
@@ -90,13 +83,15 @@ final readonly class PuzzleDashboard
             : null;
     }
 
-    private function getTopPuzzlePiece(): ?PuzzlePiece
+    private function getPuzzleSolutionPreviousPieceId(): ?int
     {
-        $topPuzzlePieceId = $this->getTopPuzzlePieceId();
+        $lastRow = end($this->puzzleSolution->puzzleSolutionIndex);
+        if (!$lastRow) {
+            return null;
+        }
 
-        return $topPuzzlePieceId !== null
-            ? $this->findPuzzlePieceById($topPuzzlePieceId)
-            : null;
+        $lastRowValue = end($lastRow);
+        return $lastRowValue !== false ? $lastRowValue : null;
     }
 
     private function findPuzzlePieceById(int $puzzlePieceId): PuzzlePiece
@@ -109,10 +104,13 @@ final readonly class PuzzleDashboard
         return reset($puzzlePiece);
     }
 
-
-    private function isNextPieceAtFirstColumn(): bool
+    private function getTopPuzzlePiece(): ?PuzzlePiece
     {
-        return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
+        $topPuzzlePieceId = $this->getTopPuzzlePieceId();
+
+        return $topPuzzlePieceId !== null
+            ? $this->findPuzzlePieceById($topPuzzlePieceId)
+            : null;
     }
 
     private function getTopPuzzlePieceId(): ?int
@@ -132,22 +130,23 @@ final readonly class PuzzleDashboard
         return $currentUpperRow[$puzzleCurrentColumnIndex];
     }
 
-    private function getPuzzleSolutionPreviousPieceId(): ?int
-    {
-        $lastRow = end($this->puzzleSolution->puzzleSolutionIndex);
-        if (!$lastRow) {
-            return null;
-        }
-
-        $lastRowValue = end($lastRow);
-        return $lastRowValue !== false ? $lastRowValue : null;
-    }
-
     private function getPuzzleCurrentRowIndex(): int
     {
         $isNewRow = $this->isNextPieceAtFirstColumn();
         $lastRowIndex = count($this->puzzleSolution->puzzleSolutionIndex) - 1;
         $rowOffset = $isNewRow ? 1 : 0;
         return $lastRowIndex + $rowOffset;
+    }
+
+    private function isNextPieceAtFirstColumn(): bool
+    {
+        return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
+    }
+
+    private function getPuzzleCurrentColumnIndex(): int
+    {
+        $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
+        $isNewLine = $this->isNextPieceAtFirstColumn();
+        return $isNewLine ? 0 : count($puzzleCurrentRow);
     }
 }
