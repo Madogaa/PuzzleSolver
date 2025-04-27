@@ -75,10 +75,9 @@ final readonly class PuzzleDashboard
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
         $previousPuzzlePieceId = $this->puzzleSolution->getPuzzleSolutionPreviousPieceId();
-        $previousPuzzlePieceIndex = $previousPuzzlePieceId - self::PUZZLE_PIECES_INDEX_OFFSET;
 
         return $previousPuzzlePieceId !== null
-            ? $this->puzzlePieces[$previousPuzzlePieceIndex]
+            ? $this->findPuzzlePieceById($previousPuzzlePieceId)
             : null;
     }
 
