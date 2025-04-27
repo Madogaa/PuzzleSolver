@@ -59,6 +59,21 @@ final readonly class PuzzleDashboard
             return true;
         }
 
+        $previousPuzzlePiece = $this->getPreviousPuzzlePiece();
+        if ($previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
+            return true;
+        }
+
         return false;
+    }
+
+    private function getPreviousPuzzlePiece(): ?PuzzlePiece
+    {
+        $previousPuzzlePieceId = $this->puzzleSolution->getPuzzleSolutionPreviousPieceId();
+        $previousPuzzlePieceIndex = $previousPuzzlePieceId - self::PUZZLE_PIECES_INDEX_OFFSET;
+
+        return $previousPuzzlePieceId !== null
+            ? $this->puzzlePieces[$previousPuzzlePieceIndex]
+            : null;
     }
 }
