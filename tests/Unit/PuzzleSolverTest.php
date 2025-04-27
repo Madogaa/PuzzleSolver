@@ -4,11 +4,20 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
+use App\NoPuzzleSolutionException;
 use App\PuzzleSolver;
 use PHPUnit\Framework\TestCase;
 
 class PuzzleSolverTest extends TestCase
 {
+    public function test_it_throws_exception_when_no_solution(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "2 1\n0 0 2 0\n1 0 0 0";
+
+        $this->expectException(NoPuzzleSolutionException::class);
+        $puzzleSolver->solve($puzzlePieces);
+    }
     public function test_it_solves1x1_puzzle(): void
     {
         $puzzleSolver = new PuzzleSolver();
