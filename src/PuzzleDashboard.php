@@ -81,8 +81,7 @@ final readonly class PuzzleDashboard
     {
         $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
         $isNewLine = $this->isNextPieceAtFirstColumn();
-        $puzzleCurrentColumnIndex = !$isNewLine ? count($puzzleCurrentRow) : 0;
-        return $puzzleCurrentColumnIndex;
+        return $isNewLine ? 0 : count($puzzleCurrentRow);
     }
 
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
