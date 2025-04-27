@@ -20,42 +20,41 @@ final readonly class PuzzleSolver
     private static function buildPuzzleSolution(PuzzleDashboard $puzzleDashboard): ?PuzzleSolution
     {
         $puzzlePieces = $puzzleDashboard->puzzlePieces;
-        $puzzleSolution = new PuzzleSolution([]);
 
         if (count($puzzlePieces) === 1) {
-            $puzzleSolution->addPuzzlePieceAtNewRow($puzzlePieces[0]);
-            return $puzzleSolution;
+            $puzzleDashboard->addPuzzlePiece($puzzlePieces[0]);
+            return $puzzleDashboard->puzzleSolution;
         }
 
         if (count($puzzlePieces) === 2) {
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
-                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
-                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
-                return $puzzleSolution;
+                $puzzleDashboard->addPuzzlePiece($firstPiece);
+                $puzzleDashboard->addPuzzlePiece($secondPiece);
+                return $puzzleDashboard->puzzleSolution;
             }
             if ($firstPiece->matchHorizontally($secondPiece)) {
-                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
-                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
-                return $puzzleSolution;
+                $puzzleDashboard->addPuzzlePiece($firstPiece);
+                $puzzleDashboard->addPuzzlePiece($secondPiece);
+                return $puzzleDashboard->puzzleSolution;
             }
             if ($secondPiece->matchHorizontally($firstPiece)) {
-                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
-                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
-                return $puzzleSolution;
+                $puzzleDashboard->addPuzzlePiece($secondPiece);
+                $puzzleDashboard->addPuzzlePiece($firstPiece);
+                return $puzzleDashboard->puzzleSolution;
             }
 
-            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
-            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
-            return $puzzleSolution;
+            $puzzleDashboard->addPuzzlePiece($secondPiece);
+            $puzzleDashboard->addPuzzlePiece($firstPiece);
+            return $puzzleDashboard->puzzleSolution;
         }
 
         if (count($puzzlePieces) === 3) {
-            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $puzzlePieces[0]);
-            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $puzzlePieces[1]);
-            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $puzzlePieces[2]);
-            return $puzzleSolution;
+            $puzzleDashboard->addPuzzlePiece($puzzlePieces[0]);
+            $puzzleDashboard->addPuzzlePiece($puzzlePieces[1]);
+            $puzzleDashboard->addPuzzlePiece($puzzlePieces[2]);
+            return $puzzleDashboard->puzzleSolution;
         }
 
         return null;

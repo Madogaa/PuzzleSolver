@@ -42,14 +42,14 @@ final readonly class PuzzleDashboard
         );
     }
 
-    public function addPuzzlePiece(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): void
+    public function addPuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
-        $puzzleSolutionSolvedPiecesCount = $puzzleSolution->solvedPiecesCount();
+        $puzzleSolutionSolvedPiecesCount = $this->puzzleSolution->solvedPiecesCount();
 
         if ($puzzleSolutionSolvedPiecesCount % $this->width === 0) {
-            $puzzleSolution->addPuzzlePieceAtNewRow($puzzlePiece);
+            $this->puzzleSolution->addPuzzlePieceAtNewRow($puzzlePiece);
         } else {
-            $puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
+            $this->puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
         }
     }
 }
