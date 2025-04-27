@@ -15,6 +15,7 @@ final readonly class PuzzleDashboard
      */
     private function __construct(
         public array $puzzlePieces,
+        public PuzzleSolution $puzzleSolution,
         private int $heigh,
         private int $width
     ) {
@@ -35,6 +36,7 @@ final readonly class PuzzleDashboard
                 $puzzlePieces,
                 array_keys($puzzlePieces)
             ),
+            new PuzzleSolution([]),
             $puzzleHeight,
             $puzzleWidth
         );
