@@ -74,6 +74,17 @@ final readonly class PuzzleDashboard
         return false;
     }
 
+    /**
+     * @return int
+     */
+    private function getPuzzleCurrentColumnIndex(): int
+    {
+        $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
+        $nextPieceStartsOnNewRow = $this->isNextPieceFirstOneAtRow();
+        $puzzleCurrentColumnIndex = !$nextPieceStartsOnNewRow ? count($puzzleCurrentRow) : 0;
+        return $puzzleCurrentColumnIndex;
+    }
+
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
         $previousPuzzlePieceId = $this->getPuzzleSolutionPreviousPieceId();
@@ -116,9 +127,7 @@ final readonly class PuzzleDashboard
             return null;
         }
 
-        $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
-        $nextPieceStartsOnNewRow = $this->isNextPieceFirstOneAtRow();
-        $puzzleCurrentColumnIndex = !$nextPieceStartsOnNewRow ? count($puzzleCurrentRow) : 0;
+        $puzzleCurrentColumnIndex = $this->getPuzzleCurrentColumnIndex();
         $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex - 1] ?? null;
         if ($currentUpperRow === null || !array_key_exists($puzzleCurrentColumnIndex, $currentUpperRow)) {
             return null;
