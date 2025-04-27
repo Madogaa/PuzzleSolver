@@ -10,14 +10,14 @@ final readonly class PuzzleSolver
 {
     public function solve(string $puzzleContext): string
     {
-        $puzzleConfiguration = PuzzleConfiguration::parse($puzzleContext);
+        $puzzleConfiguration = PuzzleDashboard::parse($puzzleContext);
 
         $puzzleSolutionIndex = self::buildPuzzleSolution($puzzleConfiguration);
 
         return PuzzleSolution::format($puzzleSolutionIndex);
     }
 
-    private static function buildPuzzleSolution(PuzzleConfiguration $puzzleConfiguration): ?PuzzleSolution
+    private static function buildPuzzleSolution(PuzzleDashboard $puzzleConfiguration): ?PuzzleSolution
     {
         $puzzlePieces = $puzzleConfiguration->puzzlePieces;
         $puzzleSolution = new PuzzleSolution([]);

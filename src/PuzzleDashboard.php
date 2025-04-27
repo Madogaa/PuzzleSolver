@@ -6,7 +6,7 @@ namespace App;
 
 use function array_slice;
 
-final readonly class PuzzleConfiguration
+final readonly class PuzzleDashboard
 {
     private const int PUZZLE_PIECES_INDEX_OFFSET = 1;
 
