@@ -64,6 +64,11 @@ final readonly class PuzzleDashboard
             return true;
         }
 
+        $topPuzzlePiece = $this->getTopPuzzlePiece();
+        if ($topPuzzlePiece->matchVertically($puzzlePiece)) {
+            return true;
+        }
+
         return false;
     }
 
@@ -75,5 +80,32 @@ final readonly class PuzzleDashboard
         return $previousPuzzlePieceId !== null
             ? $this->puzzlePieces[$previousPuzzlePieceIndex]
             : null;
+    }
+
+    private function getTopPuzzlePiece(): ?PuzzlePiece
+    {
+        $hasToBeAddedToNewRow = $this->hasNextPieceBeAddedToNewRow();
+
+        $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePieceIndex($hasToBeAddedToNewRow);
+
+        return $topPuzzlePieceId !== null
+            ? $this->findPuzzlePieceById($topPuzzlePieceId)
+            : null;
+    }
+
+    private function findPuzzlePieceById(int $puzzlePieceId): PuzzlePiece
+    {
+        $puzzlePiece = array_filter(
+            $this->puzzlePieces,
+            static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id === $puzzlePieceId
+        );
+
+        return reset($puzzlePiece);
+    }
+
+
+    private function hasNextPieceBeAddedToNewRow(): bool
+    {
+        return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
     }
 }

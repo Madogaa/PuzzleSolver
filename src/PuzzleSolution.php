@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use function array_key_exists;
 use function count;
 
 final class PuzzleSolution
@@ -42,6 +43,25 @@ final class PuzzleSolution
         $lastRow = end($this->puzzleSolutionIndex);
 
         return end($lastRow) !== false ? end($lastRow) : null;
+    }
+
+    public function getTopPuzzlePieceIndex(bool $nextPieceStartsOnNewRow): ?int
+    {
+        $rowOffset = $nextPieceStartsOnNewRow ? 0 : 1;
+        $puzzleCurrentRowIndex = count($this->puzzleSolutionIndex) - $rowOffset;
+
+        if ($puzzleCurrentRowIndex === 0) {
+            return null;
+        }
+
+        $puzzleCurrentRow = end($this->puzzleSolutionIndex);
+        $puzzleCurrentColumnIndex = !$nextPieceStartsOnNewRow ? count($puzzleCurrentRow) : 0;
+        $currentUpperRow = $this->puzzleSolutionIndex[$puzzleCurrentRowIndex - 1] ?? null;
+        if ($currentUpperRow === null || !array_key_exists($puzzleCurrentColumnIndex, $currentUpperRow)) {
+            return null;
+        }
+
+        return $currentUpperRow[$puzzleCurrentColumnIndex];
     }
 
     public function solvedPiecesCount(): int
