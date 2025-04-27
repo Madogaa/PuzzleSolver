@@ -52,4 +52,13 @@ final readonly class PuzzleDashboard
             $this->puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
         }
     }
+
+    public function canPuzzlePieceBeAdded(PuzzlePiece $puzzlePiece): bool
+    {
+        if ($puzzlePiece->id === 0) {
+            return true;
+        }
+
+        return false;
+    }
 }
