@@ -12,7 +12,7 @@ final class PuzzleSolution
      * @param int[][] $puzzleSolutionIndex
      */
     public function __construct(
-        public array $puzzleSolutionIndex
+        public array $puzzleSolutionIndex = []
     ) {
     }
 

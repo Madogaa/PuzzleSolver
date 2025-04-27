@@ -36,7 +36,7 @@ final readonly class PuzzleDashboard
                 $puzzlePieces,
                 array_keys($puzzlePieces)
             ),
-            new PuzzleSolution([]),
+            new PuzzleSolution(),
             $puzzleHeight,
             $puzzleWidth
         );
