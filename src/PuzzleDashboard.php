@@ -80,7 +80,7 @@ final readonly class PuzzleDashboard
     private function getPuzzleCurrentColumnIndex(): int
     {
         $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
-        $nextPieceStartsOnNewRow = $this->isNextPieceFirstOneAtRow();
+        $nextPieceStartsOnNewRow = $this->isNextPieceAtFirstColumn();
         $puzzleCurrentColumnIndex = !$nextPieceStartsOnNewRow ? count($puzzleCurrentRow) : 0;
         return $puzzleCurrentColumnIndex;
     }
@@ -114,7 +114,7 @@ final readonly class PuzzleDashboard
     }
 
 
-    private function isNextPieceFirstOneAtRow(): bool
+    private function isNextPieceAtFirstColumn(): bool
     {
         return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
     }
@@ -149,7 +149,7 @@ final readonly class PuzzleDashboard
 
     private function getPuzzleCurrentRowIndex(): int
     {
-        $nextPieceStartsOnNewRow = $this->isNextPieceFirstOneAtRow();
+        $nextPieceStartsOnNewRow = $this->isNextPieceAtFirstColumn();
         $rowOffset = $nextPieceStartsOnNewRow ? 0 : 1;
         return count($this->puzzleSolution->puzzleSolutionIndex) - $rowOffset;
     }
