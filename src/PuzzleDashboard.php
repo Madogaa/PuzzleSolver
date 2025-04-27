@@ -62,11 +62,11 @@ final readonly class PuzzleDashboard
             return true;
         }
 
-        if ($previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
+        if (!$topPuzzlePiece && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
             return true;
         }
 
-        if ($topPuzzlePiece->matchVertically($puzzlePiece)) {
+        if (!$previousPuzzlePiece && $topPuzzlePiece->matchVertically($puzzlePiece)) {
             return true;
         }
 
@@ -84,6 +84,10 @@ final readonly class PuzzleDashboard
 
     private function getPuzzleSolutionPreviousPieceId(): ?int
     {
+        if ($this->isNextPieceAtFirstColumn()) {
+            return null;
+        }
+
         $lastRow = end($this->puzzleSolution->puzzleSolutionIndex);
         if (!$lastRow) {
             return null;
