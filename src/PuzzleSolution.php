@@ -28,9 +28,9 @@ final class PuzzleSolution
         return implode("\n", $puzzleSolutionIndexRows);
     }
 
-    public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
+    public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece, int $currentRow): void
     {
-        $this->puzzleSolutionIndex[0][] = $puzzlePiece->id;
+        $this->puzzleSolutionIndex[$currentRow][] = $puzzlePiece->id;
     }
 
     public function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void

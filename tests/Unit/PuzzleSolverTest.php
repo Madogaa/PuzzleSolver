@@ -94,4 +94,15 @@ class PuzzleSolverTest extends TestCase
         $expectedPuzzleSolution = '2 3 1';
         self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
     }
+
+    public function test_it_solves2x2_puzzle(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "2 2\n0 2 4 0\n0 0 3 2\n4 1 0 0\n3 0 0 1";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = "1 2\n3 4";
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
 }
