@@ -10,16 +10,16 @@ final readonly class PuzzleSolver
 {
     public function solve(string $puzzleContext): string
     {
-        $puzzleConfiguration = PuzzleDashboard::parse($puzzleContext);
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
 
-        $puzzleSolutionIndex = self::buildPuzzleSolution($puzzleConfiguration);
+        $puzzleSolutionIndex = self::buildPuzzleSolution($puzzleDashboard);
 
         return PuzzleSolution::format($puzzleSolutionIndex);
     }
 
-    private static function buildPuzzleSolution(PuzzleDashboard $puzzleConfiguration): ?PuzzleSolution
+    private static function buildPuzzleSolution(PuzzleDashboard $puzzleDashboard): ?PuzzleSolution
     {
-        $puzzlePieces = $puzzleConfiguration->puzzlePieces;
+        $puzzlePieces = $puzzleDashboard->puzzlePieces;
         $puzzleSolution = new PuzzleSolution([]);
 
         if (count($puzzlePieces) === 1) {
@@ -31,30 +31,30 @@ final readonly class PuzzleSolver
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
             if ($firstPiece->matchVertically($secondPiece)) {
-                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
-                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
+                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
+                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
                 return $puzzleSolution;
             }
             if ($firstPiece->matchHorizontally($secondPiece)) {
-                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
-                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
+                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
+                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
                 return $puzzleSolution;
             }
             if ($secondPiece->matchHorizontally($firstPiece)) {
-                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
-                $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
+                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
+                $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
                 return $puzzleSolution;
             }
 
-            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $secondPiece);
-            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $firstPiece);
+            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $secondPiece);
+            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $firstPiece);
             return $puzzleSolution;
         }
 
         if (count($puzzlePieces) === 3) {
-            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $puzzlePieces[0]);
-            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $puzzlePieces[1]);
-            $puzzleConfiguration->addPuzzlePiece($puzzleSolution, $puzzlePieces[2]);
+            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $puzzlePieces[0]);
+            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $puzzlePieces[1]);
+            $puzzleDashboard->addPuzzlePiece($puzzleSolution, $puzzlePieces[2]);
             return $puzzleSolution;
         }
 
