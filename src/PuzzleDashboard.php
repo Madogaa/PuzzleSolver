@@ -74,9 +74,6 @@ final readonly class PuzzleDashboard
         return false;
     }
 
-    /**
-     * @return int
-     */
     private function getPuzzleCurrentColumnIndex(): int
     {
         $puzzleCurrentRow = end($this->puzzleSolution->puzzleSolutionIndex);
