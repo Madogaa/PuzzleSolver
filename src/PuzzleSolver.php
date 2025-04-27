@@ -29,20 +29,14 @@ final readonly class PuzzleSolver
         if (count($puzzlePieces) === 2) {
             $firstPiece = $puzzlePieces[0];
             $secondPiece = $puzzlePieces[1];
-            if ($firstPiece->matchVertically($secondPiece)) {
+
+            if ($puzzleDashboard->canPuzzlePieceBeAdded($firstPiece)) {
                 $puzzleDashboard->addPuzzlePiece($firstPiece);
-                $puzzleDashboard->addPuzzlePiece($secondPiece);
-                return $puzzleDashboard->puzzleSolution;
-            }
-            if ($firstPiece->matchHorizontally($secondPiece)) {
-                $puzzleDashboard->addPuzzlePiece($firstPiece);
-                $puzzleDashboard->addPuzzlePiece($secondPiece);
-                return $puzzleDashboard->puzzleSolution;
-            }
-            if ($secondPiece->matchHorizontally($firstPiece)) {
-                $puzzleDashboard->addPuzzlePiece($secondPiece);
-                $puzzleDashboard->addPuzzlePiece($firstPiece);
-                return $puzzleDashboard->puzzleSolution;
+                if ($puzzleDashboard->canPuzzlePieceBeAdded($secondPiece)) {
+                    $puzzleDashboard->addPuzzlePiece($secondPiece);
+                    return $puzzleDashboard->puzzleSolution;
+                }
+                $puzzleDashboard->removePuzzlePiece($firstPiece);
             }
 
             $puzzleDashboard->addPuzzlePiece($secondPiece);
