@@ -40,11 +40,6 @@ final class PuzzleSolution
     public function removePuzzleLastPiece(): void
     {
         $lastRowIndex = count($this->puzzleSolutionIndex) - 1;
-
-        if ($lastRowIndex < 0) {
-            return;
-        }
-
         $lastRow = &$this->puzzleSolutionIndex[$lastRowIndex];
 
         array_pop($lastRow);
