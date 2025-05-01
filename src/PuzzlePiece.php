@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
+use function sprintf;
+
 final readonly class PuzzlePiece
 {
     public function __construct(
@@ -13,6 +15,18 @@ final readonly class PuzzlePiece
         public int $bottom,
         public int $left
     ) {
+    }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            'Id[%s] %s %s %s %s',
+            $this->id,
+            $this->top,
+            $this->right,
+            $this->bottom,
+            $this->left
+        );
     }
 
     public static function parse(string $pieceAsString, int $piecePosition): self
