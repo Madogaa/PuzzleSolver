@@ -126,11 +126,28 @@ class PuzzleSolverTest extends TestCase
             "0 0 1 3\n" .   // ID 3
             "2 2 3 0\n" .   // ID 4
             "4 1 1 2\n" .   // ID 5
-            "1 0 3 1";      // ID 6
+            '1 0 3 1';      // ID 6
 
         $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "1 2 3\n4 5 6";
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
+
+    public function test_it_solves2x3_puzzle_unordered(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "2 3\n" .
+            "1 0 3 1\n" .   // ID 1
+            "0 3 4 1\n" .   // ID 2
+            "0 0 1 3\n" .   // ID 3
+            "2 2 3 0\n" .   // ID 4
+            "4 1 1 2\n" .   // ID 5
+            '0 1 2 0';      // ID 6
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = "6 2 3\n4 5 1";
         self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
     }
 
