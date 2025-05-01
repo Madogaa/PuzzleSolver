@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App;
 
 use function count;
-use function in_array;
 
 final class PuzzleSolution
 {
@@ -40,10 +39,20 @@ final class PuzzleSolution
 
     public function removePuzzlePieceById(int $puzzlePieceId): void
     {
-        $this->puzzleSolutionIndex = array_filter(
-            $this->puzzleSolutionIndex,
-            static fn (array $row) => !in_array($puzzlePieceId, $row)
-        );
+        $lastRowIndex = count($this->puzzleSolutionIndex) - 1;
+
+        if ($lastRowIndex < 0) {
+            return;
+        }
+
+        $lastRow = &$this->puzzleSolutionIndex[$lastRowIndex];
+
+        if (end($lastRow) === $puzzlePieceId) {
+            array_pop($lastRow);
+            if (empty($lastRow)) {
+                array_pop($this->puzzleSolutionIndex);
+            }
+        }
     }
 
     public function solvedPiecesCount(): int
