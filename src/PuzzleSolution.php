@@ -37,7 +37,7 @@ final class PuzzleSolution
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
     }
 
-    public function removePuzzlePieceById(int $puzzlePieceId): void
+    public function removePuzzleLastPiece(): void
     {
         $lastRowIndex = count($this->puzzleSolutionIndex) - 1;
 
@@ -47,11 +47,9 @@ final class PuzzleSolution
 
         $lastRow = &$this->puzzleSolutionIndex[$lastRowIndex];
 
-        if (end($lastRow) === $puzzlePieceId) {
-            array_pop($lastRow);
-            if (empty($lastRow)) {
-                array_pop($this->puzzleSolutionIndex);
-            }
+        array_pop($lastRow);
+        if (empty($lastRow)) {
+            array_pop($this->puzzleSolutionIndex);
         }
     }
 

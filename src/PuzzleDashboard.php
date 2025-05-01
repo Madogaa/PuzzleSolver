@@ -65,7 +65,7 @@ final class PuzzleDashboard
 
     public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
-        $this->puzzleSolution->removePuzzlePieceById($puzzlePiece->id);
+        $this->puzzleSolution->removePuzzleLastPiece();
         $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 
