@@ -79,7 +79,9 @@ final class PuzzleSolution
 
     public function getNextColumnPointerIndex(): int
     {
-        return $this->currentColumnIndex;
+        $puzzleCurrentRow = $this->currentColumnIndex;
+        $isNewLine = $this->isNextPieceAtFirstColumn();
+        return $isNewLine ? 0 : $puzzleCurrentRow + 1;
     }
 
     private function isNextPieceAtFirstColumn(): bool
