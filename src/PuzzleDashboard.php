@@ -75,7 +75,7 @@ final class PuzzleDashboard
             return true;
         }
 
-        if ($puzzlePiece->getRotationsCount() <= PuzzlePiece::ROTATIONS_COUNT) {
+        if ($puzzlePiece->getRotationsCount() <= PuzzlePiece::MAX_ROTATIONS) {
             $puzzlePiece->rotate();
             $canBeAdded = $this->canPuzzlePieceBeAddedWithRotations($puzzlePiece);
             if ($canBeAdded) {

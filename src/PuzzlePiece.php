@@ -8,7 +8,7 @@ use function sprintf;
 
 final class PuzzlePiece
 {
-    public const int ROTATIONS_COUNT = 3;
+    public const int MAX_ROTATIONS = 3;
 
     private int $rotationsCount = 0;
 
