@@ -160,4 +160,15 @@ class PuzzleSolverTest extends TestCase
         $expectedPuzzleSolution = "9 2 3\n4 5 6\n7 8 1";
         self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
     }
+
+    public function test_it_solves4x4_puzzle(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "4 4\n1 3 5 0\n1 2 4 3\n1 1 5 2\n1 0 3 1\n5 2 2 0\n4 1 3 2\n5 3 4 1\n3 0 1 3\n2 3 5 0\n3 2 1 3\n4 1 2 2\n1 0 3 1\n5 2 0 0\n1 1 0 2\n2 2 0 1\n3 0 0 2";
+
+        $puzzleSolution = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = "1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15 16";
+        self::assertEquals($expectedPuzzleSolution, $puzzleSolution);
+    }
 }
