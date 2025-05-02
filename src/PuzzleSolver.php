@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
-final readonly class PuzzleSolver
+final class PuzzleSolver
 {
+    private array $puzzleSolutions = [];
     /**
      * @throws NoPuzzleSolutionException
      */
@@ -13,32 +14,29 @@ final readonly class PuzzleSolver
     {
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
 
-        $puzzleSolutionIndex = self::buildPuzzleSolutionRecursively($puzzleDashboard);
-        if (!$puzzleSolutionIndex) {
+        $this->buildPuzzleSolutionRecursively($puzzleDashboard);
+        if ($this->puzzleSolutions === []) {
             throw new NoPuzzleSolutionException();
         }
 
-        return PuzzleSolution::format($puzzleSolutionIndex);
+        return PuzzleSolution::format($this->puzzleSolutions[0]);
     }
 
-    private static function buildPuzzleSolutionRecursively(PuzzleDashboard $puzzleDashboard): ?PuzzleSolution
+    private function buildPuzzleSolutionRecursively(PuzzleDashboard $puzzleDashboard): void
     {
         if ($puzzleDashboard->isSolved()) {
-            return $puzzleDashboard->puzzleSolution;
+            $this->puzzleSolutions[] = clone $puzzleDashboard->puzzleSolution;
+            return;
         }
+
         foreach ($puzzleDashboard->availablePuzzlePieces as $puzzlePiece) {
             if (!$puzzleDashboard->canPuzzlePieceBeAddedWithRotations($puzzlePiece)) {
                 continue;
             }
 
             $puzzleDashboard->addPuzzlePiece($puzzlePiece);
-            $puzzleSolution = self::buildPuzzleSolutionRecursively($puzzleDashboard);
-            if ($puzzleSolution) {
-                return $puzzleSolution;
-            }
+            $this->buildPuzzleSolutionRecursively($puzzleDashboard);
             $puzzleDashboard->removePuzzlePiece($puzzlePiece);
         }
-
-        return null;
     }
 }
