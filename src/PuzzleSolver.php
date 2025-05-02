@@ -9,8 +9,10 @@ final class PuzzleSolver
     private array $puzzleSolutions = [];
     /**
      * @throws NoPuzzleSolutionException
+     *
+     * @return string[]
      */
-    public function solve(string $puzzleContext): string
+    public function solve(string $puzzleContext): array
     {
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
 
@@ -19,7 +21,10 @@ final class PuzzleSolver
             throw new NoPuzzleSolutionException();
         }
 
-        return PuzzleSolution::format($this->puzzleSolutions[0]);
+        return array_map(
+            static fn (PuzzleSolution $puzzleSolution): string => PuzzleSolution::format($puzzleSolution),
+            $this->puzzleSolutions
+        );
     }
 
     private function buildPuzzleSolutionRecursively(PuzzleDashboard $puzzleDashboard): void
