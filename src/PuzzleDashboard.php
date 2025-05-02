@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App;
 
 use function array_slice;
-use function count;
 
 final class PuzzleDashboard
 {

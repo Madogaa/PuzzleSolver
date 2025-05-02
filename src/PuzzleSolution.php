@@ -9,8 +9,8 @@ use function count;
 final class PuzzleSolution
 {
     private int $totalSolvedPieces = 0;
-    private int $currentRowIndex = 0;
-    private int $currentColumnIndex = 0;
+
+    private PuzzlePointer $puzzlePointer;
     /**
      * @param int[][] $puzzleSolutionIndex
      */
@@ -18,6 +18,7 @@ final class PuzzleSolution
         public PuzzleDimensions $puzzleDimensions,
         public array $puzzleSolutionIndex = []
     ) {
+        $this->puzzlePointer = new PuzzlePointer($this->puzzleDimensions->width);
     }
 
     public static function format(?self $puzzleSolution): string
@@ -34,15 +35,14 @@ final class PuzzleSolution
     public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[$this->getNextRowPointerIndex()][] = $puzzlePiece->id;
-        ++$this->currentColumnIndex;
+        $this->puzzlePointer->moveRight();
         ++$this->totalSolvedPieces;
     }
 
     public function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
-        $this->currentColumnIndex = 0;
-        ++$this->currentRowIndex;
+        $this->puzzlePointer->moveDown();
         ++$this->totalSolvedPieces;
     }
 
@@ -52,15 +52,14 @@ final class PuzzleSolution
         $lastRow = &$this->puzzleSolutionIndex[$lastRowIndex];
 
         array_pop($lastRow);
-        --$this->currentColumnIndex;
+        $this->puzzlePointer->moveLeft();
         --$this->totalSolvedPieces;
     }
 
     public function removePuzzleLastRow(): void
     {
         array_pop($this->puzzleSolutionIndex);
-        $this->currentColumnIndex = $this->puzzleDimensions->width - 1;
-        --$this->currentRowIndex;
+        $this->puzzlePointer->moveUp();
         --$this->totalSolvedPieces;
     }
 
@@ -72,14 +71,14 @@ final class PuzzleSolution
     public function getNextRowPointerIndex(): int
     {
         $isNewRow = $this->isNextPieceAtFirstColumn();
-        $lastRowIndex = $this->currentRowIndex - 1;
+        $lastRowIndex = $this->puzzlePointer->row - 1;
         $rowOffset = $isNewRow ? 1 : 0;
         return $lastRowIndex + $rowOffset;
     }
 
     public function getNextColumnPointerIndex(): int
     {
-        $puzzleCurrentRow = $this->currentColumnIndex;
+        $puzzleCurrentRow = $this->puzzlePointer->column;
         $isNewLine = $this->isNextPieceAtFirstColumn();
         return $isNewLine ? 0 : $puzzleCurrentRow + 1;
     }
