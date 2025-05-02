@@ -139,7 +139,7 @@ final class PuzzleDashboard
 
     private function getPuzzleSolutionPreviousPieceId(): ?int
     {
-        if ($this->isNextPieceAtFirstColumn()) {
+        if ($this->puzzleSolution->isNextPieceAtFirstColumn()) {
             return null;
         }
 
@@ -178,10 +178,5 @@ final class PuzzleDashboard
         $puzzleCurrentColumnIndex = $this->puzzleSolution->getNextColumnPointerIndex();
 
         return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
-    }
-
-    private function isNextPieceAtFirstColumn(): bool
-    {
-        return $this->puzzleSolution->solvedPiecesCount() % $this->width === 0;
     }
 }

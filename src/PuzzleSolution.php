@@ -84,7 +84,7 @@ final class PuzzleSolution
         return $isNewLine ? 0 : $puzzleCurrentRow + 1;
     }
 
-    private function isNextPieceAtFirstColumn(): bool
+    public function isNextPieceAtFirstColumn(): bool
     {
         return $this->solvedPiecesCount() % $this->puzzleDimensions->width === 0;
     }
