@@ -21,10 +21,7 @@ final class PuzzleSolver
             throw new NoPuzzleSolutionException();
         }
 
-        return array_map(
-            static fn (PuzzleSolution $puzzleSolution): string => PuzzleSolution::format($puzzleSolution),
-            $this->puzzleSolutions
-        );
+        return $this->formatPuzzleSolutions();
     }
 
     private function buildPuzzleSolutionRecursively(PuzzleDashboard $puzzleDashboard): void
@@ -44,4 +41,17 @@ final class PuzzleSolver
             $puzzleDashboard->removePuzzlePiece($puzzlePiece);
         }
     }
+
+    /**
+     * @return string[]
+     */
+    private function formatPuzzleSolutions(): array
+    {
+        return array_map(
+            static fn(PuzzleSolution $puzzleSolution): string => PuzzleSolution::format($puzzleSolution),
+            $this->puzzleSolutions
+        );
+    }
+
+
 }
