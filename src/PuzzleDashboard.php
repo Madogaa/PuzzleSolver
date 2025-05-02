@@ -65,7 +65,14 @@ final class PuzzleDashboard
 
     public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
-        $this->puzzleSolution->removePuzzleLastPiece();
+        $solvedPiecesCountAfterDeleting = $this->puzzleSolution->solvedPiecesCount() - 1;
+
+        if ($solvedPiecesCountAfterDeleting % $this->width === 0) {
+            $this->puzzleSolution->removePuzzleLastRow();
+        } else {
+            $this->puzzleSolution->removePuzzleLastPiece();
+        }
+
         $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 

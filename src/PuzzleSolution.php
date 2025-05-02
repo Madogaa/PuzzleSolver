@@ -46,9 +46,12 @@ final class PuzzleSolution
         $lastRow = &$this->puzzleSolutionIndex[$lastRowIndex];
 
         array_pop($lastRow);
-        if ($lastRow === []) {
-            array_pop($this->puzzleSolutionIndex);
-        }
+        --$this->totalSolvedPieces;
+    }
+
+    public function removePuzzleLastRow(): void
+    {
+        array_pop($this->puzzleSolutionIndex);
         --$this->totalSolvedPieces;
     }
 
