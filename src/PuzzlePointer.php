@@ -8,8 +8,8 @@ final class PuzzlePointer
 {
     public function __construct(
         public readonly int $puzzleWidth,
-        public int $row = 0,
-        public int $column = 0
+        private int $row = 0,
+        private int $column = 0
     ) {
     }
 
@@ -33,5 +33,15 @@ final class PuzzlePointer
     {
         --$this->row;
         $this->column = $this->puzzleWidth - 1;
+    }
+
+    public function row(): int
+    {
+        return $this->row;
+    }
+
+    public function column(): int
+    {
+        return $this->column;
     }
 }

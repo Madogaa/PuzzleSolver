@@ -71,14 +71,14 @@ final class PuzzleSolution
     public function getNextRowPointerIndex(): int
     {
         $isNewRow = $this->isNextPieceAtFirstColumn();
-        $lastRowIndex = $this->puzzlePointer->row - 1;
+        $lastRowIndex = $this->puzzlePointer->row() - 1;
         $rowOffset = $isNewRow ? 1 : 0;
         return $lastRowIndex + $rowOffset;
     }
 
     public function getNextColumnPointerIndex(): int
     {
-        $puzzleCurrentRow = $this->puzzlePointer->column;
+        $puzzleCurrentRow = $this->puzzlePointer->column();
         $isNewLine = $this->isNextPieceAtFirstColumn();
         return $isNewLine ? 0 : $puzzleCurrentRow + 1;
     }
