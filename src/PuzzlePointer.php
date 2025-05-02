@@ -49,6 +49,6 @@ final class PuzzlePointer
 
     public function isNextPieceAtFirstColumn(): bool
     {
-        return ($this->column()+ 1) % $this->puzzleWidth === 0;
+        return ($this->column() + 1) % $this->puzzleWidth === 0;
     }
 }
