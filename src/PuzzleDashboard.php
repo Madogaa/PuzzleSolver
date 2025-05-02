@@ -69,6 +69,23 @@ final class PuzzleDashboard
         $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 
+    public function canPuzzlePieceBeAddedWithRotations(PuzzlePiece $puzzlePiece): bool
+    {
+        if ($this->canPuzzlePieceBeAdded($puzzlePiece)) {
+            return true;
+        }
+
+        if ($puzzlePiece->getRotationsCount() <= PuzzlePiece::ROTATIONS_COUNT) {
+            $puzzlePiece->rotate();
+            $canBeAdded = $this->canPuzzlePieceBeAddedWithRotations($puzzlePiece);
+            if ($canBeAdded) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function canPuzzlePieceBeAdded(PuzzlePiece $puzzlePiece): bool
     {
         $previousPuzzlePiece = $this->getPreviousPuzzlePiece();

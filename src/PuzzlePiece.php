@@ -6,10 +6,14 @@ namespace App;
 
 use function sprintf;
 
-final readonly class PuzzlePiece
+final class PuzzlePiece
 {
+    public const int ROTATIONS_COUNT = 3;
+
+    private int $rotationsCount = 0;
+
     public function __construct(
-        public int $id,
+        public readonly int $id,
         public int $top,
         public int $right,
         public int $bottom,
@@ -50,5 +54,16 @@ final readonly class PuzzlePiece
     public function matchHorizontally(self $puzzlePiece): bool
     {
         return $this->right != 0 && $this->right == $puzzlePiece->left;
+    }
+
+    public function rotate(): void
+    {
+        [$this->top, $this->right, $this->bottom, $this->left] = [$this->left, $this->top, $this->right, $this->bottom];
+        ++$this->rotationsCount;
+    }
+
+    public function getRotationsCount(): int
+    {
+        return $this->rotationsCount;
     }
 }
