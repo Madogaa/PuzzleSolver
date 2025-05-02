@@ -8,6 +8,7 @@ use function count;
 
 final class PuzzleSolution
 {
+    private int $totalSolvedPieces = 0;
     /**
      * @param int[][] $puzzleSolutionIndex
      */
@@ -30,11 +31,13 @@ final class PuzzleSolution
     public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece, int $currentRow): void
     {
         $this->puzzleSolutionIndex[$currentRow][] = $puzzlePiece->id;
+        ++$this->totalSolvedPieces;
     }
 
     public function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
+        ++$this->totalSolvedPieces;
     }
 
     public function removePuzzleLastPiece(): void
@@ -46,14 +49,11 @@ final class PuzzleSolution
         if (empty($lastRow)) {
             array_pop($this->puzzleSolutionIndex);
         }
+        --$this->totalSolvedPieces;
     }
 
     public function solvedPiecesCount(): int
     {
-        return array_reduce(
-            $this->puzzleSolutionIndex,
-            static fn (int $carry, array $row) => $carry + count($row),
-            0
-        );
+        return $this->totalSolvedPieces;
     }
 }
