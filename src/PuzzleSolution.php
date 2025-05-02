@@ -34,7 +34,7 @@ final class PuzzleSolution
 
     public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
     {
-        $this->puzzleSolutionIndex[$this->getNextRowPointerIndex()][] = $puzzlePiece->id;
+        $this->puzzleSolutionIndex[$this->puzzlePointer->getNextRowPointerIndex()][] = $puzzlePiece->id;
         $this->puzzlePointer->moveRight();
         ++$this->totalSolvedPieces;
     }
@@ -68,16 +68,11 @@ final class PuzzleSolution
         return $this->totalSolvedPieces;
     }
 
-    public function getNextRowPointerIndex(): int
-    {
-        $isNewRow = $this->puzzlePointer->isNextPieceAtFirstColumn();
-        $lastRowIndex = $this->puzzlePointer->row() - 1;
-        $rowOffset = $isNewRow ? 1 : 0;
-        return $lastRowIndex + $rowOffset;
-    }
 
-    public function getNextColumnPointerIndex(): int
-    {
-        return $this->puzzlePointer->isNextPieceAtFirstColumn() ? 0 : $this->puzzlePointer->column() + 1;
-    }
+
+
+
+
+
+
 }

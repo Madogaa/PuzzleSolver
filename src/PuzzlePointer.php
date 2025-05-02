@@ -51,4 +51,17 @@ final class PuzzlePointer
     {
         return ($this->column() + 1) % $this->puzzleWidth === 0;
     }
+
+    public function getNextColumnPointerIndex(): int
+    {
+        return $this->isNextPieceAtFirstColumn() ? 0 : $this->column() + 1;
+    }
+
+    public function getNextRowPointerIndex(): int
+    {
+        $isNewRow = $this->isNextPieceAtFirstColumn();
+        $lastRowIndex = $this->row() - 1;
+        $rowOffset = $isNewRow ? 1 : 0;
+        return $lastRowIndex + $rowOffset;
+    }
 }
