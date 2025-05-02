@@ -10,7 +10,7 @@ final class PuzzleSolution
 {
     private int $totalSolvedPieces = 0;
 
-    private PuzzlePointer $puzzlePointer;
+    public PuzzlePointer $puzzlePointer;
     /**
      * @param int[][] $puzzleSolutionIndex
      */
@@ -70,7 +70,7 @@ final class PuzzleSolution
 
     public function getNextRowPointerIndex(): int
     {
-        $isNewRow = $this->isNextPieceAtFirstColumn();
+        $isNewRow = $this->puzzlePointer->isNextPieceAtFirstColumn();
         $lastRowIndex = $this->puzzlePointer->row() - 1;
         $rowOffset = $isNewRow ? 1 : 0;
         return $lastRowIndex + $rowOffset;
@@ -79,12 +79,7 @@ final class PuzzleSolution
     public function getNextColumnPointerIndex(): int
     {
         $puzzleCurrentRow = $this->puzzlePointer->column();
-        $isNewLine = $this->isNextPieceAtFirstColumn();
+        $isNewLine = $this->puzzlePointer->isNextPieceAtFirstColumn();
         return $isNewLine ? 0 : $puzzleCurrentRow + 1;
-    }
-
-    public function isNextPieceAtFirstColumn(): bool
-    {
-        return $this->solvedPiecesCount() % $this->puzzleDimensions->width === 0;
     }
 }

@@ -6,6 +6,8 @@ namespace App;
 
 final class PuzzlePointer
 {
+
+    private const int POINTER_INDEX_OFFSET = 1;
     public function __construct(
         public readonly int $puzzleWidth,
         private int $row = 0,
@@ -43,5 +45,10 @@ final class PuzzlePointer
     public function column(): int
     {
         return $this->column;
+    }
+
+    public function isNextPieceAtFirstColumn(): bool
+    {
+        return ($this->column()+ 1) % $this->puzzleWidth === 0;
     }
 }

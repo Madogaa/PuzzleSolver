@@ -138,7 +138,7 @@ final class PuzzleDashboard
 
     private function getPuzzleSolutionPreviousPieceId(): ?int
     {
-        if ($this->puzzleSolution->isNextPieceAtFirstColumn()) {
+        if ($this->puzzleSolution->puzzlePointer->isNextPieceAtFirstColumn()) {
             return null;
         }
 
