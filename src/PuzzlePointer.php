@@ -34,7 +34,7 @@ final class PuzzlePointer
     public function moveUp(): void
     {
         --$this->row;
-        $this->column = $this->puzzleWidth - 1;
+        $this->column = $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
     }
 
     public function row(): int
@@ -49,7 +49,7 @@ final class PuzzlePointer
 
     public function isNextPieceAtFirstColumn(): bool
     {
-        return ($this->column() + 1) % $this->puzzleWidth === 0;
+        return ($this->column() + self::POINTER_INDEX_OFFSET) % $this->puzzleWidth === 0;
     }
 
     public function getNextColumnPointerIndex(): int

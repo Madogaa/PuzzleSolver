@@ -67,12 +67,4 @@ final class PuzzleSolution
     {
         return $this->totalSolvedPieces;
     }
-
-
-
-
-
-
-
-
 }

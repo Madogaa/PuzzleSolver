@@ -172,8 +172,8 @@ final class PuzzleDashboard
 
     private function getTopPuzzlePieceId(): ?int
     {
-        $puzzleCurrentRowIndex = $this->puzzleSolution->puzzlePointer->getNextRowPointerIndex();
-        $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex - 1] ?? null;
+        $puzzleCurrentRowIndex = $this->puzzleSolution->puzzlePointer->getNextRowPointerIndex() - 1;
+        $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex] ?? null;
         $puzzleCurrentColumnIndex = $this->puzzleSolution->puzzlePointer->getNextColumnPointerIndex();
 
         return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
