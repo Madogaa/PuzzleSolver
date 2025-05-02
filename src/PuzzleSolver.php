@@ -48,10 +48,8 @@ final class PuzzleSolver
     private function formatPuzzleSolutions(): array
     {
         return array_map(
-            static fn(PuzzleSolution $puzzleSolution): string => PuzzleSolution::format($puzzleSolution),
+            static fn (PuzzleSolution $puzzleSolution): string => PuzzleSolution::format($puzzleSolution),
             $this->puzzleSolutions
         );
     }
-
-
 }
