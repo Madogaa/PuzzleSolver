@@ -50,7 +50,7 @@ final class PuzzlePointer
         return $this->column;
     }
 
-    public function previousPositionColumnValue(): ?int
+    public function previousColumn(): ?int
     {
         if ($this->isFirstPosition()) {
             return null;
