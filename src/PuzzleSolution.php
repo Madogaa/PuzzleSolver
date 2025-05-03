@@ -71,6 +71,21 @@ final class PuzzleSolution
         return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
     }
 
+    public function getPuzzleSolutionPreviousPieceId(): ?int
+    {
+        if ($this->puzzlePointer->isNextPieceAtFirstColumn()) {
+            return null;
+        }
+
+        $lastRow = end($this->puzzleSolutionIndex);
+        if (!$lastRow) {
+            return null;
+        }
+
+        $lastRowValue = end($lastRow);
+        return $lastRowValue !== false ? $lastRowValue : null;
+    }
+
     public function isSolved(): bool
     {
         return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;

@@ -128,26 +128,11 @@ final class PuzzleDashboard
 
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
-        $previousPuzzlePieceId = $this->getPuzzleSolutionPreviousPieceId();
+        $previousPuzzlePieceId = $this->puzzleSolution->getPuzzleSolutionPreviousPieceId();
 
         return $previousPuzzlePieceId !== null
             ? $this->findPuzzlePieceById($previousPuzzlePieceId)
             : null;
-    }
-
-    private function getPuzzleSolutionPreviousPieceId(): ?int
-    {
-        if ($this->puzzleSolution->puzzlePointer->isNextPieceAtFirstColumn()) {
-            return null;
-        }
-
-        $lastRow = end($this->puzzleSolution->puzzleSolutionIndex);
-        if (!$lastRow) {
-            return null;
-        }
-
-        $lastRowValue = end($lastRow);
-        return $lastRowValue !== false ? $lastRowValue : null;
     }
 
     private function getTopPuzzlePiece(): ?PuzzlePiece
