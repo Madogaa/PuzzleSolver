@@ -36,18 +36,6 @@ final class PuzzlePointer
         }
     }
 
-    public function moveDown(): void
-    {
-        $this->moveOneRowDown();
-        $this->moveToFirstColumn();
-    }
-
-    public function moveUp(): void
-    {
-        $this->moveOneRowUp();
-        $this->moveToLastColumn();
-    }
-
     public function row(): int
     {
         return $this->row;
@@ -58,6 +46,23 @@ final class PuzzlePointer
         return $this->column;
     }
 
+    public function isNextPieceAtFirstColumn(): bool
+    {
+        return ($this->column()) % $this->puzzleWidth === 0;
+    }
+
+    private function moveDown(): void
+    {
+        $this->moveOneRowDown();
+        $this->moveToFirstColumn();
+    }
+
+    private function moveUp(): void
+    {
+        $this->moveOneRowUp();
+        $this->moveToLastColumn();
+    }
+
     private function moveLeft(): void
     {
         --$this->column;
@@ -66,11 +71,6 @@ final class PuzzlePointer
     private function moveRight(): void
     {
         ++$this->column;
-    }
-
-    public function isNextPieceAtFirstColumn(): bool
-    {
-        return ($this->column()) % $this->puzzleWidth === 0;
     }
 
     private function moveOneRowUp(): void
