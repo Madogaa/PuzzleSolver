@@ -74,17 +74,11 @@ final class PuzzleSolution
 
     public function getPuzzleSolutionPreviousPieceId(): ?int
     {
-        if ($this->puzzlePointer->isNextPieceAtFirstColumn()) {
+        if ($this->puzzlePointer->isFirstColumn()) {
             return null;
         }
 
-        $lastRow = end($this->puzzleSolutionIndex);
-        if (!$lastRow) {
-            return null;
-        }
-
-        $lastRowValue = end($lastRow);
-        return $lastRowValue !== false ? $lastRowValue : null;
+        return $this->puzzleSolutionIndex[$this->puzzlePointer->row()][$this->puzzlePointer->previousColumn()];
     }
 
     public function isSolved(): bool
