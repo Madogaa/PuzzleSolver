@@ -46,13 +46,7 @@ final class PuzzleDashboard
 
     public function addPuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
-        if ($this->puzzleSolution->puzzlePointer->column() === 0) {
-            $this->puzzleSolution->addPuzzlePieceAtNewRow($puzzlePiece);
-            $this->removePieceFromAvailablePuzzlePieces($puzzlePiece);
-            return;
-        }
-
-        $this->puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
+        $this->puzzleSolution->addPuzzlePiece($puzzlePiece);
         $this->removePieceFromAvailablePuzzlePieces($puzzlePiece);
     }
 

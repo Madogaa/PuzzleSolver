@@ -29,14 +29,24 @@ final class PuzzleSolution
         return implode("\n", $puzzleSolutionIndexRows);
     }
 
-    public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
+    public function addPuzzlePiece(PuzzlePiece $puzzlePiece): void
+    {
+        if ($this->puzzlePointer->column() === 0) {
+            $this->addPuzzlePieceAtNewRow($puzzlePiece);
+            return;
+        }
+
+        $this->addPuzzlePieceAtSameRow($puzzlePiece);
+    }
+
+    private function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece->id;
         $this->puzzlePointer->next();
         ++$this->totalSolvedPieces;
     }
 
-    public function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
+    private function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
         $this->puzzlePointer->next();
