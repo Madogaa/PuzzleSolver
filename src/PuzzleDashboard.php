@@ -113,19 +113,6 @@ final class PuzzleDashboard
         return false;
     }
 
-    private function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
-    {
-        $this->availablePuzzlePieces[] = $puzzlePiece;
-    }
-
-    private function removePieceFromAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
-    {
-        $this->availablePuzzlePieces = array_filter(
-            $this->availablePuzzlePieces,
-            static fn (PuzzlePiece $availablePuzzlePiece) => $availablePuzzlePiece->id !== $puzzlePiece->id
-        );
-    }
-
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
         $previousPuzzlePieceId = $this->puzzleSolution->getPuzzleSolutionPreviousPieceId();
@@ -152,5 +139,18 @@ final class PuzzleDashboard
         );
 
         return reset($puzzlePiece);
+    }
+
+    private function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
+    {
+        $this->availablePuzzlePieces[] = $puzzlePiece;
+    }
+
+    private function removePieceFromAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
+    {
+        $this->availablePuzzlePieces = array_filter(
+            $this->availablePuzzlePieces,
+            static fn (PuzzlePiece $availablePuzzlePiece) => $availablePuzzlePiece->id !== $puzzlePiece->id
+        );
     }
 }
