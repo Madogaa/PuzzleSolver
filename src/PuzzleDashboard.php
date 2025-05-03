@@ -52,13 +52,7 @@ final class PuzzleDashboard
 
     public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
-        if ($this->puzzleSolution->puzzlePointer->previousColumn() === 0) {
-            $this->puzzleSolution->removePuzzleLastRow();
-            $this->addPieceToAvailablePuzzlePieces($puzzlePiece);
-            return;
-        }
-
-        $this->puzzleSolution->removePuzzleLastPiece();
+        $this->puzzleSolution->removePuzzlePiece();
         $this->addPieceToAvailablePuzzlePieces($puzzlePiece);
     }
 
