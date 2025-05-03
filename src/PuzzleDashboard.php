@@ -150,16 +150,6 @@ final class PuzzleDashboard
         return $lastRowValue !== false ? $lastRowValue : null;
     }
 
-    private function findPuzzlePieceById(int $puzzlePieceId): PuzzlePiece
-    {
-        $puzzlePiece = array_filter(
-            $this->puzzlePieces,
-            static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id === $puzzlePieceId
-        );
-
-        return reset($puzzlePiece);
-    }
-
     private function getTopPuzzlePiece(): ?PuzzlePiece
     {
         $topPuzzlePieceId = $this->getTopPuzzlePieceId();
@@ -176,5 +166,15 @@ final class PuzzleDashboard
         $puzzleCurrentColumnIndex = $this->puzzleSolution->puzzlePointer->column();
 
         return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
+    }
+
+    private function findPuzzlePieceById(int $puzzlePieceId): PuzzlePiece
+    {
+        $puzzlePiece = array_filter(
+            $this->puzzlePieces,
+            static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id === $puzzlePieceId
+        );
+
+        return reset($puzzlePiece);
     }
 }
