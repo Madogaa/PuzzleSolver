@@ -64,11 +64,6 @@ final class PuzzleSolution
 
     public function isSolved(): bool
     {
-        return $this->solvedPiecesCount() === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;
-    }
-
-    public function solvedPiecesCount(): int
-    {
-        return $this->totalSolvedPieces;
+        return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;
     }
 }
