@@ -46,7 +46,7 @@ final class PuzzleSolution
     public function removeFirstPuzzlePiece(): void
     {
         $this->puzzleSolutionIndex = [];
-        $this->puzzlePointer->reset();
+        $this->puzzlePointer->back();
         --$this->totalSolvedPieces;
     }
 
