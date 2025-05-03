@@ -70,12 +70,12 @@ final class PuzzleDashboard
 
         if ($solvedPiecesCountAfterDeleting % $this->width === 0) {
             $this->puzzleSolution->removePuzzleLastRow();
-            $this->availablePuzzlePieces[] = $puzzlePiece;
+            $this->addPieceToAvailablePuzzlePieces($puzzlePiece);
             return;
         }
 
         $this->puzzleSolution->removePuzzleLastPiece();
-        $this->availablePuzzlePieces[] = $puzzlePiece;
+        $this->addPieceToAvailablePuzzlePieces($puzzlePiece);
 
     }
 
@@ -179,5 +179,14 @@ final class PuzzleDashboard
         $puzzleCurrentColumnIndex = $this->puzzleSolution->puzzlePointer->getNextColumnPointerIndex();
 
         return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
+    }
+
+    /**
+     * @param PuzzlePiece $puzzlePiece
+     * @return void
+     */
+    public function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
+    {
+        $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 }
