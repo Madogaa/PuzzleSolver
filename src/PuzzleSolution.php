@@ -64,11 +64,12 @@ final class PuzzleSolution
 
     public function getTopPuzzlePieceId(): ?int
     {
-        $puzzleCurrentRowIndex = $this->puzzlePointer->row() - 1;
-        $currentUpperRow = $this->puzzleSolutionIndex[$puzzleCurrentRowIndex] ?? null;
-        $puzzleCurrentColumnIndex = $this->puzzlePointer->column();
+        $previousRow = $this->puzzlePointer->previousRow();
+        if ($previousRow === null) {
+            return null;
+        }
 
-        return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
+        return $this->puzzleSolutionIndex[$previousRow][$this->puzzlePointer->column()];
     }
 
     public function getPuzzleSolutionPreviousPieceId(): ?int
