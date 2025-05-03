@@ -45,11 +45,9 @@ final class PuzzleSolution
 
     public function removePuzzleLastPiece(): void
     {
-        if ($this->puzzlePointer->column() === 0) {
-            $lastRowIndex = $this->puzzlePointer->row() - 1;
-        } else {
-            $lastRowIndex = $this->puzzlePointer->row();
-        }
+        $isLastPieceOneRowBefore = $this->puzzlePointer->column() === 0;
+        $rowOffset = $isLastPieceOneRowBefore ? -1 : 0;
+        $lastRowIndex = $this->puzzlePointer->row() + $rowOffset;
         $lastRow = &$this->puzzleSolutionIndex[$lastRowIndex];
 
         array_pop($lastRow);
