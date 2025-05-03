@@ -32,15 +32,22 @@ final class PuzzleSolution
     public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece->id;
-        $this->puzzlePointer->moveRight();
+        $this->puzzlePointer->next();
         ++$this->totalSolvedPieces;
     }
 
     public function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
-        $this->puzzlePointer->moveRight();
+        $this->puzzlePointer->next();
         ++$this->totalSolvedPieces;
+    }
+
+    public function removeFirstPuzzlePiece(): void
+    {
+        $this->puzzleSolutionIndex = [];
+        $this->puzzlePointer->reset();
+        --$this->totalSolvedPieces;
     }
 
     public function removePuzzleLastPiece(): void
@@ -51,26 +58,19 @@ final class PuzzleSolution
         $lastRow = &$this->puzzleSolutionIndex[$lastRowIndex];
 
         array_pop($lastRow);
-        $this->puzzlePointer->moveLeft();
+        $this->puzzlePointer->back();
         --$this->totalSolvedPieces;
     }
 
     public function removePuzzleLastRow(): void
     {
         array_pop($this->puzzleSolutionIndex);
-        $this->puzzlePointer->moveLeft();
+        $this->puzzlePointer->back();
         --$this->totalSolvedPieces;
     }
 
     public function solvedPiecesCount(): int
     {
         return $this->totalSolvedPieces;
-    }
-
-    public function removeFirstPuzzlePiece(): void
-    {
-        $this->puzzleSolutionIndex = [];
-        $this->puzzlePointer->reset();
-        --$this->totalSolvedPieces;
     }
 }

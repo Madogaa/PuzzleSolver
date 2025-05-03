@@ -20,7 +20,7 @@ final class PuzzlePointer
         $this->column = 0;
     }
 
-    public function moveRight(): void
+    public function next(): void
     {
         ++$this->column;
         if ($this->column === $this->puzzleWidth) {
@@ -28,7 +28,7 @@ final class PuzzlePointer
         }
     }
 
-    public function moveLeft(): void
+    public function back(): void
     {
         --$this->column;
         if ($this->column < 0) {
