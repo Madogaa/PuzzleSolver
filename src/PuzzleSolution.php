@@ -6,7 +6,7 @@ namespace App;
 
 final class PuzzleSolution
 {
-    public PuzzlePointer $puzzlePointer;
+    private PuzzlePointer $puzzlePointer;
     private int $totalSolvedPieces = 0;
     /**
      * @param int[][] $puzzleSolutionIndex

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use function array_filter;
 use function array_slice;
 
 final class PuzzleDashboard
@@ -47,13 +48,16 @@ final class PuzzleDashboard
     public function addPuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolution->addPuzzlePiece($puzzlePiece);
-        $this->removePieceFromAvailablePuzzlePieces($puzzlePiece);
+        $this->availablePuzzlePieces = array_filter(
+            $this->availablePuzzlePieces,
+            static fn (PuzzlePiece $availablePuzzlePiece) => $availablePuzzlePiece->id !== $puzzlePiece->id
+        );
     }
 
     public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolution->removePuzzlePiece();
-        $this->addPieceToAvailablePuzzlePieces($puzzlePiece);
+        $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 
     public function canPuzzlePieceBeAddedWithRotations(PuzzlePiece $puzzlePiece): bool
@@ -127,18 +131,5 @@ final class PuzzleDashboard
         );
 
         return reset($puzzlePiece);
-    }
-
-    private function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
-    {
-        $this->availablePuzzlePieces[] = $puzzlePiece;
-    }
-
-    private function removePieceFromAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
-    {
-        $this->availablePuzzlePieces = array_filter(
-            $this->availablePuzzlePieces,
-            static fn (PuzzlePiece $availablePuzzlePiece) => $availablePuzzlePiece->id !== $puzzlePiece->id
-        );
     }
 }
