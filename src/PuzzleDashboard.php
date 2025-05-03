@@ -54,14 +54,12 @@ final class PuzzleDashboard
 
         if ($puzzleSolutionSolvedPiecesCount % $this->width === 0) {
             $this->puzzleSolution->addPuzzlePieceAtNewRow($puzzlePiece);
-        } else {
-            $this->puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
+            $this->removePieceFromAvailablePuzzlePieces($puzzlePiece);
+            return;
         }
 
-        $this->availablePuzzlePieces = array_filter(
-            $this->availablePuzzlePieces,
-            static fn (PuzzlePiece $availablePuzzlePiece) => $availablePuzzlePiece->id !== $puzzlePiece->id
-        );
+        $this->puzzleSolution->addPuzzlePieceAtSameRow($puzzlePiece);
+        $this->removePieceFromAvailablePuzzlePieces($puzzlePiece);
     }
 
     public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
@@ -76,7 +74,6 @@ final class PuzzleDashboard
 
         $this->puzzleSolution->removePuzzleLastPiece();
         $this->addPieceToAvailablePuzzlePieces($puzzlePiece);
-
     }
 
     public function canPuzzlePieceBeAddedWithRotations(PuzzlePiece $puzzlePiece): bool
@@ -129,6 +126,29 @@ final class PuzzleDashboard
         return $this->puzzleSolution->solvedPiecesCount() === $this->width * $this->heigh;
     }
 
+    /**
+     * @param PuzzlePiece $puzzlePiece
+     *
+     * @return void
+     */
+    public function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
+    {
+        $this->availablePuzzlePieces[] = $puzzlePiece;
+    }
+
+    /**
+     * @param PuzzlePiece $puzzlePiece
+     *
+     * @return void
+     */
+    public function removePieceFromAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
+    {
+        $this->availablePuzzlePieces = array_filter(
+            $this->availablePuzzlePieces,
+            static fn (PuzzlePiece $availablePuzzlePiece) => $availablePuzzlePiece->id !== $puzzlePiece->id
+        );
+    }
+
     private function getPreviousPuzzlePiece(): ?PuzzlePiece
     {
         $previousPuzzlePieceId = $this->getPuzzleSolutionPreviousPieceId();
@@ -179,14 +199,5 @@ final class PuzzleDashboard
         $puzzleCurrentColumnIndex = $this->puzzleSolution->puzzlePointer->getNextColumnPointerIndex();
 
         return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
-    }
-
-    /**
-     * @param PuzzlePiece $puzzlePiece
-     * @return void
-     */
-    public function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
-    {
-        $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 }
