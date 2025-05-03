@@ -63,23 +63,12 @@ final class PuzzlePointer
         return $this->column - 1;
     }
 
-    public function isNextPieceAtFirstColumn(): bool
-    {
-        return ($this->column()) % $this->puzzleWidth === 0;
-    }
-
-    /**
-     * @return bool
-     */
     public function isFirstColumn(): bool
     {
         return $this->column === 0;
     }
 
-    /**
-     * @return bool
-     */
-    public function isFirstPosition(): bool
+    private function isFirstPosition(): bool
     {
         return $this->hasReachedTopEnd() && $this->isFirstColumn();
     }
