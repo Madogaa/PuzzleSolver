@@ -8,9 +8,8 @@ use function count;
 
 final class PuzzleSolution
 {
-    private int $totalSolvedPieces = 0;
-
     public PuzzlePointer $puzzlePointer;
+    private int $totalSolvedPieces = 0;
     /**
      * @param int[][] $puzzleSolutionIndex
      */

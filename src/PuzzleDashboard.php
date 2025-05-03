@@ -70,11 +70,15 @@ final class PuzzleDashboard
 
         if ($solvedPiecesCountAfterDeleting % $this->width === 0) {
             $this->puzzleSolution->removePuzzleLastRow();
-        } else {
-            $this->puzzleSolution->removePuzzleLastPiece();
+            $this->availablePuzzlePieces[] = $puzzlePiece;
+            return;
         }
 
-        $this->availablePuzzlePieces[] = $puzzlePiece;
+        if ($solvedPiecesCountAfterDeleting % $this->width !== 0) {
+            $this->puzzleSolution->removePuzzleLastPiece();
+            $this->availablePuzzlePieces[] = $puzzlePiece;
+            return;
+        }
     }
 
     public function canPuzzlePieceBeAddedWithRotations(PuzzlePiece $puzzlePiece): bool
