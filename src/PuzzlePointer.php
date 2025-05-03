@@ -46,6 +46,15 @@ final class PuzzlePointer
         return $this->column;
     }
 
+    public function previousPositionColumnValue(): int
+    {
+        if ($this->column === 0) {
+            return $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
+        }
+
+        return $this->column - 1;
+    }
+
     private function moveToFirstColumn(): void
     {
         $this->column = 0;
