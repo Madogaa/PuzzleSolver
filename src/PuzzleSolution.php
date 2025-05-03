@@ -29,13 +29,6 @@ final class PuzzleSolution
         return implode("\n", $puzzleSolutionIndexRows);
     }
 
-    public function addFirstPuzzlePiece(PuzzlePiece $puzzlePiece): void
-    {
-        $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
-        $this->puzzlePointer->moveRight();
-        ++$this->totalSolvedPieces;
-    }
-
     public function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece->id;
