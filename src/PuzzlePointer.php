@@ -7,6 +7,7 @@ namespace App;
 final class PuzzlePointer
 {
     private const int POINTER_INDEX_OFFSET = 1;
+
     public function __construct(
         public readonly int $puzzleWidth,
         private int $row = 0,
@@ -41,14 +42,29 @@ final class PuzzlePointer
         return $this->row;
     }
 
+    public function isNextPieceAtFirstColumn(): bool
+    {
+        return ($this->column()) % $this->puzzleWidth === 0;
+    }
+
     public function column(): int
     {
         return $this->column;
     }
 
-    public function isNextPieceAtFirstColumn(): bool
+    private function moveToFirstColumn(): void
     {
-        return ($this->column()) % $this->puzzleWidth === 0;
+        $this->column = 0;
+    }
+
+    private function moveRight(): void
+    {
+        ++$this->column;
+    }
+
+    private function hasReachedRightEnd(): bool
+    {
+        return $this->column === $this->puzzleWidth;
     }
 
     private function startANewLine(): void
@@ -57,10 +73,9 @@ final class PuzzlePointer
         $this->moveToFirstColumn();
     }
 
-    private function moveUp(): void
+    private function moveOneRowDown(): void
     {
-        $this->moveOneRowUp();
-        $this->moveToLastColumn();
+        ++$this->row;
     }
 
     private function moveLeft(): void
@@ -68,9 +83,15 @@ final class PuzzlePointer
         --$this->column;
     }
 
-    private function moveRight(): void
+    private function hasReachedLeftEnd(): bool
     {
-        ++$this->column;
+        return $this->column < 0;
+    }
+
+    private function moveUp(): void
+    {
+        $this->moveOneRowUp();
+        $this->moveToLastColumn();
     }
 
     private function moveOneRowUp(): void
@@ -81,25 +102,5 @@ final class PuzzlePointer
     private function moveToLastColumn(): void
     {
         $this->column = $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
-    }
-
-    private function moveOneRowDown(): void
-    {
-        ++$this->row;
-    }
-
-    private function moveToFirstColumn(): void
-    {
-        $this->column = 0;
-    }
-
-    private function hasReachedRightEnd(): bool
-    {
-        return $this->column === $this->puzzleWidth;
-    }
-
-    private function hasReachedLeftEnd(): bool
-    {
-        return $this->column < 0;
     }
 }
