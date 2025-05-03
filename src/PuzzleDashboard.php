@@ -18,9 +18,7 @@ final class PuzzleDashboard
      */
     private function __construct(
         public array $availablePuzzlePieces,
-        public readonly PuzzleSolution $puzzleSolution,
-        private readonly int $heigh,
-        private readonly int $width
+        public readonly PuzzleSolution $puzzleSolution
     ) {
         $this->puzzlePieces = $availablePuzzlePieces;
     }
@@ -42,9 +40,7 @@ final class PuzzleDashboard
             ),
             new PuzzleSolution(
                 new PuzzleDimensions($puzzleHeight, $puzzleWidth)
-            ),
-            $puzzleHeight,
-            $puzzleWidth
+            )
         );
     }
 
@@ -115,11 +111,6 @@ final class PuzzleDashboard
         }
 
         return false;
-    }
-
-    public function isSolved(): bool
-    {
-        return $this->puzzleSolution->solvedPiecesCount() === $this->width * $this->heigh;
     }
 
     private function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void

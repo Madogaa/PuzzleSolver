@@ -62,6 +62,11 @@ final class PuzzleSolution
         --$this->totalSolvedPieces;
     }
 
+    public function isSolved(): bool
+    {
+        return $this->solvedPiecesCount() === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;
+    }
+
     public function removeFirstPuzzlePiece(): void
     {
         array_pop($this->puzzleSolutionIndex);

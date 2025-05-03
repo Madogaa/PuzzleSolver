@@ -26,7 +26,7 @@ final class PuzzleSolver
 
     private function buildPuzzleSolutionRecursively(PuzzleDashboard $puzzleDashboard): void
     {
-        if ($puzzleDashboard->isSolved()) {
+        if ($puzzleDashboard->puzzleSolution->isSolved()) {
             $this->puzzleSolutions[] = clone $puzzleDashboard->puzzleSolution;
             return;
         }
