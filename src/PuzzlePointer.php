@@ -20,11 +20,6 @@ final class PuzzlePointer
         $this->column = 0;
     }
 
-    public function init(): void
-    {
-        $this->moveRight();
-    }
-
     public function moveRight(): void
     {
         ++$this->column;

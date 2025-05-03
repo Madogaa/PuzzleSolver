@@ -32,7 +32,7 @@ final class PuzzleSolution
     public function addFirstPuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
-        $this->puzzlePointer->init();
+        $this->puzzlePointer->moveRight();
         ++$this->totalSolvedPieces;
     }
 
