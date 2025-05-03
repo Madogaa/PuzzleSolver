@@ -38,7 +38,7 @@ final class PuzzlePointer
 
     public function previousRow(): ?int
     {
-        if ($this->hasReachedTopEnd()){
+        if ($this->hasReachedTopEnd()) {
             return null;
         }
 
@@ -50,9 +50,13 @@ final class PuzzlePointer
         return $this->column;
     }
 
-    public function previousPositionColumnValue(): int
+    public function previousPositionColumnValue(): ?int
     {
-        if ($this->column === 0) {
+        if ($this->isFirstPosition()) {
+            return null;
+        }
+
+        if ($this->isFirstColumn()) {
             return $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
         }
 
@@ -62,6 +66,22 @@ final class PuzzlePointer
     public function isNextPieceAtFirstColumn(): bool
     {
         return ($this->column()) % $this->puzzleWidth === 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFirstColumn(): bool
+    {
+        return $this->column === 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFirstPosition(): bool
+    {
+        return $this->hasReachedTopEnd() && $this->isFirstColumn();
     }
 
     private function moveToFirstColumn(): void
