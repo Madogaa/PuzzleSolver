@@ -51,6 +51,13 @@ final class PuzzleDashboard
     public function addPuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
         $puzzleSolutionSolvedPiecesCount = $this->puzzleSolution->solvedPiecesCount();
+        $isFirstPuzzlePiece = $puzzleSolutionSolvedPiecesCount === 0;
+
+        if ($isFirstPuzzlePiece) {
+            $this->puzzleSolution->addFirstPuzzlePiece($puzzlePiece);
+            $this->removePieceFromAvailablePuzzlePieces($puzzlePiece);
+            return;
+        }
 
         if ($puzzleSolutionSolvedPiecesCount % $this->width === 0) {
             $this->puzzleSolution->addPuzzlePieceAtNewRow($puzzlePiece);
@@ -65,6 +72,14 @@ final class PuzzleDashboard
     public function removePuzzlePiece(PuzzlePiece $puzzlePiece): void
     {
         $solvedPiecesCountAfterDeleting = $this->puzzleSolution->solvedPiecesCount() - 1;
+        $isFirstPuzzlePiece = $solvedPiecesCountAfterDeleting === 0;
+
+
+        if ($isFirstPuzzlePiece) {
+            $this->puzzleSolution->removeFirstPuzzlePiece();
+            $this->addPieceToAvailablePuzzlePieces($puzzlePiece);
+            return;
+        }
 
         if ($solvedPiecesCountAfterDeleting % $this->width === 0) {
             $this->puzzleSolution->removePuzzleLastRow();
@@ -184,9 +199,9 @@ final class PuzzleDashboard
 
     private function getTopPuzzlePieceId(): ?int
     {
-        $puzzleCurrentRowIndex = $this->puzzleSolution->puzzlePointer->getNextRowPointerIndex() - 1;
+        $puzzleCurrentRowIndex = $this->puzzleSolution->puzzlePointer->row() - 1;
         $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex] ?? null;
-        $puzzleCurrentColumnIndex = $this->puzzleSolution->puzzlePointer->getNextColumnPointerIndex();
+        $puzzleCurrentColumnIndex = $this->puzzleSolution->puzzlePointer->column();
 
         return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
     }
