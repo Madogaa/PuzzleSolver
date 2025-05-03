@@ -62,6 +62,15 @@ final class PuzzleSolution
         --$this->totalSolvedPieces;
     }
 
+    public function getTopPuzzlePieceId(): ?int
+    {
+        $puzzleCurrentRowIndex = $this->puzzlePointer->row() - 1;
+        $currentUpperRow = $this->puzzleSolutionIndex[$puzzleCurrentRowIndex] ?? null;
+        $puzzleCurrentColumnIndex = $this->puzzlePointer->column();
+
+        return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
+    }
+
     public function isSolved(): bool
     {
         return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;

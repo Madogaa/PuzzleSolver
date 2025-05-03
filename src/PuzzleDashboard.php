@@ -152,20 +152,11 @@ final class PuzzleDashboard
 
     private function getTopPuzzlePiece(): ?PuzzlePiece
     {
-        $topPuzzlePieceId = $this->getTopPuzzlePieceId();
+        $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePieceId();
 
         return $topPuzzlePieceId !== null
             ? $this->findPuzzlePieceById($topPuzzlePieceId)
             : null;
-    }
-
-    private function getTopPuzzlePieceId(): ?int
-    {
-        $puzzleCurrentRowIndex = $this->puzzleSolution->puzzlePointer->row() - 1;
-        $currentUpperRow = $this->puzzleSolution->puzzleSolutionIndex[$puzzleCurrentRowIndex] ?? null;
-        $puzzleCurrentColumnIndex = $this->puzzleSolution->puzzlePointer->column();
-
-        return $currentUpperRow ? $currentUpperRow[$puzzleCurrentColumnIndex] : null;
     }
 
     private function findPuzzlePieceById(int $puzzlePieceId): PuzzlePiece
