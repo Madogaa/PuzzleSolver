@@ -126,22 +126,12 @@ final class PuzzleDashboard
         return $this->puzzleSolution->solvedPiecesCount() === $this->width * $this->heigh;
     }
 
-    /**
-     * @param PuzzlePiece $puzzlePiece
-     *
-     * @return void
-     */
-    public function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
+    private function addPieceToAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
     {
         $this->availablePuzzlePieces[] = $puzzlePiece;
     }
 
-    /**
-     * @param PuzzlePiece $puzzlePiece
-     *
-     * @return void
-     */
-    public function removePieceFromAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
+    private function removePieceFromAvailablePuzzlePieces(PuzzlePiece $puzzlePiece): void
     {
         $this->availablePuzzlePieces = array_filter(
             $this->availablePuzzlePieces,
