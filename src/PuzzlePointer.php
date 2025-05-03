@@ -15,12 +15,6 @@ final class PuzzlePointer
     ) {
     }
 
-    public function reset(): void
-    {
-        $this->row = 0;
-        $this->moveToFirstColumn();
-    }
-
     public function next(): void
     {
         $this->moveRight();

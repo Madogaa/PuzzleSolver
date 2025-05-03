@@ -43,13 +43,6 @@ final class PuzzleSolution
         ++$this->totalSolvedPieces;
     }
 
-    public function removeFirstPuzzlePiece(): void
-    {
-        $this->puzzleSolutionIndex = [];
-        $this->puzzlePointer->back();
-        --$this->totalSolvedPieces;
-    }
-
     public function removePuzzleLastPiece(): void
     {
         $isLastPieceOneRowBefore = $this->puzzlePointer->column() === 0;
@@ -63,6 +56,13 @@ final class PuzzleSolution
     }
 
     public function removePuzzleLastRow(): void
+    {
+        array_pop($this->puzzleSolutionIndex);
+        $this->puzzlePointer->back();
+        --$this->totalSolvedPieces;
+    }
+
+    public function removeFirstPuzzlePiece(): void
     {
         array_pop($this->puzzleSolutionIndex);
         $this->puzzlePointer->back();
