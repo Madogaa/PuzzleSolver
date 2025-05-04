@@ -26,10 +26,11 @@ final class PuzzlePointer
 
     public function back(): void
     {
-        $this->moveLeft();
         if ($this->hasReachedLeftEnd() && !$this->hasReachedTopEnd()) {
             $this->moveUp();
+            return;
         }
+        $this->moveLeft();
     }
 
     public function row(): int
@@ -107,7 +108,7 @@ final class PuzzlePointer
 
     private function hasReachedLeftEnd(): bool
     {
-        return $this->column < 0;
+        return $this->column === 0;
     }
 
     private function hasReachedTopEnd(): bool
