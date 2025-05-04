@@ -70,7 +70,7 @@ final class PuzzlePointer
         return $this->column === 0;
     }
 
-    private function isInitialPosition(): bool
+    public function isInitialPosition(): bool
     {
         return $this->isFirstRow() && $this->isFirstColumn();
     }

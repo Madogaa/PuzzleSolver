@@ -66,6 +66,11 @@ final class PuzzleSolution
         return $this->puzzleSolution[$this->puzzlePointer->row()][$this->puzzlePointer->previousColumn()];
     }
 
+    public function isFirstPieceToBeSolved(): bool
+    {
+        return $this->puzzlePointer->isInitialPosition() === true;
+    }
+
     public function isSolved(): bool
     {
         return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;

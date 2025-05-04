@@ -28,8 +28,7 @@ class PuzzlePieceValidator
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
-        $isPlacedAtFirstPosition = !$previousPuzzlePiece && !$topPuzzlePiece;
-        if ($isPlacedAtFirstPosition && $puzzlePiece->isFirstCorner()) {
+        if ($puzzleSolution->isFirstPieceToBeSolved() && $puzzlePiece->isFirstCorner()) {
             return true;
         }
 
