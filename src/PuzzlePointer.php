@@ -59,7 +59,7 @@ final class PuzzlePointer
         }
 
         if ($this->isFirstColumn()) {
-            return $this->puzzleWidth - self::INDEX_OFFSET;
+            return $this->lastColumn();
         }
 
         return $this->column - 1;
@@ -87,7 +87,7 @@ final class PuzzlePointer
 
     private function isLastColumn(): bool
     {
-        return $this->column === $this->puzzleWidth - self::INDEX_OFFSET;
+        return $this->column === $this->lastColumn();
     }
 
     private function moveToNextRow(): void
@@ -124,6 +124,11 @@ final class PuzzlePointer
 
     private function moveToLastColumn(): void
     {
-        $this->column = $this->puzzleWidth - self::INDEX_OFFSET;
+        $this->column = $this->lastColumn();
+    }
+
+    private function lastColumn(): int
+    {
+        return $this->puzzleWidth - self::INDEX_OFFSET;
     }
 }
