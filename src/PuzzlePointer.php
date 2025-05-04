@@ -15,7 +15,7 @@ final class PuzzlePointer
     ) {
     }
 
-    public function next(): void
+    public function moveNext(): void
     {
         if ($this->hasReachedRightEnd()) {
             $this->startANewLine();
@@ -24,7 +24,7 @@ final class PuzzlePointer
         $this->moveRight();
     }
 
-    public function back(): void
+    public function movePrevious(): void
     {
         if ($this->hasReachedLeftEnd() && !$this->hasReachedTopEnd()) {
             $this->moveUp();

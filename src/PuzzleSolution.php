@@ -100,7 +100,7 @@ final class PuzzleSolution
 
     private function moveForwards(): void
     {
-        $this->puzzlePointer->next();
+        $this->puzzlePointer->moveNext();
         $this->increaseSolvedPiecesCounter();
     }
 
@@ -111,7 +111,7 @@ final class PuzzleSolution
 
     private function moveBackwards(): void
     {
-        $this->puzzlePointer->back();
+        $this->puzzlePointer->movePrevious();
         $this->decreaseSolvedPiecesCounter();
     }
 
