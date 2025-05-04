@@ -10,6 +10,8 @@ final class PuzzlePiece
 {
     public const int MAX_ROTATIONS = 3;
 
+    private const int PUZZLE_PIECES_INDEX_OFFSET = 1;
+
     private int $rotationsCount = 0;
 
     public function __construct(
@@ -37,7 +39,7 @@ final class PuzzlePiece
     {
         $pieceShapes = explode(' ', $pieceAsString);
         return new self(
-            $piecePosition,
+            $piecePosition + self::PUZZLE_PIECES_INDEX_OFFSET,
             (int)$pieceShapes[0],
             (int)$pieceShapes[1],
             (int)$pieceShapes[2],

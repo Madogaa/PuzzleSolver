@@ -9,7 +9,6 @@ use function array_slice;
 
 final class PuzzleDashboard
 {
-    private const int PUZZLE_PIECES_INDEX_OFFSET = 1;
     private PuzzlePieceValidator $puzzlePieceValidator;
 
     /**
@@ -27,7 +26,7 @@ final class PuzzleDashboard
         $splitPuzzleContext = explode("\n", $puzzleContext);
         $puzzlePiecesAsString = array_slice($splitPuzzleContext, 1);
         $puzzlePieces = array_map(
-            static fn (string $puzzlePieceAsString, int $puzzlePiecePosition) => PuzzlePiece::parse($puzzlePieceAsString, $puzzlePiecePosition + self::PUZZLE_PIECES_INDEX_OFFSET),
+            static fn (string $puzzlePieceAsString, int $puzzlePiecePosition) => PuzzlePiece::parse($puzzlePieceAsString, $puzzlePiecePosition),
             $puzzlePiecesAsString,
             array_keys($puzzlePiecesAsString)
         );
