@@ -64,8 +64,6 @@ class PuzzlePieceValidator
             return true;
         }
 
-        AppLogger::getLogger()->info("Piece {$puzzlePiece} cannot be added context: Top: {$topPuzzlePiece}, Prev: {$previousPuzzlePiece}");
-
         return false;
     }
 
