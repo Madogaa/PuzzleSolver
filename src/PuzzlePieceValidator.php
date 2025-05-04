@@ -28,12 +28,13 @@ class PuzzlePieceValidator
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
-        $isFirstPieceToPlace = !$previousPuzzlePiece && !$topPuzzlePiece;
-        if ($isFirstPieceToPlace && $puzzlePiece->isFirstCorner()) {
+        $isPlacedAtFirstPosition = !$previousPuzzlePiece && !$topPuzzlePiece;
+        if ($isPlacedAtFirstPosition && $puzzlePiece->isFirstCorner()) {
             return true;
         }
 
-        if (!$topPuzzlePiece && $previousPuzzlePiece && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
+        $isPlacedAtFirstRow = !$topPuzzlePiece && $previousPuzzlePiece;
+        if ($isPlacedAtFirstRow && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
             return true;
         }
 
@@ -41,9 +42,9 @@ class PuzzlePieceValidator
             return true;
         }
 
+        $isPlacedAtMiddle = $previousPuzzlePiece && $topPuzzlePiece;
         if (
-            $previousPuzzlePiece
-            && $topPuzzlePiece
+            $isPlacedAtMiddle
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
