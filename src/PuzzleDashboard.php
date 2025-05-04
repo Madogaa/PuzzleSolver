@@ -11,9 +11,6 @@ final class PuzzleDashboard
 {
     private const int PUZZLE_PIECES_INDEX_OFFSET = 1;
 
-    /** @var PuzzlePiece[] */
-    public readonly array $puzzlePieces;
-
     /**
      * @param PuzzlePiece[] $availablePuzzlePieces
      */
@@ -21,7 +18,6 @@ final class PuzzleDashboard
         public array $availablePuzzlePieces,
         public readonly PuzzleSolution $puzzleSolution
     ) {
-        $this->puzzlePieces = $availablePuzzlePieces;
     }
 
     public static function parse(string $puzzleContext): self
