@@ -73,4 +73,9 @@ final class PuzzlePiece
     {
         return $this->top == 0 && $this->left == 0;
     }
+
+    public function hasTopBorder(): bool
+    {
+        return $this->top === 0;
+    }
 }

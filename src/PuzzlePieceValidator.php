@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Shared\AppLogger;
+
 class PuzzlePieceValidator
 {
     public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
@@ -42,7 +44,11 @@ class PuzzlePieceValidator
             return true;
         }
 
-        if ($this->isPieceInFirstRowAndNotFirstToBeSolved($puzzleSolution) && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
+        if (
+            $this->isPieceInFirstRowAndNotFirstToBeSolved($puzzleSolution)
+            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
+            && $puzzlePiece->hasTopBorder()
+        ) {
             return true;
         }
 
@@ -57,6 +63,8 @@ class PuzzlePieceValidator
         ) {
             return true;
         }
+
+        AppLogger::getLogger()->info("Piece {$puzzlePiece} cannot be added context: Top: {$topPuzzlePiece}, Prev: {$previousPuzzlePiece}");
 
         return false;
     }
