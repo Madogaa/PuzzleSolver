@@ -17,7 +17,7 @@ final class PuzzlePointer
 
     public function moveNext(): void
     {
-        if ($this->hasReachedRightEnd()) {
+        if ($this->isLastColumn()) {
             $this->moveToNextRow();
             return;
         }
@@ -26,8 +26,8 @@ final class PuzzlePointer
 
     public function movePrevious(): void
     {
-        if ($this->isFirstColumn() && !$this->hasReachedTopEnd()) {
-            $this->moveUp();
+        if ($this->isFirstColumn() && !$this->isFirstRow()) {
+            $this->moveToUpperRow();
             return;
         }
         $this->moveLeft();
@@ -40,7 +40,7 @@ final class PuzzlePointer
 
     public function previousRow(): ?int
     {
-        if ($this->hasReachedTopEnd()) {
+        if ($this->isFirstRow()) {
             return null;
         }
 
@@ -54,7 +54,7 @@ final class PuzzlePointer
 
     public function previousColumn(): ?int
     {
-        if ($this->isFirstPosition()) {
+        if ($this->isInitialPosition()) {
             return null;
         }
 
@@ -70,9 +70,9 @@ final class PuzzlePointer
         return $this->column === 0;
     }
 
-    private function isFirstPosition(): bool
+    private function isInitialPosition(): bool
     {
-        return $this->hasReachedTopEnd() && $this->isFirstColumn();
+        return $this->isFirstRow() && $this->isFirstColumn();
     }
 
     private function moveToFirstColumn(): void
@@ -85,18 +85,18 @@ final class PuzzlePointer
         ++$this->column;
     }
 
-    private function hasReachedRightEnd(): bool
+    private function isLastColumn(): bool
     {
         return $this->column === $this->puzzleWidth - self::INDEX_OFFSET;
     }
 
     private function moveToNextRow(): void
     {
-        $this->moveOneRowDown();
+        $this->moveDown();
         $this->moveToFirstColumn();
     }
 
-    private function moveOneRowDown(): void
+    private function moveDown(): void
     {
         ++$this->row;
     }
@@ -106,18 +106,18 @@ final class PuzzlePointer
         --$this->column;
     }
 
-    private function hasReachedTopEnd(): bool
+    private function isFirstRow(): bool
     {
         return $this->row === 0;
     }
 
-    private function moveUp(): void
+    private function moveToUpperRow(): void
     {
-        $this->moveOneRowUp();
+        $this->moveUp();
         $this->moveToLastColumn();
     }
 
-    private function moveOneRowUp(): void
+    private function moveUp(): void
     {
         --$this->row;
     }
