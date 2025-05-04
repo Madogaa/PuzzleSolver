@@ -10,15 +10,15 @@ class PuzzlePieceValidator
     {
     }
 
-    public function canPuzzlePieceBeAddedWithRotations(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
+    public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
-        if ($this->canPuzzlePieceBeAdded($puzzleSolution, $puzzlePiece)) {
+        if ($this->canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece)) {
             return true;
         }
 
         if ($puzzlePiece->getRotationsCount() <= PuzzlePiece::MAX_ROTATIONS) {
             $puzzlePiece->rotate();
-            $canBeAdded = $this->canPuzzlePieceBeAddedWithRotations($puzzleSolution, $puzzlePiece);
+            $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleSolution, $puzzlePiece);
             if ($canBeAdded) {
                 return true;
             }
@@ -27,7 +27,7 @@ class PuzzlePieceValidator
         return false;
     }
 
-    private function canPuzzlePieceBeAdded(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
+    private function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         $previousPuzzlePiece = $puzzleSolution->getPuzzleSolutionPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
