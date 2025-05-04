@@ -33,15 +33,11 @@ class PuzzlePieceValidator
             return true;
         }
 
-        if ($isFirstPieceToPlace && !$puzzlePiece->isFirstCorner()) {
-            return false;
-        }
-
-        if (!$topPuzzlePiece && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
+        if (!$topPuzzlePiece && $previousPuzzlePiece && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
             return true;
         }
 
-        if (!$previousPuzzlePiece && $topPuzzlePiece->matchVertically($puzzlePiece)) {
+        if (!$previousPuzzlePiece && $topPuzzlePiece && $topPuzzlePiece->matchVertically($puzzlePiece)) {
             return true;
         }
 
