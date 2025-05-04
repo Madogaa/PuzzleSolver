@@ -5,17 +5,26 @@ declare(strict_types=1);
 namespace Tests\Unit;
 
 use App\PuzzleDashboard;
+use App\PuzzlePieceValidator;
 use PHPUnit\Framework\TestCase;
 
-class PuzzleDashboardTest extends TestCase
+class PuzzlePieceValidatorTest extends TestCase
 {
+    private PuzzlePieceValidator $puzzlePieceValidator;
+
+    protected function setUp(): void
+    {
+        $this->puzzlePieceValidator = new PuzzlePieceValidator();
+    }
+
+
     public function test_it_can_puzzle_piece_be_added_when_first_puzzle_piece(): void
     {
         $puzzleContext = "1 3\n0 2 0 0\n0 1 0 2\n1 0 0 1";
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
         $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
 
-        $canPuzzlePieceBeAddedResult = $puzzleDashboard->canPuzzlePieceBeAdded($puzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $puzzlePiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -28,7 +37,7 @@ class PuzzleDashboardTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $puzzleDashboard->canPuzzlePieceBeAdded($secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -41,7 +50,7 @@ class PuzzleDashboardTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $puzzleDashboard->canPuzzlePieceBeAdded($secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -58,7 +67,7 @@ class PuzzleDashboardTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($firstPiece);
         $puzzleDashboard->addPuzzlePiece($secondPiece);
         $puzzleDashboard->addPuzzlePiece($thirdPiece);
-        $canPuzzlePieceBeAddedResult = $puzzleDashboard->canPuzzlePieceBeAdded($fourthPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $fourthPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
