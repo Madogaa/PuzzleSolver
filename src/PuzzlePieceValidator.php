@@ -6,10 +6,6 @@ namespace App;
 
 class PuzzlePieceValidator
 {
-    public function __construct()
-    {
-    }
-
     public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         if ($this->canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece)) {
