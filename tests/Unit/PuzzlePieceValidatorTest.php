@@ -24,7 +24,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
         $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
 
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $puzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedWithRotations($puzzleDashboard->puzzleSolution, $puzzlePiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -37,7 +37,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedWithRotations($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -50,7 +50,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedWithRotations($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -67,7 +67,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($firstPiece);
         $puzzleDashboard->addPuzzlePiece($secondPiece);
         $puzzleDashboard->addPuzzlePiece($thirdPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAdded($puzzleDashboard->puzzleSolution, $fourthPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedWithRotations($puzzleDashboard->puzzleSolution, $fourthPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
