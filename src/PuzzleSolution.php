@@ -59,7 +59,7 @@ final class PuzzleSolution
         return $this->puzzleSolutionIndex[$previousRow][$this->puzzlePointer->column()];
     }
 
-    public function getPuzzleSolutionPreviousPiece(): ?PuzzlePiece
+    public function getPreviousPiece(): ?PuzzlePiece
     {
         if ($this->puzzlePointer->isFirstColumn()) {
             return null;

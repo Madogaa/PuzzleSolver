@@ -25,7 +25,7 @@ class PuzzlePieceValidator
 
     private function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
-        $previousPuzzlePiece = $puzzleSolution->getPuzzleSolutionPreviousPiece();
+        $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
         if (!$previousPuzzlePiece && !$topPuzzlePiece) {
             return true;
