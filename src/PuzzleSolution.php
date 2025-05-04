@@ -76,6 +76,30 @@ final class PuzzleSolution
     private function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[][] = $puzzlePiece;
+        $this->moveForwards();
+    }
+
+    private function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
+    {
+        $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece;
+        $this->moveForwards();
+    }
+
+    private function removePuzzleLastRow(): void
+    {
+        array_pop($this->puzzleSolutionIndex);
+        $this->moveBackwards();
+    }
+
+    private function removePuzzleLastPiece(): void
+    {
+        $rowIndex = $this->puzzlePointer->isFirstColumn() ? $this->puzzlePointer->previousRow() : $this->puzzlePointer->row();
+        array_pop($this->puzzleSolutionIndex[$rowIndex]);
+        $this->moveBackwards();
+    }
+
+    private function moveForwards(): void
+    {
         $this->puzzlePointer->next();
         $this->increaseSolvedPiecesCounter();
     }
@@ -85,16 +109,8 @@ final class PuzzleSolution
         ++$this->totalSolvedPieces;
     }
 
-    private function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
+    private function moveBackwards(): void
     {
-        $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece;
-        $this->puzzlePointer->next();
-        $this->increaseSolvedPiecesCounter();
-    }
-
-    private function removePuzzleLastRow(): void
-    {
-        array_pop($this->puzzleSolutionIndex);
         $this->puzzlePointer->back();
         $this->decreaseSolvedPiecesCounter();
     }
@@ -102,14 +118,5 @@ final class PuzzleSolution
     private function decreaseSolvedPiecesCounter(): void
     {
         --$this->totalSolvedPieces;
-    }
-
-    private function removePuzzleLastPiece(): void
-    {
-        $rowIndex = $this->puzzlePointer->isFirstColumn() ? $this->puzzlePointer->previousRow() : $this->puzzlePointer->row();
-
-        array_pop($this->puzzleSolutionIndex[$rowIndex]);
-        $this->puzzlePointer->back();
-        $this->decreaseSolvedPiecesCounter();
     }
 }
