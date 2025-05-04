@@ -108,4 +108,30 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
+
+    public function test_it_first_column_puzzle_piece_can_be_added_when_matches_top_and_has_left_border(): void
+    {
+        $puzzleContext = "3 1\n0 0 2 0\n0 2 0 1\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $firstPiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
+
+        $puzzleDashboard->addPuzzlePiece($firstPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+
+        $this->assertTrue($canPuzzlePieceBeAddedResult);
+    }
+
+    public function test_it_first_column_puzzle_piece_can_not_be_added_when_matches_top_and_has_left_border(): void
+    {
+        $puzzleContext = "3 1\n0 0 2 0\n1 2 0 1\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $firstPiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
+
+        $puzzleDashboard->addPuzzlePiece($firstPiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+
+        $this->assertFalse($canPuzzlePieceBeAddedResult);
+    }
 }

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Shared\AppLogger;
-
 class PuzzlePieceValidator
 {
     public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
@@ -52,7 +50,11 @@ class PuzzlePieceValidator
             return true;
         }
 
-        if ($this->isPieceInFirstColumnAndNotFirstToBeSolved($puzzleSolution) && $topPuzzlePiece->matchVertically($puzzlePiece)) {
+        if (
+            $this->isPieceInFirstColumnAndNotFirstToBeSolved($puzzleSolution)
+            && $topPuzzlePiece->matchVertically($puzzlePiece)
+            && $puzzlePiece->hasLeftBorder()
+        ) {
             return true;
         }
 
