@@ -75,6 +75,11 @@ final class PuzzlePointer
         return $this->isFirstRow() && $this->isFirstColumn();
     }
 
+    public function isFirstRow(): bool
+    {
+        return $this->row === 0;
+    }
+
     private function moveToFirstColumn(): void
     {
         $this->column = 0;
@@ -104,11 +109,6 @@ final class PuzzlePointer
     private function moveLeft(): void
     {
         --$this->column;
-    }
-
-    private function isFirstRow(): bool
-    {
-        return $this->row === 0;
     }
 
     private function moveToUpperRow(): void

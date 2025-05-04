@@ -71,6 +71,11 @@ final class PuzzleSolution
         return $this->puzzlePointer->isInitialPosition() === true;
     }
 
+    public function isPieceToBeSolvedInFirstRow(): bool
+    {
+        return $this->puzzlePointer->isFirstRow() === true;
+    }
+
     public function isSolved(): bool
     {
         return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;

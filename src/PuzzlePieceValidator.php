@@ -32,8 +32,7 @@ class PuzzlePieceValidator
             return true;
         }
 
-        $isPlacedAtFirstRow = !$topPuzzlePiece && $previousPuzzlePiece;
-        if ($isPlacedAtFirstRow && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
+        if ($this->isPieceInFirstRowAndNotFirstToBeSolved($puzzleSolution) && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {
             return true;
         }
 
@@ -51,5 +50,10 @@ class PuzzlePieceValidator
         }
 
         return false;
+    }
+
+    private function isPieceInFirstRowAndNotFirstToBeSolved(PuzzleSolution $puzzleSolution): bool
+    {
+        return $puzzleSolution->isPieceToBeSolvedInFirstRow() && !$puzzleSolution->isFirstPieceToBeSolved();
     }
 }
