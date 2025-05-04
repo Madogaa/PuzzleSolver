@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\NoPuzzleSolutionException;
-use App\PuzzleSolver;
+use App\PuzzleSolver\NoPuzzleSolutionException;
+use App\PuzzleSolver\PuzzleSolver;
 use PHPUnit\Framework\TestCase;
 
 class PuzzleSolverTest extends TestCase

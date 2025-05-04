@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\PuzzleSolver;
 
 use function array_filter;
 use function array_slice;
