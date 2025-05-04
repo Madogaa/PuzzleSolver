@@ -27,7 +27,7 @@ class PuzzlePieceValidator
         return false;
     }
 
-    public function canPuzzlePieceBeAdded(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
+    private function canPuzzlePieceBeAdded(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         $previousPuzzlePiece = $this->getPreviousPuzzlePiece($puzzleSolution);
         $topPuzzlePiece = $this->getTopPuzzlePiece($puzzleSolution);
@@ -55,14 +55,14 @@ class PuzzlePieceValidator
         return false;
     }
 
-    public function getPreviousPuzzlePiece(PuzzleSolution $puzzleSolution): ?PuzzlePiece
+    private function getPreviousPuzzlePiece(PuzzleSolution $puzzleSolution): ?PuzzlePiece
     {
         $previousPuzzlePieceId = $puzzleSolution->getPuzzleSolutionPreviousPiece();
 
         return $previousPuzzlePieceId ?? null;
     }
 
-    public function getTopPuzzlePiece(PuzzleSolution $puzzleSolution): ?PuzzlePiece
+    private function getTopPuzzlePiece(PuzzleSolution $puzzleSolution): ?PuzzlePiece
     {
         $topPuzzlePieceId = $puzzleSolution->getTopPuzzlePiece();
 
