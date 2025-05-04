@@ -110,7 +110,7 @@ final class PuzzleDashboard
         $previousPuzzlePieceId = $this->puzzleSolution->getPuzzleSolutionPreviousPieceId();
 
         return $previousPuzzlePieceId !== null
-            ? $this->findPuzzlePieceById($previousPuzzlePieceId)
+            ? $previousPuzzlePieceId
             : null;
     }
 
@@ -119,17 +119,7 @@ final class PuzzleDashboard
         $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePieceId();
 
         return $topPuzzlePieceId !== null
-            ? $this->findPuzzlePieceById($topPuzzlePieceId)
+            ? $topPuzzlePieceId
             : null;
-    }
-
-    private function findPuzzlePieceById(int $puzzlePieceId): PuzzlePiece
-    {
-        $puzzlePiece = array_filter(
-            $this->puzzlePieces,
-            static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id === $puzzlePieceId
-        );
-
-        return reset($puzzlePiece);
     }
 }

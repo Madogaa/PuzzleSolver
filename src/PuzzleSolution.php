@@ -9,7 +9,7 @@ final class PuzzleSolution
     private PuzzlePointer $puzzlePointer;
     private int $totalSolvedPieces = 0;
     /**
-     * @param int[][] $puzzleSolutionIndex
+     * @param PuzzlePiece[][] $puzzleSolutionIndex
      */
     public function __construct(
         public PuzzleDimensions $puzzleDimensions,
@@ -23,6 +23,10 @@ final class PuzzleSolution
         $puzzleSolutionIndex = $puzzleSolution->puzzleSolutionIndex;
         $puzzleSolutionIndexRows = [];
         foreach ($puzzleSolutionIndex as $puzzleSolution) {
+            $puzzleSolution = array_map(
+                static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id,
+                $puzzleSolution
+            );
             $puzzleSolutionIndexRows[] = implode(' ', $puzzleSolution);
         }
 
@@ -49,7 +53,7 @@ final class PuzzleSolution
         $this->removePuzzleLastPiece();
     }
 
-    public function getTopPuzzlePieceId(): ?int
+    public function getTopPuzzlePieceId(): ?PuzzlePiece
     {
         $previousRow = $this->puzzlePointer->previousRow();
         if ($previousRow === null) {
@@ -59,7 +63,7 @@ final class PuzzleSolution
         return $this->puzzleSolutionIndex[$previousRow][$this->puzzlePointer->column()];
     }
 
-    public function getPuzzleSolutionPreviousPieceId(): ?int
+    public function getPuzzleSolutionPreviousPieceId(): ?PuzzlePiece
     {
         if ($this->puzzlePointer->isFirstColumn()) {
             return null;
@@ -93,14 +97,14 @@ final class PuzzleSolution
 
     private function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
     {
-        $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece->id;
+        $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece;
         $this->puzzlePointer->next();
         ++$this->totalSolvedPieces;
     }
 
     private function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
-        $this->puzzleSolutionIndex[][] = $puzzlePiece->id;
+        $this->puzzleSolutionIndex[][] = $puzzlePiece;
         $this->puzzlePointer->next();
         ++$this->totalSolvedPieces;
     }
