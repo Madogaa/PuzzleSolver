@@ -17,16 +17,14 @@ final class PuzzleSolution
         $this->puzzlePointer = new PuzzlePointer($this->puzzleDimensions->width);
     }
 
-    public static function format(?self $puzzleSolution): string
+    public static function format(self $puzzleSolution): string
     {
-        $puzzleSolutionIndex = $puzzleSolution->puzzleSolution;
-        $puzzleSolutionIndexRows = [];
-        foreach ($puzzleSolutionIndex as $puzzleSolution) {
-            $puzzleSolution = array_map(static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id, $puzzleSolution);
-            $puzzleSolutionIndexRows[] = implode(' ', $puzzleSolution);
+        foreach ($puzzleSolution->puzzleSolution as $puzzleSolutionRow) {
+            $puzzleSolutionWithPuzzlePieceIds = array_map(static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id, $puzzleSolutionRow);
+            $puzzleSolutionRows[] = implode(' ', $puzzleSolutionWithPuzzlePieceIds);
         }
 
-        return implode("\n", $puzzleSolutionIndexRows);
+        return implode("\n", $puzzleSolutionRows);
     }
 
     public function addPuzzlePiece(PuzzlePiece $puzzlePiece): void
