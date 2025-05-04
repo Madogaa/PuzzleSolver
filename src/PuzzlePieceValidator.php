@@ -29,8 +29,8 @@ class PuzzlePieceValidator
 
     private function canPuzzlePieceBeAdded(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
-        $previousPuzzlePiece = $this->getPreviousPuzzlePiece($puzzleSolution);
-        $topPuzzlePiece = $this->getTopPuzzlePiece($puzzleSolution);
+        $previousPuzzlePiece = $puzzleSolution->getPuzzleSolutionPreviousPiece();
+        $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
         if (!$previousPuzzlePiece && !$topPuzzlePiece) {
             return true;
         }
@@ -53,19 +53,5 @@ class PuzzlePieceValidator
         }
 
         return false;
-    }
-
-    private function getPreviousPuzzlePiece(PuzzleSolution $puzzleSolution): ?PuzzlePiece
-    {
-        $previousPuzzlePieceId = $puzzleSolution->getPuzzleSolutionPreviousPiece();
-
-        return $previousPuzzlePieceId ?? null;
-    }
-
-    private function getTopPuzzlePiece(PuzzleSolution $puzzleSolution): ?PuzzlePiece
-    {
-        $topPuzzlePieceId = $puzzleSolution->getTopPuzzlePiece();
-
-        return $topPuzzlePieceId ?? null;
     }
 }
