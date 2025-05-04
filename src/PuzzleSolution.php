@@ -8,13 +8,12 @@ final class PuzzleSolution
 {
     private PuzzlePointer $puzzlePointer;
     private int $totalSolvedPieces = 0;
+
     /**
      * @param PuzzlePiece[][] $puzzleSolutionIndex
      */
-    public function __construct(
-        public PuzzleDimensions $puzzleDimensions,
-        public array $puzzleSolutionIndex = []
-    ) {
+    public function __construct(public PuzzleDimensions $puzzleDimensions, public array $puzzleSolutionIndex = [])
+    {
         $this->puzzlePointer = new PuzzlePointer($this->puzzleDimensions->width);
     }
 
@@ -23,10 +22,7 @@ final class PuzzleSolution
         $puzzleSolutionIndex = $puzzleSolution->puzzleSolutionIndex;
         $puzzleSolutionIndexRows = [];
         foreach ($puzzleSolutionIndex as $puzzleSolution) {
-            $puzzleSolution = array_map(
-                static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id,
-                $puzzleSolution
-            );
+            $puzzleSolution = array_map(static fn (PuzzlePiece $puzzlePiece) => $puzzlePiece->id, $puzzleSolution);
             $puzzleSolutionIndexRows[] = implode(' ', $puzzleSolution);
         }
 
@@ -77,35 +73,43 @@ final class PuzzleSolution
         return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;
     }
 
-    private function removePuzzleLastPiece(): void
+    private function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
-        $rowIndex = $this->puzzlePointer->isFirstColumn() ?
-            $this->puzzlePointer->previousRow() :
-            $this->puzzlePointer->row();
-
-        array_pop($this->puzzleSolutionIndex[$rowIndex]);
-        $this->puzzlePointer->back();
-        --$this->totalSolvedPieces;
+        $this->puzzleSolutionIndex[][] = $puzzlePiece;
+        $this->puzzlePointer->next();
+        $this->increaseSolvedPiecesCounter();
     }
 
-    private function removePuzzleLastRow(): void
+    private function increaseSolvedPiecesCounter(): void
     {
-        array_pop($this->puzzleSolutionIndex);
-        $this->puzzlePointer->back();
-        --$this->totalSolvedPieces;
+        ++$this->totalSolvedPieces;
     }
 
     private function addPuzzlePieceAtSameRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolutionIndex[$this->puzzlePointer->row()][] = $puzzlePiece;
         $this->puzzlePointer->next();
-        ++$this->totalSolvedPieces;
+        $this->increaseSolvedPiecesCounter();
     }
 
-    private function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
+    private function removePuzzleLastRow(): void
     {
-        $this->puzzleSolutionIndex[][] = $puzzlePiece;
-        $this->puzzlePointer->next();
-        ++$this->totalSolvedPieces;
+        array_pop($this->puzzleSolutionIndex);
+        $this->puzzlePointer->back();
+        $this->decreaseSolvedPiecesCounter();
+    }
+
+    private function decreaseSolvedPiecesCounter(): void
+    {
+        --$this->totalSolvedPieces;
+    }
+
+    private function removePuzzleLastPiece(): void
+    {
+        $rowIndex = $this->puzzlePointer->isFirstColumn() ? $this->puzzlePointer->previousRow() : $this->puzzlePointer->row();
+
+        array_pop($this->puzzleSolutionIndex[$rowIndex]);
+        $this->puzzlePointer->back();
+        $this->decreaseSolvedPiecesCounter();
     }
 }
