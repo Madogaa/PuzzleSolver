@@ -17,10 +17,11 @@ final class PuzzlePointer
 
     public function next(): void
     {
-        $this->moveRight();
         if ($this->hasReachedRightEnd()) {
             $this->startANewLine();
+            return;
         }
+        $this->moveRight();
     }
 
     public function back(): void
@@ -85,7 +86,7 @@ final class PuzzlePointer
 
     private function hasReachedRightEnd(): bool
     {
-        return $this->column === $this->puzzleWidth;
+        return $this->column === $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
     }
 
     private function startANewLine(): void
