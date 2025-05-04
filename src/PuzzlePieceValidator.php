@@ -27,8 +27,14 @@ class PuzzlePieceValidator
     {
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
-        if (!$previousPuzzlePiece && !$topPuzzlePiece) {
+
+        $isFirstPieceToPlace = !$previousPuzzlePiece && !$topPuzzlePiece;
+        if ($isFirstPieceToPlace && $puzzlePiece->isFirstCorner()) {
             return true;
+        }
+
+        if ($isFirstPieceToPlace && !$puzzlePiece->isFirstCorner()) {
+            return false;
         }
 
         if (!$topPuzzlePiece && $previousPuzzlePiece->matchHorizontally($puzzlePiece)) {

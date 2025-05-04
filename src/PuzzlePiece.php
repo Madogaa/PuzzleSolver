@@ -68,4 +68,9 @@ final class PuzzlePiece
     {
         return $this->rotationsCount;
     }
+
+    public function isFirstCorner(): bool
+    {
+        return $this->top == 0 && $this->left == 0;
+    }
 }

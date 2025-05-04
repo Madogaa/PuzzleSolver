@@ -29,6 +29,17 @@ class PuzzlePieceValidatorTest extends TestCase
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
 
+    public function test_it_cannot_puzzle_piece_be_added_when_first_puzzle_piece_and_borders_do_not_match(): void
+    {
+        $puzzleContext = "1 3\n0 2 0 1\n0 1 0 2\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
+
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
+
+        $this->assertFalse($canPuzzlePieceBeAddedResult);
+    }
+
     public function test_it_can_puzzle_piece_be_added_when_matches_previous(): void
     {
         $puzzleContext = "1 3\n0 2 0 0\n0 1 0 2\n1 0 0 1";

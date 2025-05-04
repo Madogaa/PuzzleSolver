@@ -80,8 +80,10 @@ class PuzzleSolverTest extends TestCase
 
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
-        $expectedPuzzleSolution = '2 1';
+        $expectedPuzzleSolution = '1 2';
+        $expectedPuzzleSolution1 = '2 1';
         self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertEquals($expectedPuzzleSolution1, $puzzleSolutions[1]);
     }
 
     public function test_it_solves1x3_puzzle(): void
@@ -175,7 +177,7 @@ class PuzzleSolverTest extends TestCase
     public function test_it_solves4x4_puzzle(): void
     {
         $puzzleSolver = new PuzzleSolver();
-        $puzzlePieces = "4 4\n1 3 5 0\n1 2 4 3\n1 1 5 2\n1 0 3 1\n5 2 2 0\n4 1 3 2\n5 3 4 1\n3 0 1 3\n2 3 5 0\n3 2 1 3\n4 1 2 2\n1 0 3 1\n5 2 0 0\n1 1 0 2\n2 2 0 1\n3 0 0 2";
+        $puzzlePieces = "4 4\n0 3 5 0\n1 2 4 3\n1 1 5 2\n1 0 3 1\n5 2 2 0\n4 1 3 2\n5 3 4 1\n3 0 1 3\n2 3 5 0\n3 2 1 3\n4 1 2 2\n1 0 3 1\n5 2 0 0\n1 1 0 2\n2 2 0 1\n3 0 0 2";
 
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
@@ -186,12 +188,13 @@ class PuzzleSolverTest extends TestCase
     public function test_it_solves4x4_puzzle_unordered(): void
     {
         $puzzleSolver = new PuzzleSolver();
-        $puzzlePieces = "4 4\n1 1 5 2\n4 1 3 2\n5 2 2 0\n1 0 3 1\n1 3 5 0\n1 2 4 3\n3 0 1 3\n5 3 4 1\n3 2 1 3\n2 3 5 0\n5 2 0 0\n1 0 3 1\n4 1 2 2\n1 1 0 2\n2 2 0 1\n3 0 0 2";
+        $puzzlePieces = "4 4\n1 1 5 2\n4 1 3 2\n5 2 2 0\n1 0 3 1\n0 3 5 0\n1 2 4 3\n3 0 1 3\n5 3 4 1\n3 2 1 3\n2 3 5 0\n5 2 0 0\n1 0 3 1\n4 1 2 2\n1 1 0 2\n2 2 0 1\n3 0 0 2";
 
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
-        $expectedPuzzleSolution1 = "5 6 1 12\n3 2 8 7\n10 9 13 4\n11 14 15 16";
-        $expectedPuzzleSolution2 = "5 6 1 4\n3 2 8 7\n10 9 13 12\n11 14 15 16";
+
+        $expectedPuzzleSolution1 = "5 6 1 4\n3 2 8 7\n10 9 13 12\n11 14 15 16";
+        $expectedPuzzleSolution2 = "5 6 1 12\n3 2 8 7\n10 9 13 4\n11 14 15 16";
         self::assertEquals($expectedPuzzleSolution1, $puzzleSolutions[0]);
         self::assertEquals($expectedPuzzleSolution2, $puzzleSolutions[1]);
     }
