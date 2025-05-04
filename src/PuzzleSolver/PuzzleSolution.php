@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\PuzzleSolver;
 
+use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
+
 final class PuzzleSolution
 {
     private PuzzlePointer $puzzlePointer;

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\PuzzleSolver;
 
+use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
+use App\PuzzleSolver\PuzzlePiece\PuzzlePieceValidator;
+
 use function array_filter;
 use function array_slice;
 
