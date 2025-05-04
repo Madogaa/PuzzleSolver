@@ -18,7 +18,7 @@ final class PuzzlePointer
     public function moveNext(): void
     {
         if ($this->hasReachedRightEnd()) {
-            $this->startANewLine();
+            $this->moveToNextRow();
             return;
         }
         $this->moveRight();
@@ -26,7 +26,7 @@ final class PuzzlePointer
 
     public function movePrevious(): void
     {
-        if ($this->hasReachedLeftEnd() && !$this->hasReachedTopEnd()) {
+        if ($this->isFirstColumn() && !$this->hasReachedTopEnd()) {
             $this->moveUp();
             return;
         }
@@ -90,7 +90,7 @@ final class PuzzlePointer
         return $this->column === $this->puzzleWidth - self::INDEX_OFFSET;
     }
 
-    private function startANewLine(): void
+    private function moveToNextRow(): void
     {
         $this->moveOneRowDown();
         $this->moveToFirstColumn();
@@ -104,11 +104,6 @@ final class PuzzlePointer
     private function moveLeft(): void
     {
         --$this->column;
-    }
-
-    private function hasReachedLeftEnd(): bool
-    {
-        return $this->column === 0;
     }
 
     private function hasReachedTopEnd(): bool
