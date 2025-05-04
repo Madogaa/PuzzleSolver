@@ -6,7 +6,7 @@ namespace App;
 
 final class PuzzlePointer
 {
-    private const int POINTER_INDEX_OFFSET = 1;
+    private const int INDEX_OFFSET = 1;
 
     public function __construct(
         public readonly int $puzzleWidth,
@@ -59,7 +59,7 @@ final class PuzzlePointer
         }
 
         if ($this->isFirstColumn()) {
-            return $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
+            return $this->puzzleWidth - self::INDEX_OFFSET;
         }
 
         return $this->column - 1;
@@ -87,7 +87,7 @@ final class PuzzlePointer
 
     private function hasReachedRightEnd(): bool
     {
-        return $this->column === $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
+        return $this->column === $this->puzzleWidth - self::INDEX_OFFSET;
     }
 
     private function startANewLine(): void
@@ -129,6 +129,6 @@ final class PuzzlePointer
 
     private function moveToLastColumn(): void
     {
-        $this->column = $this->puzzleWidth - self::POINTER_INDEX_OFFSET;
+        $this->column = $this->puzzleWidth - self::INDEX_OFFSET;
     }
 }
