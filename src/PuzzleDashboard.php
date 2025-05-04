@@ -105,17 +105,13 @@ final class PuzzleDashboard
     {
         $previousPuzzlePieceId = $this->puzzleSolution->getPuzzleSolutionPreviousPiece();
 
-        return $previousPuzzlePieceId !== null
-            ? $previousPuzzlePieceId
-            : null;
+        return $previousPuzzlePieceId ?? null;
     }
 
     private function getTopPuzzlePiece(): ?PuzzlePiece
     {
         $topPuzzlePieceId = $this->puzzleSolution->getTopPuzzlePiece();
 
-        return $topPuzzlePieceId !== null
-            ? $topPuzzlePieceId
-            : null;
+        return $topPuzzlePieceId ?? null;
     }
 }
