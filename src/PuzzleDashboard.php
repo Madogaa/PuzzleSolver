@@ -23,20 +23,16 @@ final class PuzzleDashboard
     public static function parse(string $puzzleContext): self
     {
         $splitPuzzleContext = explode("\n", $puzzleContext);
-        $puzzleMeasurements = $splitPuzzleContext[0];
-        $splitPuzzleMeasurements = explode(' ', $puzzleMeasurements);
-        $puzzleHeight = (int)$splitPuzzleMeasurements[0];
-        $puzzleWidth = (int)$splitPuzzleMeasurements[1];
-        $puzzlePieces = array_slice($splitPuzzleContext, 1);
-
+        $puzzlePiecesAsString = array_slice($splitPuzzleContext, 1);
+        $puzzlePieces = array_map(
+            static fn (string $puzzlePieceAsString, int $puzzlePiecePosition) => PuzzlePiece::parse($puzzlePieceAsString, $puzzlePiecePosition + self::PUZZLE_PIECES_INDEX_OFFSET),
+            $puzzlePiecesAsString,
+            array_keys($puzzlePiecesAsString)
+        );
         return new self(
-            array_map(
-                static fn (string $puzzlePieceAsString, int $puzzlePiecePosition) => PuzzlePiece::parse($puzzlePieceAsString, $puzzlePiecePosition + self::PUZZLE_PIECES_INDEX_OFFSET),
-                $puzzlePieces,
-                array_keys($puzzlePieces)
-            ),
+            $puzzlePieces,
             new PuzzleSolution(
-                new PuzzleDimensions($puzzleHeight, $puzzleWidth)
+                PuzzleDimensions::parse($splitPuzzleContext[0])
             )
         );
     }

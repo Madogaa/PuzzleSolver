@@ -11,4 +11,13 @@ final readonly class PuzzleDimensions
         public int $width
     ) {
     }
+
+    public static function parse(string $puzzleMeasurements): self
+    {
+        $splitPuzzleMeasurements = explode(' ', $puzzleMeasurements);
+        $puzzleHeight = (int) $splitPuzzleMeasurements[0];
+        $puzzleWidth = (int) $splitPuzzleMeasurements[1];
+
+        return new self($puzzleHeight, $puzzleWidth);
+    }
 }
