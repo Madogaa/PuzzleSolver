@@ -53,7 +53,7 @@ final class PuzzleSolution
         $this->removePuzzleLastPiece();
     }
 
-    public function getTopPuzzlePieceId(): ?PuzzlePiece
+    public function getTopPuzzlePiece(): ?PuzzlePiece
     {
         $previousRow = $this->puzzlePointer->previousRow();
         if ($previousRow === null) {
@@ -63,7 +63,7 @@ final class PuzzleSolution
         return $this->puzzleSolutionIndex[$previousRow][$this->puzzlePointer->column()];
     }
 
-    public function getPuzzleSolutionPreviousPieceId(): ?PuzzlePiece
+    public function getPuzzleSolutionPreviousPiece(): ?PuzzlePiece
     {
         if ($this->puzzlePointer->isFirstColumn()) {
             return null;
