@@ -9,7 +9,7 @@ final class PuzzlePointer
     private const int INDEX_OFFSET = 1;
 
     public function __construct(
-        public readonly int $puzzleWidth,
+        private readonly int $puzzleWidth,
         private int $row = 0,
         private int $column = 0
     ) {
