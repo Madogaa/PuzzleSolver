@@ -32,7 +32,7 @@ final class PuzzleSolver
         }
 
         foreach ($puzzleDashboard->availablePuzzlePieces as $puzzlePiece) {
-            if (!$puzzleDashboard->canPuzzlePieceBeAddedWithRotations($puzzlePiece)) {
+            if (!$puzzleDashboard->canPuzzlePieceBeAddedRotating($puzzlePiece)) {
                 continue;
             }
 
