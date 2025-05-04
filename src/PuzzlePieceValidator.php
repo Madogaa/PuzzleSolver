@@ -23,16 +23,6 @@ class PuzzlePieceValidator
         return false;
     }
 
-    /**
-     * @param PuzzleSolution $puzzleSolution
-     *
-     * @return bool
-     */
-    public function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
-    {
-        return !$puzzleSolution->isFirstPieceToBeSolved() && !$puzzleSolution->isPieceToBeSolvedInFirstRow() && !$puzzleSolution->isPieceToBeSolvedInFirstColumn();
-    }
-
     private function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
@@ -77,5 +67,9 @@ class PuzzlePieceValidator
     private function isPieceInFirstColumnAndNotFirstToBeSolved(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstColumn() && !$puzzleSolution->isFirstPieceToBeSolved();
+    }
+    private function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
+    {
+        return !$puzzleSolution->isPieceToBeSolvedInFirstRow() && !$puzzleSolution->isPieceToBeSolvedInFirstColumn();
     }
 }
