@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\PuzzleSolver\NoPuzzleSolutionException;
+use App\PuzzleSolver\PuzzleSolution\NoPuzzleSolutionException;
 use App\PuzzleSolver\PuzzleSolver;
 use PHPUnit\Framework\TestCase;
 

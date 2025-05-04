@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\PuzzleSolver;
+namespace App\PuzzleSolver\PuzzleSolution;
 
 use Exception;
 

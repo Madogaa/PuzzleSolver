@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\PuzzleSolver;
 
+use App\PuzzleSolver\PuzzleSolution\NoPuzzleSolutionException;
+use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
+
 final class PuzzleSolver
 {
     private array $puzzleSolutions = [];
