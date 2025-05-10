@@ -15,22 +15,22 @@ class OneColumnPuzzlePieceValidator
 
         if (
             $puzzleSolution->isFirstPieceToBeSolved()
-            && self::isLeftTopCorner($puzzlePiece)
+            && self::isTopEndPiece($puzzlePiece)
         ) {
             return true;
         }
 
         if (
-            self::isPieceToBeSolvedInFirstColumnMiddle($puzzleSolution)
-            && self::isInFirstColumnMiddle($puzzlePiece)
+            self::isPieceToBeSolvedInMiddle($puzzleSolution)
+            && self::isMiddlePiece($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
             return true;
         }
 
         if (
-            $puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
-            && self::isLeftBottomCorner($puzzlePiece)
+            $puzzleSolution->isPieceToBeSolvedBottomEnd()
+            && self::isBottomEndPiece($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
             return true;
@@ -39,24 +39,24 @@ class OneColumnPuzzlePieceValidator
         return false;
     }
 
-    private static function isPieceToBeSolvedInFirstColumnMiddle(PuzzleSolution $puzzleSolution): bool
+    private static function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstColumn()
             && !$puzzleSolution->isFirstPieceToBeSolved()
-            && !$puzzleSolution->isPieceToBeSolvedLeftBottomCorner();
+            && !$puzzleSolution->isPieceToBeSolvedBottomEnd();
     }
 
-    private function isLeftTopCorner(PuzzlePiece $puzzlePiece): bool
+    private function isTopEndPiece(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasLeftBorder();
     }
 
-    private static function isInFirstColumnMiddle(PuzzlePiece $puzzlePiece): bool
+    private static function isMiddlePiece(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasLeftBorder();
     }
 
-    private static function isLeftBottomCorner(PuzzlePiece $puzzlePiece): bool
+    private static function isBottomEndPiece(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasLeftBorder();
     }
