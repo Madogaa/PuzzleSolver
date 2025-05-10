@@ -14,16 +14,8 @@ final readonly class MultipleRowsPuzzlePieceValidator
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
-        if ($puzzleSolution->isFirstPieceToBeSolved()
-            && $puzzleSolution->isOneRowPuzzle()
-            && $puzzlePiece->isOneRowPuzzleFirstCorner()
-        ) {
-            return true;
-        }
-
         if (
             $puzzleSolution->isFirstPieceToBeSolved()
-            && !$puzzleSolution->isOneRowPuzzle()
             && $puzzlePiece->isFirstCorner()) {
             return true;
         }
@@ -61,8 +53,7 @@ final readonly class MultipleRowsPuzzlePieceValidator
         }
 
         if (
-            !$puzzleSolution->isOneRowPuzzle()
-            && $puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
+            $puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
             && $puzzlePiece->isLeftBottomCorner()
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
@@ -81,9 +72,7 @@ final readonly class MultipleRowsPuzzlePieceValidator
 
     private function isPieceToBeSolvedInFirstColumnMiddle(PuzzleSolution $puzzleSolution): bool
     {
-        return
-            !$puzzleSolution->isOneRowPuzzle()
-            && $puzzleSolution->isPieceToBeSolvedInFirstColumn()
+        return $puzzleSolution->isPieceToBeSolvedInFirstColumn()
             && !$puzzleSolution->isFirstPieceToBeSolved()
             && !$puzzleSolution->isPieceToBeSolvedLeftBottomCorner();
     }
