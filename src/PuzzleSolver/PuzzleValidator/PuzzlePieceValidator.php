@@ -10,11 +10,11 @@ use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
 final readonly class PuzzlePieceValidator
 {
     private OneRowPuzzlePieceValidator $oneRowPuzzlePieceValidator;
-    private MultipleRowsPuzzlePieceValidator $multipleRowsPuzzlePieceValidator;
+    private QuadraticPuzzlePieceValidator $multipleRowsPuzzlePieceValidator;
     public function __construct()
     {
         $this->oneRowPuzzlePieceValidator = new OneRowPuzzlePieceValidator();
-        $this->multipleRowsPuzzlePieceValidator = new MultipleRowsPuzzlePieceValidator();
+        $this->multipleRowsPuzzlePieceValidator = new QuadraticPuzzlePieceValidator();
     }
     public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {

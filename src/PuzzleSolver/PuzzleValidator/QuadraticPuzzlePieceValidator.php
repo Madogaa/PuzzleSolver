@@ -7,7 +7,7 @@ namespace App\PuzzleSolver\PuzzleValidator;
 use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
 use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
 
-final readonly class MultipleRowsPuzzlePieceValidator
+final readonly class QuadraticPuzzlePieceValidator
 {
     public function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
