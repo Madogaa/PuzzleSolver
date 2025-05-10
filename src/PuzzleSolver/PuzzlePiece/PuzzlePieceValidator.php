@@ -36,8 +36,8 @@ class PuzzlePieceValidator
 
         if (
             $this->isPieceToBeSolvedInFirstRowMiddle($puzzleSolution)
-            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
             && $puzzlePiece->hasTopBorder()
+            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;
         }
