@@ -11,28 +11,11 @@ class OneColumnPuzzlePieceValidator
 {
     public function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
-        $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
         if (
             $puzzleSolution->isFirstPieceToBeSolved()
             && self::isLeftTopCorner($puzzlePiece)
-        ) {
-            return true;
-        }
-
-        if (
-            self::isPieceToBeSolvedInFirstRowMiddle($puzzleSolution)
-            && self::isFirstRowInMiddle($puzzlePiece)
-            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
-        ) {
-            return true;
-        }
-
-        if (
-            $puzzleSolution->isPieceToBeSolvedInRightTopCorner()
-            && self::isRightTopCorner($puzzlePiece)
-            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;
         }
@@ -46,43 +29,8 @@ class OneColumnPuzzlePieceValidator
         }
 
         if (
-            self::isPieceToBeSolvedInMiddle($puzzleSolution)
-            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
-            && $topPuzzlePiece->matchVertically($puzzlePiece)
-        ) {
-            return true;
-        }
-
-        if (
-            self::isPieceToBeSolvedInLastColumnMiddle($puzzleSolution)
-            && self::isLastColumnMiddle($puzzlePiece)
-            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
-            && $topPuzzlePiece->matchVertically($puzzlePiece)
-        ) {
-            return true;
-        }
-
-        if (
             $puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
             && self::isLeftBottomCorner($puzzlePiece)
-            && $topPuzzlePiece->matchVertically($puzzlePiece)
-        ) {
-            return true;
-        }
-
-        if (
-            self::isPieceToBeSolvedInLastRowMiddle($puzzleSolution)
-            && self::isLastRowMiddle($puzzlePiece)
-            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
-            && $topPuzzlePiece->matchVertically($puzzlePiece)
-        ) {
-            return true;
-        }
-
-        if (
-            self::isPieceToBeSolvedRightBottomCorner($puzzleSolution)
-            && self::rightBottomCorner($puzzlePiece)
-            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
             return true;
@@ -91,40 +39,16 @@ class OneColumnPuzzlePieceValidator
         return false;
     }
 
-    private static function isPieceToBeSolvedInFirstRowMiddle(PuzzleSolution $puzzleSolution): bool
-    {
-        return $puzzleSolution->isPieceToBeSolvedInFirstRow()
-            && !$puzzleSolution->isFirstPieceToBeSolved()
-            && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner();
-    }
-
     private static function isPieceToBeSolvedInFirstColumnMiddle(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstColumn()
             && !$puzzleSolution->isFirstPieceToBeSolved()
             && !$puzzleSolution->isPieceToBeSolvedLeftBottomCorner();
     }
-    private static function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
-    {
-        return !$puzzleSolution->isPieceToBeSolvedInFirstRow()
-            && !$puzzleSolution->isPieceToBeSolvedInFirstColumn()
-            && !$puzzleSolution->isPieceToBeSolvedInLastRow()
-            && !$puzzleSolution->isPieceToBeSolvedInLastColumn();
-    }
 
     private function isLeftTopCorner(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasLeftBorder();
-    }
-
-    private function isFirstRowInMiddle(PuzzlePiece $puzzlePiece): bool
-    {
-        return $puzzlePiece->hasTopBorder();
-    }
-
-    private static function isRightTopCorner(PuzzlePiece $puzzlePiece): bool
-    {
-        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasRightBorder();
     }
 
     private static function isInFirstColumnMiddle(PuzzlePiece $puzzlePiece): bool
@@ -135,40 +59,5 @@ class OneColumnPuzzlePieceValidator
     private static function isLeftBottomCorner(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasLeftBorder();
-    }
-
-    private static function isPieceToBeSolvedInLastRowMiddle(PuzzleSolution $puzzleSolution): bool
-    {
-        return $puzzleSolution->isPieceToBeSolvedInLastRow()
-            && !$puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
-            && !self::isPieceToBeSolvedRightBottomCorner($puzzleSolution);
-    }
-
-    private static function isLastRowMiddle(PuzzlePiece $puzzlePiece): bool
-    {
-        return $puzzlePiece->hasBottomBorder();
-    }
-
-    private static function isPieceToBeSolvedRightBottomCorner(PuzzleSolution $puzzleSolution): bool
-    {
-        return $puzzleSolution->isPieceToBeSolvedRightBottomCorner() && !$puzzleSolution->isOneColumnPuzzle();
-    }
-
-    private static function rightBottomCorner(PuzzlePiece $puzzlePiece): bool
-    {
-        return $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasRightBorder();
-    }
-
-    private static function isPieceToBeSolvedInLastColumnMiddle(PuzzleSolution $puzzleSolution): bool
-    {
-        return $puzzleSolution->isPieceToBeSolvedInLastColumn()
-            && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner()
-            && !self::isPieceToBeSolvedRightBottomCorner($puzzleSolution)
-            && !$puzzleSolution->isOneColumnPuzzle();
-    }
-
-    private static function isLastColumnMiddle(PuzzlePiece $puzzlePiece): bool
-    {
-        return $puzzlePiece->hasRightBorder();
     }
 }
