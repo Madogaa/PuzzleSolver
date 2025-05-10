@@ -56,6 +56,6 @@ class OneColumnPuzzlePieceValidator
 
     private static function isBottomEndPiece(PuzzlePiece $puzzlePiece): bool
     {
-        return $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasLeftBorder();
+        return $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasLeftBorder() && $puzzlePiece->hasRightBorder();
     }
 }
