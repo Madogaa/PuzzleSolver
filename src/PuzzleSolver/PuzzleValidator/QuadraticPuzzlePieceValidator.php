@@ -157,7 +157,7 @@ final readonly class QuadraticPuzzlePieceValidator
 
     private static function isPieceToBeSolvedRightBottomCorner(PuzzleSolution $puzzleSolution): bool
     {
-        return $puzzleSolution->isPieceToBeSolvedRightBottomCorner() && !$puzzleSolution->isOneColumnPuzzle();
+        return $puzzleSolution->isPieceToBeSolvedRightBottomCorner();
     }
 
     private static function rightBottomCorner(PuzzlePiece $puzzlePiece): bool
@@ -169,8 +169,7 @@ final readonly class QuadraticPuzzlePieceValidator
     {
         return $puzzleSolution->isPieceToBeSolvedInLastColumn()
             && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner()
-            && !self::isPieceToBeSolvedRightBottomCorner($puzzleSolution)
-            && !$puzzleSolution->isOneColumnPuzzle();
+            && !self::isPieceToBeSolvedRightBottomCorner($puzzleSolution);
     }
 
     private static function isLastColumnMiddle(PuzzlePiece $puzzlePiece): bool
