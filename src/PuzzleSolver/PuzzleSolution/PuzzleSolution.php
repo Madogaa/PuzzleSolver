@@ -68,7 +68,7 @@ final class PuzzleSolution
         return $this->puzzleSolution[$this->puzzlePointer->row()][$this->puzzlePointer->previousColumn()];
     }
 
-    public function isFirstPieceToBeSolved(): bool
+    public function isPieceToBeSolvedLeftTopCorner(): bool
     {
         return $this->puzzlePointer->isInitialPosition() === true;
     }

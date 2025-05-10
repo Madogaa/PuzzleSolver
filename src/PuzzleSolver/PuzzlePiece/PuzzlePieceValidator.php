@@ -30,7 +30,7 @@ class PuzzlePieceValidator
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
-        if ($puzzleSolution->isFirstPieceToBeSolved() && $puzzlePiece->isFirstCorner()) {
+        if ($puzzleSolution->isPieceToBeSolvedLeftTopCorner() && $puzzlePiece->isFirstCorner()) {
             return true;
         }
 
@@ -72,13 +72,13 @@ class PuzzlePieceValidator
     private function isPieceToBeSolvedInFirstRowMiddle(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstRow()
-            && !$puzzleSolution->isFirstPieceToBeSolved()
+            && !$puzzleSolution->isPieceToBeSolvedLeftTopCorner()
             && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner();
     }
 
     private function isPieceInFirstColumnAndNotFirstToBeSolved(PuzzleSolution $puzzleSolution): bool
     {
-        return $puzzleSolution->isPieceToBeSolvedInFirstColumn() && !$puzzleSolution->isFirstPieceToBeSolved();
+        return $puzzleSolution->isPieceToBeSolvedInFirstColumn() && !$puzzleSolution->isPieceToBeSolvedLeftTopCorner();
     }
     private function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
     {
