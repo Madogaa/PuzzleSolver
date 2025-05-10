@@ -22,7 +22,7 @@ final readonly class QuadraticPuzzlePieceValidator
         }
 
         if (
-            $this->isPieceToBeSolvedInFirstRowMiddle($puzzleSolution)
+            self::isPieceToBeSolvedInFirstRowMiddle($puzzleSolution)
             && self::isFirstRowInMiddle($puzzlePiece)
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
@@ -38,7 +38,7 @@ final readonly class QuadraticPuzzlePieceValidator
         }
 
         if (
-            $this->isPieceToBeSolvedInFirstColumnMiddle($puzzleSolution)
+            self::isPieceToBeSolvedInFirstColumnMiddle($puzzleSolution)
             && self::isInFirstColumnMiddle($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
@@ -46,7 +46,7 @@ final readonly class QuadraticPuzzlePieceValidator
         }
 
         if (
-            $this->isPieceToBeSolvedInMiddle($puzzleSolution)
+            self::isPieceToBeSolvedInMiddle($puzzleSolution)
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
@@ -73,20 +73,20 @@ final readonly class QuadraticPuzzlePieceValidator
         return false;
     }
 
-    private function isPieceToBeSolvedInFirstRowMiddle(PuzzleSolution $puzzleSolution): bool
+    private static function isPieceToBeSolvedInFirstRowMiddle(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstRow()
             && !$puzzleSolution->isFirstPieceToBeSolved()
             && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner();
     }
 
-    private function isPieceToBeSolvedInFirstColumnMiddle(PuzzleSolution $puzzleSolution): bool
+    private static function isPieceToBeSolvedInFirstColumnMiddle(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstColumn()
             && !$puzzleSolution->isFirstPieceToBeSolved()
             && !$puzzleSolution->isPieceToBeSolvedLeftBottomCorner();
     }
-    private function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
+    private static function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
     {
         return !$puzzleSolution->isPieceToBeSolvedInFirstRow()
             && !$puzzleSolution->isPieceToBeSolvedInFirstColumn()
