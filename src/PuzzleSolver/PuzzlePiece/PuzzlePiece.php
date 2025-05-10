@@ -79,7 +79,7 @@ final class PuzzlePiece
         return $this->top == 0 && $this->right == 0;
     }
 
-    public function isOneRowPuzzleRightCorner(): bool
+    public function isOneRowPuzzleRightEnd(): bool
     {
         return $this->top == 0 && $this->right == 0 && $this->bottom == 0;
     }
@@ -99,7 +99,7 @@ final class PuzzlePiece
         return $this->left === 0;
     }
 
-    public function isOneRowPuzzleFirstCorner(): bool
+    public function isOneRowPuzzleLeftEnd(): bool
     {
         return $this->top == 0 && $this->bottom == 0 && $this->left == 0;
     }

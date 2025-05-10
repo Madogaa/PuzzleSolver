@@ -14,7 +14,7 @@ final readonly class OneRowPuzzlePieceValidator
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
 
         if ($puzzleSolution->isFirstPieceToBeSolved()
-            && $puzzlePiece->isOneRowPuzzleFirstCorner()
+            && $puzzlePiece->isOneRowPuzzleLeftEnd()
         ) {
             return true;
         }
@@ -29,7 +29,7 @@ final readonly class OneRowPuzzlePieceValidator
 
         if (
             $puzzleSolution->isPieceToBeSolvedInRightTopCorner()
-            && $puzzlePiece->isOneRowPuzzleRightCorner()
+            && $puzzlePiece->isOneRowPuzzleRightEnd()
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;
