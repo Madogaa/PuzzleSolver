@@ -113,6 +113,16 @@ final class PuzzleSolution
         return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;
     }
 
+    public function isPieceToBeSolvedInLastColumn(): bool
+    {
+        return $this->puzzlePointer->isLastColumn();
+    }
+
+    public function isOneColumnPuzzle(): bool
+    {
+        return $this->puzzleDimensions->width === 1;
+    }
+
     private function addPuzzlePieceAtNewRow(PuzzlePiece $puzzlePiece): void
     {
         $this->puzzleSolution[][] = $puzzlePiece;
@@ -158,10 +168,5 @@ final class PuzzleSolution
     private function decreaseSolvedPiecesCounter(): void
     {
         --$this->totalSolvedPieces;
-    }
-
-    public function isOneColumnPuzzle(): bool
-    {
-        return $this->puzzleDimensions->width === 1;
     }
 }
