@@ -268,5 +268,4 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
-
 }

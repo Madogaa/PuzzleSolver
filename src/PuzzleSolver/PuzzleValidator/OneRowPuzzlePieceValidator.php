@@ -14,15 +14,14 @@ final readonly class OneRowPuzzlePieceValidator
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
 
         if ($puzzleSolution->isFirstPieceToBeSolved()
-            && $puzzlePiece->isOneRowPuzzleLeftEnd()
+            && self::isPuzzleLeftEnd($puzzlePiece)
         ) {
             return true;
         }
 
         if (
             $this->isPieceToBeSolvedInFirstRowMiddle($puzzleSolution)
-            && $puzzlePiece->hasTopBorder()
-            && $puzzlePiece->hasBottomBorder()
+            && self::isMiddleRowPuzzlePiece($puzzlePiece)
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;
@@ -30,7 +29,7 @@ final readonly class OneRowPuzzlePieceValidator
 
         if (
             $puzzleSolution->isPieceToBeSolvedInRightTopCorner()
-            && $puzzlePiece->isOneRowPuzzleRightEnd()
+            && self::isPuzzleRightEnd($puzzlePiece)
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;
@@ -44,5 +43,20 @@ final readonly class OneRowPuzzlePieceValidator
         return $puzzleSolution->isPieceToBeSolvedInFirstRow()
             && !$puzzleSolution->isFirstPieceToBeSolved()
             && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner();
+    }
+
+    private static function isPuzzleLeftEnd(PuzzlePiece $puzzlePiece): bool
+    {
+        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasLeftBorder();
+    }
+
+    private static function isMiddleRowPuzzlePiece(PuzzlePiece $puzzlePiece): bool
+    {
+        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasBottomBorder();
+    }
+
+    private static function isPuzzleRightEnd(PuzzlePiece $puzzlePiece): bool
+    {
+        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasRightBorder();
     }
 }
