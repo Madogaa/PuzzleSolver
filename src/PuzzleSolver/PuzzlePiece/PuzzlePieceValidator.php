@@ -30,7 +30,17 @@ class PuzzlePieceValidator
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
-        if ($puzzleSolution->isPieceToBeSolvedLeftTopCorner() && $puzzlePiece->isFirstCorner()) {
+        if ($puzzleSolution->isFirstPieceToBeSolved()
+            && $puzzleSolution->isOneRowPuzzle()
+            && $puzzlePiece->isOneRowPuzzleFirstCorner()
+        ) {
+            return true;
+        }
+
+        if (
+            $puzzleSolution->isFirstPieceToBeSolved()
+            && !$puzzleSolution->isOneRowPuzzle()
+            && $puzzlePiece->isFirstCorner()) {
             return true;
         }
 
@@ -67,7 +77,8 @@ class PuzzlePieceValidator
         }
 
         if (
-            $puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
+            !$puzzleSolution->isOneRowPuzzle()
+            && $puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
             && $puzzlePiece->isLeftBottomCorner()
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
@@ -80,14 +91,16 @@ class PuzzlePieceValidator
     private function isPieceToBeSolvedInFirstRowMiddle(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstRow()
-            && !$puzzleSolution->isPieceToBeSolvedLeftTopCorner()
+            && !$puzzleSolution->isFirstPieceToBeSolved()
             && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner();
     }
 
     private function isPieceToBeSolvedInFirstColumnMiddle(PuzzleSolution $puzzleSolution): bool
     {
-        return $puzzleSolution->isPieceToBeSolvedInFirstColumn()
-            && !$puzzleSolution->isPieceToBeSolvedLeftTopCorner()
+        return
+            !$puzzleSolution->isOneRowPuzzle()
+            && $puzzleSolution->isPieceToBeSolvedInFirstColumn()
+            && !$puzzleSolution->isFirstPieceToBeSolved()
             && !$puzzleSolution->isPieceToBeSolvedLeftBottomCorner();
     }
     private function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool

@@ -93,4 +93,9 @@ final class PuzzlePiece
     {
         return $this->left === 0;
     }
+
+    public function isOneRowPuzzleFirstCorner(): bool
+    {
+        return $this->top == 0 && $this->bottom == 0 && $this->left == 0;
+    }
 }
