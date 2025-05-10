@@ -35,9 +35,17 @@ class PuzzlePieceValidator
         }
 
         if (
-            $this->isPieceInFirstRowAndNotFirstToBeSolved($puzzleSolution)
+            $this->isPieceToBeSolvedInFirstRowMiddle($puzzleSolution)
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
             && $puzzlePiece->hasTopBorder()
+        ) {
+            return true;
+        }
+
+        if (
+            $puzzleSolution->isPieceToBeSolvedInRightTopCorner()
+            && $puzzlePiece->isRightTopCorner()
+            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;
         }
@@ -61,9 +69,11 @@ class PuzzlePieceValidator
         return false;
     }
 
-    private function isPieceInFirstRowAndNotFirstToBeSolved(PuzzleSolution $puzzleSolution): bool
+    private function isPieceToBeSolvedInFirstRowMiddle(PuzzleSolution $puzzleSolution): bool
     {
-        return $puzzleSolution->isPieceToBeSolvedInFirstRow() && !$puzzleSolution->isFirstPieceToBeSolved();
+        return $puzzleSolution->isPieceToBeSolvedInFirstRow()
+            && !$puzzleSolution->isFirstPieceToBeSolved()
+            && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner();
     }
 
     private function isPieceInFirstColumnAndNotFirstToBeSolved(PuzzleSolution $puzzleSolution): bool

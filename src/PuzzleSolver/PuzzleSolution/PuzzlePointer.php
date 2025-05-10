@@ -80,6 +80,11 @@ final class PuzzlePointer
         return $this->row === 0;
     }
 
+    public function isLastColumn(): bool
+    {
+        return $this->column === $this->lastColumn();
+    }
+
     private function moveToFirstColumn(): void
     {
         $this->column = 0;
@@ -88,11 +93,6 @@ final class PuzzlePointer
     private function moveRight(): void
     {
         ++$this->column;
-    }
-
-    private function isLastColumn(): bool
-    {
-        return $this->column === $this->lastColumn();
     }
 
     private function moveToNextRow(): void
