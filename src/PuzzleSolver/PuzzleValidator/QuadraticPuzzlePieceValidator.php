@@ -174,7 +174,8 @@ final readonly class QuadraticPuzzlePieceValidator
 
     private static function isLastColumnMiddle(PuzzlePiece $puzzlePiece): bool
     {
-        return $puzzlePiece->hasRightBorder();
+        return $puzzlePiece->hasRightBorder()
+            && !$puzzlePiece->hasLeftBorder() && !$puzzlePiece->hasBottomBorder() && !$puzzlePiece->hasTopBorder();
     }
 
     private static function isMiddlePiece(PuzzlePiece $puzzlePiece): bool
