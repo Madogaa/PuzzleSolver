@@ -307,4 +307,39 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $this->assertTrue($canBeAdded);
     }
+
+    public function test_it_cannot_add_bottom_right_corner_piece_in_two_by_two_puzzle(): void
+    {
+        $puzzleContext = "2 2\n0 2 0 0\n0 0 1 2\n2 1 0 0\n0 2 1 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $topLeftPiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $topRightPiece = $puzzleDashboard->availablePuzzlePieces[1];
+        $bottomLeftPiece = $puzzleDashboard->availablePuzzlePieces[2];
+        $bottomRightPiece = $puzzleDashboard->availablePuzzlePieces[3];
+        $puzzleDashboard->addPuzzlePiece($topLeftPiece);
+        $puzzleDashboard->addPuzzlePiece($topRightPiece);
+        $puzzleDashboard->addPuzzlePiece($bottomLeftPiece);
+
+        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $bottomRightPiece);
+
+        $this->assertFalse($canBeAdded);
+    }
+
+    public function test_it_can_add_bottom_right_corner_piece_in_two_by_two_puzzle(): void
+    {
+        $puzzleContext = "2 2\n0 2 0 0\n0 0 1 2\n2 1 0 0\n0 0 1 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $topLeftPiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $topRightPiece = $puzzleDashboard->availablePuzzlePieces[1];
+        $bottomLeftPiece = $puzzleDashboard->availablePuzzlePieces[2];
+        $bottomRightPiece = $puzzleDashboard->availablePuzzlePieces[3];
+        $puzzleDashboard->addPuzzlePiece($topLeftPiece);
+        $puzzleDashboard->addPuzzlePiece($topRightPiece);
+        $puzzleDashboard->addPuzzlePiece($bottomLeftPiece);
+
+        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $bottomRightPiece);
+
+        $this->assertTrue($canBeAdded);
+    }
+
 }

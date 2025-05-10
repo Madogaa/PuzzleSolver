@@ -159,4 +159,9 @@ final class PuzzleSolution
     {
         --$this->totalSolvedPieces;
     }
+
+    public function isOneColumnPuzzle(): bool
+    {
+        return $this->puzzleDimensions->width === 1;
+    }
 }
