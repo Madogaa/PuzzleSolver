@@ -47,8 +47,10 @@ class PuzzleSolverTest extends TestCase
 
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
-        $expectedPuzzleSolution = "2\n1";
+        $expectedPuzzleSolution = "1\n2";
+        $expectedPuzzleSolution1 = "2\n1";
         self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertEquals($expectedPuzzleSolution1, $puzzleSolutions[1]);
     }
 
     public function test_it_solves2x1_puzzle_when_pieces_are_unordered_and_rotated(): void

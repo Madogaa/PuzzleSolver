@@ -46,7 +46,7 @@ class OneColumnPuzzlePieceValidator
 
     private function isTopEndPiece(PuzzlePiece $puzzlePiece): bool
     {
-        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasLeftBorder();
+        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasLeftBorder() && $puzzlePiece->hasRightBorder();
     }
 
     private static function isMiddlePiece(PuzzlePiece $puzzlePiece): bool
