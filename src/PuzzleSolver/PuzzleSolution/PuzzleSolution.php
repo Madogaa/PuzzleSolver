@@ -16,7 +16,7 @@ final class PuzzleSolution
      */
     public function __construct(public PuzzleDimensions $puzzleDimensions, public array $puzzleSolution = [])
     {
-        $this->puzzlePointer = new PuzzlePointer($this->puzzleDimensions->width);
+        $this->puzzlePointer = new PuzzlePointer($this->puzzleDimensions->width, $this->puzzleDimensions->heigh);
     }
 
     public static function format(self $puzzleSolution): string
@@ -86,6 +86,11 @@ final class PuzzleSolution
     public function isPieceToBeSolvedInFirstColumn(): bool
     {
         return $this->puzzlePointer->isFirstColumn() === true;
+    }
+
+    public function isPieceToBeSolvedLeftBottomCorner(): bool
+    {
+        return $this->puzzlePointer->isLastRow() && $this->puzzlePointer->isFirstColumn();
     }
 
     public function isSolved(): bool

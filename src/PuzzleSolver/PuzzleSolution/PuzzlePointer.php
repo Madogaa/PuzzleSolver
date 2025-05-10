@@ -10,6 +10,7 @@ final class PuzzlePointer
 
     public function __construct(
         private readonly int $puzzleWidth,
+        private readonly int $puzzleHeight,
         private int $row = 0,
         private int $column = 0
     ) {
@@ -85,6 +86,11 @@ final class PuzzlePointer
         return $this->column === $this->lastColumn();
     }
 
+    public function isLastRow(): bool
+    {
+        return $this->row === $this->lastRow();
+    }
+
     private function moveToFirstColumn(): void
     {
         $this->column = 0;
@@ -130,5 +136,10 @@ final class PuzzlePointer
     private function lastColumn(): int
     {
         return $this->puzzleWidth - self::INDEX_OFFSET;
+    }
+
+    private function lastRow(): int
+    {
+        return $this->puzzleHeight - self::INDEX_OFFSET;
     }
 }

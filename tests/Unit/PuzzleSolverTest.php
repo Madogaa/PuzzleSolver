@@ -133,7 +133,7 @@ class PuzzleSolverTest extends TestCase
     public function test_it_solves2x3_puzzle(): void
     {
         $puzzleSolver = new PuzzleSolver();
-        $puzzlePieces = "2 3\n0 1 2 0\n0 3 4 1\n0 0 1 3\n2 2 3 0\n4 1 1 2\n1 0 3 1";
+        $puzzlePieces = "2 3\n0 1 2 0\n0 3 4 1\n0 0 1 3\n2 2 0 0\n4 1 1 2\n1 0 3 1";
 
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
@@ -144,7 +144,7 @@ class PuzzleSolverTest extends TestCase
     public function test_it_solves2x3_puzzle_unordered(): void
     {
         $puzzleSolver = new PuzzleSolver();
-        $puzzlePieces = "2 3\n1 0 3 1\n0 3 4 1\n0 0 1 3\n2 2 3 0\n4 1 1 2\n0 1 2 0";
+        $puzzlePieces = "2 3\n1 0 3 1\n0 3 4 1\n0 0 1 3\n2 2 0 0\n4 1 1 2\n0 1 2 0";
 
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
