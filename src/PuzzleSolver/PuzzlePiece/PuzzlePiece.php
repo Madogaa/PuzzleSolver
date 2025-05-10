@@ -69,21 +69,6 @@ final class PuzzlePiece
         return $this->rotationsCount;
     }
 
-    public function isFirstCorner(): bool
-    {
-        return $this->top == 0 && $this->left == 0;
-    }
-
-    public function isRightTopCorner(): bool
-    {
-        return $this->top == 0 && $this->right == 0;
-    }
-
-    public function isLeftBottomCorner(): bool
-    {
-        return $this->bottom == 0 && $this->left == 0;
-    }
-
     public function hasTopBorder(): bool
     {
         return $this->top === 0;
