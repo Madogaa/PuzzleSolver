@@ -127,7 +127,8 @@ final readonly class QuadraticPuzzlePieceValidator
 
     private static function isRightTopCorner(PuzzlePiece $puzzlePiece): bool
     {
-        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasRightBorder();
+        return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasRightBorder()
+            && !$puzzlePiece->hasBottomBorder() && !$puzzlePiece->hasLeftBorder();
     }
 
     private static function isInFirstColumnMiddle(PuzzlePiece $puzzlePiece): bool
