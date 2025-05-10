@@ -7,7 +7,7 @@ namespace App\PuzzleSolver\PuzzleValidator;
 use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
 use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
 
-class PuzzlePieceValidator
+final readonly class PuzzlePieceValidator
 {
     public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
