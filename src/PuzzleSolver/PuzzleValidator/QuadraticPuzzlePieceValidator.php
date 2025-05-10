@@ -47,6 +47,7 @@ final readonly class QuadraticPuzzlePieceValidator
 
         if (
             self::isPieceToBeSolvedInMiddle($puzzleSolution)
+            && self::isMiddlePiece($puzzlePiece)
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
@@ -170,5 +171,13 @@ final readonly class QuadraticPuzzlePieceValidator
     private static function isLastColumnMiddle(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasRightBorder();
+    }
+
+    private static function isMiddlePiece(PuzzlePiece $puzzlePiece): bool
+    {
+        return !$puzzlePiece->hasTopBorder()
+            && !$puzzlePiece->hasBottomBorder()
+            && !$puzzlePiece->hasLeftBorder()
+            && !$puzzlePiece->hasRightBorder();
     }
 }

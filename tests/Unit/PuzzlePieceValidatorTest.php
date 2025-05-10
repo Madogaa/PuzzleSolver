@@ -369,4 +369,32 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $this->assertFalse($canBeAdded);
     }
+
+    public function test_it_cannot_add_middle_piece_with_borders_in_three_by_three_puzzle(): void
+    {
+        $puzzleContext = "3 3\n0 2 0 0\n0 0 1 2\n1 3 2 0\n1 3 1 0\n3 0 2 1\n0 0 2 2\n1 3 1 4\n1 2 0 1\n0 0 2 2";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $middleRightPiece = $puzzleDashboard->availablePuzzlePieces[3];
+        $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[0]);
+        $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[1]);
+        $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[2]);
+
+        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
+
+        $this->assertFalse($canBeAdded);
+    }
+
+    public function test_it_can_add_middle_piece_without_borders_in_three_by_three_puzzle(): void
+    {
+        $puzzleContext = "3 3\n0 2 0 0\n0 0 1 2\n1 3 2 0\n1 3 1 0\n3 1 2 1\n0 0 2 2\n1 3 1 4\n1 2 0 1\n0 0 2 2";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $middleRightPiece = $puzzleDashboard->availablePuzzlePieces[3];
+        $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[0]);
+        $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[1]);
+        $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[2]);
+
+        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
+
+        $this->assertFalse($canBeAdded);
+    }
 }
