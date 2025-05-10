@@ -14,7 +14,7 @@ class OneColumnPuzzlePieceValidator
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
         if (
-            $puzzleSolution->isFirstPieceToBeSolved()
+            $puzzleSolution->isPieceToBeSolvedInFirstRow()
             && self::isTopEndPiece($puzzlePiece)
         ) {
             return true;
@@ -29,7 +29,7 @@ class OneColumnPuzzlePieceValidator
         }
 
         if (
-            $puzzleSolution->isPieceToBeSolvedBottomEnd()
+            $puzzleSolution->isPieceToBeSolvedInLastRow()
             && self::isBottomEndPiece($puzzlePiece)
             && $topPuzzlePiece->matchVertically($puzzlePiece)
         ) {
@@ -41,9 +41,7 @@ class OneColumnPuzzlePieceValidator
 
     private static function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
     {
-        return $puzzleSolution->isPieceToBeSolvedInFirstColumn()
-            && !$puzzleSolution->isFirstPieceToBeSolved()
-            && !$puzzleSolution->isPieceToBeSolvedBottomEnd();
+        return !$puzzleSolution->isPieceToBeSolvedInFirstRow() && !$puzzleSolution->isPieceToBeSolvedInLastRow();
     }
 
     private function isTopEndPiece(PuzzlePiece $puzzlePiece): bool
