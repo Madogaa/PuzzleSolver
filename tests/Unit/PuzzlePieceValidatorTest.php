@@ -190,4 +190,58 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
+
+    public function test_it_cannot_add_one_row_puzzle_piece_when_solution_is_not_left_corner(): void
+    {
+        $puzzleContext = "1 3\n0 2 0 1\n0 1 0 2\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
+
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
+
+        $this->assertFalse($canPuzzlePieceBeAddedResult);
+    }
+
+    public function test_it_can_add_one_row_puzzle_piece_when_solution_is_left_corner(): void
+    {
+        $puzzleContext = "1 3\n0 2 0 0\n0 1 0 2\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
+
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
+
+        $this->assertTrue($canPuzzlePieceBeAddedResult);
+    }
+
+    public function test_it_cannot_add_one_row_puzzle_piece_when_solution_is_not_right_corner(): void
+    {
+        $puzzleContext = "1 3\n0 2 0 1\n0 1 0 2\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $firstPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $secondPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[1];
+        $thirdPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[2];
+
+        $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
+        $puzzleDashboard->addPuzzlePiece($secondPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPuzzlePiece);
+
+        $this->assertFalse($canPuzzlePieceBeAddedResult);
+    }
+
+    public function test_it_can_add_one_row_puzzle_piece_when_solution_is_right_corner(): void
+    {
+        $puzzleContext = "1 3\n0 2 0 1\n0 1 0 2\n0 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $firstPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $secondPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[1];
+        $thirdPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[2];
+
+        $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
+        $puzzleDashboard->addPuzzlePiece($secondPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPuzzlePiece);
+
+        $this->assertTrue($canPuzzlePieceBeAddedResult);
+    }
+
+
 }
