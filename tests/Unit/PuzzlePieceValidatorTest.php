@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit;
 
 use App\PuzzleSolver\PuzzleDashboard;
-use App\PuzzleSolver\PuzzlePiece\PuzzlePieceValidator;
+use App\PuzzleSolver\PuzzleValidator\PuzzlePieceValidator;
 use PHPUnit\Framework\TestCase;
 
 class PuzzlePieceValidatorTest extends TestCase

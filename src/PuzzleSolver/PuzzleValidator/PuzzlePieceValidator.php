@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\PuzzleSolver\PuzzlePiece;
+namespace App\PuzzleSolver\PuzzleValidator;
 
+use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
 use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
 
 class PuzzlePieceValidator
