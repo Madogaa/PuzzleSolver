@@ -29,7 +29,7 @@ final readonly class OneRowPuzzlePieceValidator
 
         if (
             $puzzleSolution->isPieceToBeSolvedInRightTopCorner()
-            && $puzzlePiece->isRightTopCorner()
+            && $puzzlePiece->isOneRowPuzzleRightCorner()
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;
