@@ -98,6 +98,16 @@ final class PuzzleSolution
         return $this->puzzlePointer->isLastRow() && $this->puzzlePointer->isFirstColumn();
     }
 
+    public function isPieceToBeSolvedRightBottomCorner(): bool
+    {
+        return $this->puzzlePointer->isLastRow() && $this->puzzlePointer->isLastColumn();
+    }
+
+    public function isPieceToBeSolvedInLastRow(): bool
+    {
+        return $this->puzzlePointer->isLastRow();
+    }
+
     public function isSolved(): bool
     {
         return $this->totalSolvedPieces === $this->puzzleDimensions->width * $this->puzzleDimensions->heigh;

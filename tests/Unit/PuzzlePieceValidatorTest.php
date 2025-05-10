@@ -268,4 +268,43 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
+
+    public function test_it_cannot_add_middle_piece_in_last_row_of_two_by_three_puzzle(): void
+    {
+        $puzzleContext = "2 3\n0 2 0 0\n0 2 1 3\n1 0 0 0\n1 1 0 0\n1 1 2 3\n0 0 1 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $topLeftCornerPiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $topMiddlePiece = $puzzleDashboard->availablePuzzlePieces[1];
+        $topRightCornerPiece = $puzzleDashboard->availablePuzzlePieces[2];
+        $leftBottomPiece = $puzzleDashboard->availablePuzzlePieces[3];
+        $centerBottomPiece = $puzzleDashboard->availablePuzzlePieces[4];
+        $puzzleDashboard->addPuzzlePiece($topLeftCornerPiece);
+        $puzzleDashboard->addPuzzlePiece($topMiddlePiece);
+        $puzzleDashboard->addPuzzlePiece($topRightCornerPiece);
+        $puzzleDashboard->addPuzzlePiece($leftBottomPiece);
+
+        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $centerBottomPiece);
+
+        $this->assertFalse($canBeAdded);
+    }
+
+
+    public function test_it_can_add_middle_piece_in_last_row_of_two_by_three_puzzle(): void
+    {
+        $puzzleContext = "2 3\n0 2 0 0\n0 2 1 3\n1 0 0 0\n1 1 0 0\n1 1 2 0\n0 0 1 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $topLeftCornerPiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $topMiddlePiece = $puzzleDashboard->availablePuzzlePieces[1];
+        $topRightCornerPiece = $puzzleDashboard->availablePuzzlePieces[2];
+        $leftBottomPiece = $puzzleDashboard->availablePuzzlePieces[3];
+        $centerBottomPiece = $puzzleDashboard->availablePuzzlePieces[4];
+        $puzzleDashboard->addPuzzlePiece($topLeftCornerPiece);
+        $puzzleDashboard->addPuzzlePiece($topMiddlePiece);
+        $puzzleDashboard->addPuzzlePiece($topRightCornerPiece);
+        $puzzleDashboard->addPuzzlePiece($leftBottomPiece);
+
+        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $centerBottomPiece);
+
+        $this->assertTrue($canBeAdded);
+    }
 }

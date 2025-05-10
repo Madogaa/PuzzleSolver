@@ -61,6 +61,15 @@ final readonly class QuadraticPuzzlePieceValidator
             return true;
         }
 
+        if (
+            self::isPieceToBeSolvedInLastRowMiddle($puzzleSolution)
+            && self::isLastRowMiddle($puzzlePiece)
+            && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
+            && $topPuzzlePiece->matchVertically($puzzlePiece)
+        ) {
+            return true;
+        }
+
         return false;
     }
 
@@ -79,7 +88,9 @@ final readonly class QuadraticPuzzlePieceValidator
     }
     private function isPieceToBeSolvedInMiddle(PuzzleSolution $puzzleSolution): bool
     {
-        return !$puzzleSolution->isPieceToBeSolvedInFirstRow() && !$puzzleSolution->isPieceToBeSolvedInFirstColumn();
+        return !$puzzleSolution->isPieceToBeSolvedInFirstRow()
+            && !$puzzleSolution->isPieceToBeSolvedInFirstColumn()
+            && !self::isPieceToBeSolvedInLastRowMiddle($puzzleSolution);
     }
 
     private function isLeftTopCorner(PuzzlePiece $puzzlePiece): bool
@@ -105,5 +116,17 @@ final readonly class QuadraticPuzzlePieceValidator
     private static function isLeftBottomCorner(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasLeftBorder();
+    }
+
+    private static function isPieceToBeSolvedInLastRowMiddle(PuzzleSolution $puzzleSolution): bool
+    {
+        return $puzzleSolution->isPieceToBeSolvedInLastRow()
+            && !$puzzleSolution->isPieceToBeSolvedLeftBottomCorner()
+            && !$puzzleSolution->isPieceToBeSolvedRightBottomCorner();
+    }
+
+    private static function isLastRowMiddle(PuzzlePiece $puzzlePiece): bool
+    {
+        return $puzzlePiece->hasBottomBorder();
     }
 }
