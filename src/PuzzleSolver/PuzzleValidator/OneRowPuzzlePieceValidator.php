@@ -22,6 +22,7 @@ final readonly class OneRowPuzzlePieceValidator
         if (
             $this->isPieceToBeSolvedInFirstRowMiddle($puzzleSolution)
             && $puzzlePiece->hasTopBorder()
+            && $puzzlePiece->hasBottomBorder()
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
             return true;

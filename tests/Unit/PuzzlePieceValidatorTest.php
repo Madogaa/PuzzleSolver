@@ -85,7 +85,7 @@ class PuzzlePieceValidatorTest extends TestCase
 
     public function test_it_first_row_puzzle_piece_can_be_added_when_matches_previous_and_has_top_border(): void
     {
-        $puzzleContext = "1 3\n0 2 0 0\n1 2 0 1\n1 0 0 1";
+        $puzzleContext = "1 3\n0 2 0 0\n0 2 0 1\n1 0 0 1";
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
         $firstPiece = $puzzleDashboard->availablePuzzlePieces[0];
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
@@ -242,4 +242,31 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
+
+    public function test_it_cannot_add_middle_puzzle_piece_in_one_row_puzzle(): void
+    {
+        $puzzleContext = "1 3\n0 2 0 0\n1 1 0 2\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $firstPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $secondPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[1];
+
+        $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPuzzlePiece);
+
+        $this->assertFalse($canPuzzlePieceBeAddedResult);
+    }
+
+    public function test_it_can_add_middle_puzzle_piece_in_one_row_puzzle(): void
+    {
+        $puzzleContext = "1 3\n0 2 0 0\n0 1 0 2\n1 0 0 1";
+        $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
+        $firstPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
+        $secondPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[1];
+
+        $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPuzzlePiece);
+
+        $this->assertTrue($canPuzzlePieceBeAddedResult);
+    }
+
 }
