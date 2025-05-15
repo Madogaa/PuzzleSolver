@@ -207,6 +207,6 @@ final readonly class QuadraticPuzzlePieceValidator
 
     private static function isFirstPieceToBeSolved(PuzzleSolution $puzzleSolution): bool
     {
-        return $puzzleSolution->isFirstPieceToBeSolved();
+        return $puzzleSolution->isPieceToBeSolvedInFirstColumn() && $puzzleSolution->isPieceToBeSolvedInFirstRow();
     }
 }
