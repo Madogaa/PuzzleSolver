@@ -14,7 +14,6 @@ use function array_slice;
 
 final class PuzzleDashboard
 {
-    private PuzzlePieceValidator $puzzlePieceValidator;
 
     /**
      * @param PuzzlePiece[] $availablePuzzlePieces
@@ -23,7 +22,6 @@ final class PuzzleDashboard
         public array $availablePuzzlePieces,
         public readonly PuzzleSolution $puzzleSolution
     ) {
-        $this->puzzlePieceValidator = new PuzzlePieceValidator();
     }
 
     public static function parse(string $puzzleContext): self
