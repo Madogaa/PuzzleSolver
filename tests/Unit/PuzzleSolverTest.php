@@ -121,6 +121,17 @@ class PuzzleSolverTest extends TestCase
         self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
+    public function test_it_solves1x3_puzzle_with_pieces_unordered_with_rotating_pieces_until_max_rotations(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "1 3\n0 0 0 2\n0 0 1 0\n0 2 0 1";
+
+        $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = '2 3 1';
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
+    }
+
     public function test_it_solves2x2_puzzle(): void
     {
         $puzzleSolver = new PuzzleSolver();

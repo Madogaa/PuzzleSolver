@@ -44,7 +44,7 @@ final class PuzzleSolver
         }
 
         foreach ($puzzleDashboard->availablePuzzlePieces as $puzzlePiece) {
-            for ($i = 0; $i < PuzzlePiece::MAX_ROTATIONS; ++$i) {
+            for ($i = 0; $i <= PuzzlePiece::MAX_ROTATIONS; ++$i) {
                 if ($this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolution($puzzleDashboard->puzzleSolution, $puzzlePiece)) {
                     $puzzleDashboard->addPuzzlePiece($puzzlePiece);
                     $this->buildPuzzleSolutionRecursively($puzzleDashboard);
