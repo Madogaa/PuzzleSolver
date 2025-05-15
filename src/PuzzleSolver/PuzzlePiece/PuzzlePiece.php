@@ -12,7 +12,7 @@ final class PuzzlePiece
 
     private const int PUZZLE_PIECES_INDEX_OFFSET = 1;
 
-    private int $rotationsCount = 0;
+    public int $rotationsCount = 0;
 
     public function __construct(
         public readonly int $id,
@@ -26,12 +26,13 @@ final class PuzzlePiece
     public function __toString(): string
     {
         return sprintf(
-            'Id[%s] %s %s %s %s',
+            'Id[%s] %s %s %s %s Rotations[%s]',
             $this->id,
             $this->top,
             $this->right,
             $this->bottom,
-            $this->left
+            $this->left,
+            $this->rotationsCount
         );
     }
 
@@ -87,5 +88,18 @@ final class PuzzlePiece
     public function hasBottomBorder(): bool
     {
         return $this->bottom === 0;
+    }
+
+    public function resetRotation(): void
+    {
+        while ($this->rotationsCount != 0) {
+            $this->rotateBack();
+        }
+    }
+
+    private function rotateBack(): void
+    {
+        [$this->top, $this->right, $this->bottom, $this->left] = [$this->right, $this->bottom, $this->left, $this->top];
+        --$this->rotationsCount;
     }
 }

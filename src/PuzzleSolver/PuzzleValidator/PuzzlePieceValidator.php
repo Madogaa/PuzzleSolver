@@ -19,6 +19,7 @@ final readonly class PuzzlePieceValidator
         $this->multipleRowsPuzzlePieceValidator = new QuadraticPuzzlePieceValidator();
         $this->oneColumnPuzzlePieceValidator = new OneColumnPuzzlePieceValidator();
     }
+
     public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         if ($this->canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece)) {
@@ -36,7 +37,7 @@ final readonly class PuzzlePieceValidator
         return false;
     }
 
-    private function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
+    public function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         if ($puzzleSolution->isOneRowPuzzle()) {
             return $this->oneRowPuzzlePieceValidator->canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece);

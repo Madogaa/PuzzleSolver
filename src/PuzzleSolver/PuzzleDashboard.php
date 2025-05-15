@@ -57,9 +57,4 @@ final class PuzzleDashboard
         $this->puzzleSolution->removePuzzlePiece();
         $this->availablePuzzlePieces[] = $puzzlePiece;
     }
-
-    public function canPuzzlePieceBeAddedRotating(PuzzlePiece $puzzlePiece): bool
-    {
-        return $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($this->puzzleSolution, $puzzlePiece);
-    }
 }

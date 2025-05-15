@@ -4,12 +4,21 @@ declare(strict_types=1);
 
 namespace App\PuzzleSolver;
 
+use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
 use App\PuzzleSolver\PuzzleSolution\NoPuzzleSolutionException;
 use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
+use App\PuzzleSolver\PuzzleValidator\PuzzlePieceValidator;
 
 final class PuzzleSolver
 {
     private array $puzzleSolutions = [];
+
+    private PuzzlePieceValidator $puzzlePieceValidator;
+
+    public function __construct()
+    {
+        $this->puzzlePieceValidator = new PuzzlePieceValidator();
+    }
     /**
      * @throws NoPuzzleSolutionException
      *
@@ -35,13 +44,17 @@ final class PuzzleSolver
         }
 
         foreach ($puzzleDashboard->availablePuzzlePieces as $puzzlePiece) {
-            if (!$puzzleDashboard->canPuzzlePieceBeAddedRotating($puzzlePiece)) {
-                continue;
+            for ($i = 0; $i < PuzzlePiece::MAX_ROTATIONS; ++$i) {
+                if ($this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolution($puzzleDashboard->puzzleSolution, $puzzlePiece)) {
+                    $puzzleDashboard->addPuzzlePiece($puzzlePiece);
+                    $this->buildPuzzleSolutionRecursively($puzzleDashboard);
+                    $puzzleDashboard->removePuzzlePiece($puzzlePiece);
+                }
+
+                $puzzlePiece->rotate();
             }
 
-            $puzzleDashboard->addPuzzlePiece($puzzlePiece);
-            $this->buildPuzzleSolutionRecursively($puzzleDashboard);
-            $puzzleDashboard->removePuzzlePiece($puzzlePiece);
+            $puzzlePiece->resetRotation();
         }
     }
 
