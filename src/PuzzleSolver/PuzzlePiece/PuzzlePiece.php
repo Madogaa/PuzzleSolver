@@ -65,6 +65,19 @@ final class PuzzlePiece
         ++$this->rotationsCount;
     }
 
+    public function rotateToInitialState(): void
+    {
+        while ($this->rotationsCount != 0) {
+            $this->rotateBack();
+        }
+    }
+
+    private function rotateBack(): void
+    {
+        [$this->top, $this->right, $this->bottom, $this->left] = [$this->right, $this->bottom, $this->left, $this->top];
+        --$this->rotationsCount;
+    }
+
     public function getRotationsCount(): int
     {
         return $this->rotationsCount;
@@ -88,18 +101,5 @@ final class PuzzlePiece
     public function hasBottomBorder(): bool
     {
         return $this->bottom === 0;
-    }
-
-    public function rotateToInitialState(): void
-    {
-        while ($this->rotationsCount != 0) {
-            $this->rotateBack();
-        }
-    }
-
-    private function rotateBack(): void
-    {
-        [$this->top, $this->right, $this->bottom, $this->left] = [$this->right, $this->bottom, $this->left, $this->top];
-        --$this->rotationsCount;
     }
 }

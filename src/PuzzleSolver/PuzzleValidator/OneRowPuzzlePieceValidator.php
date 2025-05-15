@@ -13,7 +13,8 @@ final readonly class OneRowPuzzlePieceValidator
     {
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
 
-        if (self::isFirstPieceToBeSolved($puzzleSolution)
+        if (
+            self::isFirstPieceToBeSolved($puzzleSolution)
             && self::isPuzzleLeftEnd($puzzlePiece)
         ) {
             return true;
