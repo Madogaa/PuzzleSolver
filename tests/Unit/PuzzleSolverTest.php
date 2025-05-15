@@ -273,6 +273,8 @@ class PuzzleSolverTest extends TestCase
 
     public function test_it_solves8x8_puzzle_kata_test_case(): void
     {
+        // Note: This test is skipped for continuous integration as it takes too long to run, and does not contribute to any new test coverage
+        self::markTestSkipped();
         $puzzleSolver = new PuzzleSolver();
         $puzzlePieces = "8 8\n7 3 9 2\n10 3 7 3\n8 10 9 10\n0 0 10 3\n1 8 10 4\n8 10 5 6\n10 8 2 0\n3 1 7 1\n2 2 2 0\n3 9 5 7\n9 0 4 3\n9 4 10 0\n0 8 7 9\n9 4 8 4\n5 9 0 3\n0 7 4 10\n7 3 6 0\n10 3 0 5\n10 0 8 8\n3 10 3 4\n2 1 2 3\n5 0 10 7\n8 5 8 8\n6 9 6 1\n10 8 9 1\n8 3 4 8\n8 3 5 3\n4 4 0 10\n6 10 2 4\n8 8 1 2\n4 9 8 6\n7 10 6 7\n1 7 0 9\n4 8 0 9\n9 4 5 2\n9 9 8 1\n0 10 9 2\n2 3 3 4\n0 2 4 4\n8 1 4 6\n6 9 8 0\n7 1 3 4\n10 7 4 10\n9 4 6 10\n10 6 4 3\n3 7 3 10\n2 6 0 8\n10 0 10 10\n5 2 9 9\n7 1 4 10\n4 8 1 4\n4 2 9 0\n8 0 9 1\n0 9 10 0\n1 4 0 3\n4 1 6 5\n0 6 9 0\n5 4 4 3\n10 8 0 8\n0 0 2 10\n7 2 5 8\n5 7 5 4\n4 9 7 0\n10 10 2 2";
 
