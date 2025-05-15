@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit;
 
 use App\PuzzleSolver\PuzzleDashboard;
+use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
+use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
 use App\PuzzleSolver\PuzzleValidator\PuzzlePieceValidator;
 use PHPUnit\Framework\TestCase;
 
@@ -24,7 +26,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
         $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
 
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -35,7 +37,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
         $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
 
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -48,7 +50,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -61,7 +63,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -78,7 +80,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($firstPiece);
         $puzzleDashboard->addPuzzlePiece($secondPiece);
         $puzzleDashboard->addPuzzlePiece($thirdPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $fourthPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $fourthPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -91,7 +93,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -104,7 +106,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -117,7 +119,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -130,7 +132,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -143,7 +145,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -156,7 +158,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -171,7 +173,7 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
         $puzzleDashboard->addPuzzlePiece($secondPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -186,7 +188,7 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $puzzleDashboard->addPuzzlePiece($firstPiece);
         $puzzleDashboard->addPuzzlePiece($secondPiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -197,7 +199,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
         $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
 
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -208,7 +210,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard = PuzzleDashboard::parse($puzzleContext);
         $puzzlePiece = $puzzleDashboard->availablePuzzlePieces[0];
 
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $puzzlePiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -223,7 +225,7 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
         $puzzleDashboard->addPuzzlePiece($secondPuzzlePiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPuzzlePiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -238,7 +240,7 @@ class PuzzlePieceValidatorTest extends TestCase
 
         $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
         $puzzleDashboard->addPuzzlePiece($secondPuzzlePiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $thirdPuzzlePiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -251,7 +253,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPuzzlePiece);
 
         $this->assertFalse($canPuzzlePieceBeAddedResult);
     }
@@ -264,7 +266,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $secondPuzzlePiece = $puzzleDashboard->availablePuzzlePieces[1];
 
         $puzzleDashboard->addPuzzlePiece($firstPuzzlePiece);
-        $canPuzzlePieceBeAddedResult = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPuzzlePiece);
+        $canPuzzlePieceBeAddedResult = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $secondPuzzlePiece);
 
         $this->assertTrue($canPuzzlePieceBeAddedResult);
     }
@@ -283,7 +285,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($topRightCornerPiece);
         $puzzleDashboard->addPuzzlePiece($leftBottomPiece);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $centerBottomPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $centerBottomPiece);
 
         $this->assertFalse($canBeAdded);
     }
@@ -303,7 +305,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($topRightCornerPiece);
         $puzzleDashboard->addPuzzlePiece($leftBottomPiece);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $centerBottomPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $centerBottomPiece);
 
         $this->assertTrue($canBeAdded);
     }
@@ -320,7 +322,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($topRightPiece);
         $puzzleDashboard->addPuzzlePiece($bottomLeftPiece);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $bottomRightPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $bottomRightPiece);
 
         $this->assertFalse($canBeAdded);
     }
@@ -337,7 +339,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($topRightPiece);
         $puzzleDashboard->addPuzzlePiece($bottomLeftPiece);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $bottomRightPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $bottomRightPiece);
 
         $this->assertTrue($canBeAdded);
     }
@@ -351,7 +353,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[1]);
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[2]);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
 
         $this->assertTrue($canBeAdded);
     }
@@ -365,7 +367,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[1]);
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[2]);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
 
         $this->assertFalse($canBeAdded);
     }
@@ -379,7 +381,7 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[1]);
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[2]);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
 
         $this->assertFalse($canBeAdded);
     }
@@ -393,8 +395,26 @@ class PuzzlePieceValidatorTest extends TestCase
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[1]);
         $puzzleDashboard->addPuzzlePiece($puzzleDashboard->availablePuzzlePieces[2]);
 
-        $canBeAdded = $this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
+        $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleDashboard->puzzleSolution, $middleRightPiece);
 
         $this->assertFalse($canBeAdded);
+    }
+
+    // TODO: Remove method, move rotating test cases to PuzzleSolverTests. Here should not have rotating logic test
+    private function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
+    {
+        if ($this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece)) {
+            return true;
+        }
+
+        if ($puzzlePiece->getRotationsCount() <= PuzzlePiece::MAX_ROTATIONS) {
+            $puzzlePiece->rotate();
+            $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleSolution, $puzzlePiece);
+            if ($canBeAdded) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

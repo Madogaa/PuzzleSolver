@@ -7,14 +7,12 @@ namespace App\PuzzleSolver;
 use App\PuzzleSolver\PuzzlePiece\PuzzlePiece;
 use App\PuzzleSolver\PuzzleSolution\PuzzleDimensions;
 use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
-use App\PuzzleSolver\PuzzleValidator\PuzzlePieceValidator;
 
 use function array_filter;
 use function array_slice;
 
 final class PuzzleDashboard
 {
-
     /**
      * @param PuzzlePiece[] $availablePuzzlePieces
      */

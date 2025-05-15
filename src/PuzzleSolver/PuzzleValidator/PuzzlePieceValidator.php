@@ -20,23 +20,6 @@ final readonly class PuzzlePieceValidator
         $this->oneColumnPuzzlePieceValidator = new OneColumnPuzzlePieceValidator();
     }
 
-    public function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
-    {
-        if ($this->canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece)) {
-            return true;
-        }
-
-        if ($puzzlePiece->getRotationsCount() <= PuzzlePiece::MAX_ROTATIONS) {
-            $puzzlePiece->rotate();
-            $canBeAdded = $this->canPuzzlePieceBeAddedToSolutionRotating($puzzleSolution, $puzzlePiece);
-            if ($canBeAdded) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         if ($puzzleSolution->isOneRowPuzzle()) {
