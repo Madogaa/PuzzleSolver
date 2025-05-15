@@ -92,6 +92,11 @@ final readonly class QuadraticPuzzlePieceValidator
         return false;
     }
 
+    public static function isPieceToBeSolvedInLastRow(PuzzleSolution $puzzleSolution): bool
+    {
+        return $puzzleSolution->isPieceToBeSolvedInLastRow();
+    }
+
     private static function isFirstPieceToBeSolved(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstColumn() && $puzzleSolution->isPieceToBeSolvedInFirstRow();
@@ -137,15 +142,6 @@ final readonly class QuadraticPuzzlePieceValidator
     private static function isPieceToBeSolvedInLeftBottomCorner(PuzzleSolution $puzzleSolution): bool
     {
         return $puzzleSolution->isPieceToBeSolvedInLastRow() && $puzzleSolution->isPieceToBeSolvedInFirstColumn();
-    }
-
-    /**
-     * @param PuzzleSolution $puzzleSolution
-     * @return bool
-     */
-    public static function isPieceToBeSolvedInLastRow(PuzzleSolution $puzzleSolution): bool
-    {
-        return $puzzleSolution->isPieceToBeSolvedInLastRow();
     }
 
     private static function isInFirstColumnMiddle(PuzzlePiece $puzzlePiece): bool
