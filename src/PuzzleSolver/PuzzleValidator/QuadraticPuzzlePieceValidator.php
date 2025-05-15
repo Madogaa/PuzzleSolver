@@ -192,6 +192,6 @@ final readonly class QuadraticPuzzlePieceValidator
      */
     private static function isPieceToBeSolvedInRightTopCorner(PuzzleSolution $puzzleSolution): bool
     {
-        return $puzzleSolution->isPieceToBeSolvedInRightTopCorner();
+        return $puzzleSolution->isPieceToBeSolvedInLastColumn() && $puzzleSolution->isPieceToBeSolvedInFirstRow();
     }
 }
