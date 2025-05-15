@@ -88,11 +88,6 @@ final class PuzzleSolution
         return $this->puzzlePointer->isFirstColumn() === true;
     }
 
-    public function isPieceToBeSolvedBottomEnd(): bool
-    {
-        return $this->puzzlePointer->isLastRow() && $this->puzzlePointer->isFirstColumn();
-    }
-
     public function isPieceToBeSolvedRightBottomCorner(): bool
     {
         return $this->puzzlePointer->isLastRow() && $this->puzzlePointer->isLastColumn();
