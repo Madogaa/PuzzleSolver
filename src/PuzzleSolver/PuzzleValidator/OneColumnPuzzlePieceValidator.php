@@ -9,7 +9,7 @@ use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
 
 class OneColumnPuzzlePieceValidator
 {
-    public function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
+    public static function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         $topPuzzlePiece = $puzzleSolution->getTopPuzzlePiece();
 
@@ -44,7 +44,7 @@ class OneColumnPuzzlePieceValidator
         return !$puzzleSolution->isPieceToBeSolvedInFirstRow() && !$puzzleSolution->isPieceToBeSolvedInLastRow();
     }
 
-    private function isTopEndPiece(PuzzlePiece $puzzlePiece): bool
+    private static function isTopEndPiece(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasLeftBorder() && $puzzlePiece->hasRightBorder();
     }

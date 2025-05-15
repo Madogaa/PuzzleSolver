@@ -9,7 +9,7 @@ use App\PuzzleSolver\PuzzleSolution\PuzzleSolution;
 
 final readonly class OneRowPuzzlePieceValidator
 {
-    public function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
+    public static function canPuzzlePieceBeAddedToSolution(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
         $previousPuzzlePiece = $puzzleSolution->getPreviousPiece();
 

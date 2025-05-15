@@ -12,14 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class PuzzlePieceValidatorTest extends TestCase
 {
-    private PuzzlePieceValidator $puzzlePieceValidator;
-
-    protected function setUp(): void
-    {
-        $this->puzzlePieceValidator = new PuzzlePieceValidator();
-    }
-
-
     public function test_it_can_puzzle_piece_be_added_when_first_puzzle_piece(): void
     {
         $puzzleContext = "1 3\n0 2 0 0\n0 1 0 2\n1 0 0 1";
@@ -403,7 +395,7 @@ class PuzzlePieceValidatorTest extends TestCase
     // TODO: Remove method, move rotating test cases to PuzzleSolverTests. Here should not have rotating logic test
     private function canPuzzlePieceBeAddedToSolutionRotating(PuzzleSolution $puzzleSolution, PuzzlePiece $puzzlePiece): bool
     {
-        if ($this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece)) {
+        if (PuzzlePieceValidator::canPuzzlePieceBeAddedToSolution($puzzleSolution, $puzzlePiece)) {
             return true;
         }
 

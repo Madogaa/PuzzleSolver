@@ -12,13 +12,6 @@ use App\PuzzleSolver\PuzzleValidator\PuzzlePieceValidator;
 final class PuzzleSolver
 {
     private array $puzzleSolutions = [];
-
-    private PuzzlePieceValidator $puzzlePieceValidator;
-
-    public function __construct()
-    {
-        $this->puzzlePieceValidator = new PuzzlePieceValidator();
-    }
     /**
      * @throws NoPuzzleSolutionException
      *
@@ -45,7 +38,7 @@ final class PuzzleSolver
 
         foreach ($puzzleDashboard->availablePuzzlePieces as $puzzlePiece) {
             for ($i = 0; $i <= PuzzlePiece::MAX_ROTATIONS; ++$i) {
-                if ($this->puzzlePieceValidator->canPuzzlePieceBeAddedToSolution($puzzleDashboard->puzzleSolution, $puzzlePiece)) {
+                if (PuzzlePieceValidator::canPuzzlePieceBeAddedToSolution($puzzleDashboard->puzzleSolution, $puzzlePiece)) {
                     $puzzleDashboard->addPuzzlePiece($puzzlePiece);
                     $this->buildPuzzleSolutionRecursively($puzzleDashboard);
                     $puzzleDashboard->removePuzzlePiece($puzzlePiece);
