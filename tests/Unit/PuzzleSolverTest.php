@@ -246,4 +246,17 @@ class PuzzleSolverTest extends TestCase
         self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
         self::assertContains($expectedPuzzleSolution1, $puzzleSolutions);
     }
+
+    public function test_it_solves4x4_puzzle_kata_first_test_case(): void
+    {
+        $puzzleSolver = new PuzzleSolver();
+        $puzzlePieces = "4 4\n1 4 3 5\n0 5 3 5\n1 5 3 0\n5 4 5 2\n1 5 0 0\n0 5 2 1\n1 0 4 4\n2 4 4 2\n4 5 0 5\n3 2 1 0\n4 0 0 3\n3 0 0 1\n5 5 1 0\n5 0 0 1\n0 4 2 4\n4 5 1 4";
+
+        $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
+
+        $expectedPuzzleSolution = "5 7 15 11\n9 16 4 3\n13 1 8 10\n14 2 6 12";
+        $expectedPuzzleSolution2 = "5 13 9 14\n2 1 16 7\n6 8 4 15\n12 10 3 11";
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
+        self::assertContains($expectedPuzzleSolution2, $puzzleSolutions);
+    }
 }
