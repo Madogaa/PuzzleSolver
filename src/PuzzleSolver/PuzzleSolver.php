@@ -47,7 +47,7 @@ final class PuzzleSolver
                 $puzzlePiece->rotate();
             }
 
-            $puzzlePiece->resetRotation();
+            $puzzlePiece->rotateToInitialState();
         }
     }
 

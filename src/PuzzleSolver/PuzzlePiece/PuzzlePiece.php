@@ -90,7 +90,7 @@ final class PuzzlePiece
         return $this->bottom === 0;
     }
 
-    public function resetRotation(): void
+    public function rotateToInitialState(): void
     {
         while ($this->rotationsCount != 0) {
             $this->rotateBack();
