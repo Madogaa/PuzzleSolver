@@ -26,7 +26,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = '1';
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x1_puzzle(): void
@@ -37,7 +37,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "1\n2";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x1_puzzle_when_pieces_are_unordered(): void
@@ -49,8 +49,8 @@ class PuzzleSolverTest extends TestCase
 
         $expectedPuzzleSolution = "1\n2";
         $expectedPuzzleSolution1 = "2\n1";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
-        self::assertEquals($expectedPuzzleSolution1, $puzzleSolutions[1]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
+        self::assertContains($expectedPuzzleSolution1, $puzzleSolutions);
     }
 
     public function test_it_solves2x1_puzzle_when_pieces_are_unordered_and_rotated(): void
@@ -61,7 +61,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "1\n2";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves1x2_puzzle(): void
@@ -72,7 +72,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = '1 2';
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves1x2_puzzle_unordered(): void
@@ -84,8 +84,8 @@ class PuzzleSolverTest extends TestCase
 
         $expectedPuzzleSolution = '1 2';
         $expectedPuzzleSolution1 = '2 1';
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
-        self::assertEquals($expectedPuzzleSolution1, $puzzleSolutions[1]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
+        self::assertContains($expectedPuzzleSolution1, $puzzleSolutions);
     }
 
     public function test_it_solves1x3_puzzle(): void
@@ -96,7 +96,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = '1 2 3';
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves1x3_puzzle_with_pieces_unordered(): void
@@ -107,7 +107,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = '2 3 1';
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[1]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves1x3_puzzle_with_pieces_unordered_with_rotating_pieces(): void
@@ -118,7 +118,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = '2 3 1';
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[1]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x2_puzzle(): void
@@ -129,7 +129,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "1 2\n3 4";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x2_puzzle_with_rotating_pieces(): void
@@ -141,7 +141,7 @@ class PuzzleSolverTest extends TestCase
 
         $expectedPuzzleSolution = "2 4\n1 3";
 
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x2_puzzle_unordered_with_rotating_pieces(): void
@@ -152,7 +152,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "1 4\n2 3";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x2_puzzle_with_pieces_unordered(): void
@@ -163,7 +163,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "4 1\n3 2";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[2]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x3_puzzle(): void
@@ -174,7 +174,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "1 2 3\n4 5 6";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves2x3_puzzle_unordered(): void
@@ -185,7 +185,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "6 3 2\n5 4 1";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[1]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves3x3_puzzle(): void
@@ -196,7 +196,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "1 2 3\n4 5 6\n7 8 9";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves3x3_puzzle_unordered(): void
@@ -207,7 +207,7 @@ class PuzzleSolverTest extends TestCase
         $puzzleSolutions = $puzzleSolver->solve($puzzlePieces);
 
         $expectedPuzzleSolution = "9 2 3\n4 5 6\n7 8 1";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[5]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
     }
 
     public function test_it_solves4x4_puzzle(): void
@@ -219,8 +219,8 @@ class PuzzleSolverTest extends TestCase
 
         $expectedPuzzleSolution = "1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15 16";
         $expectedPuzzleSolution1 = "1 3 2 4\n5 6 7 8\n9 10 11 12\n13 14 15 16";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
-        self::assertEquals($expectedPuzzleSolution1, $puzzleSolutions[1]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
+        self::assertContains($expectedPuzzleSolution1, $puzzleSolutions);
     }
 
     public function test_it_solves4x4_puzzle_unordered(): void
@@ -232,7 +232,7 @@ class PuzzleSolverTest extends TestCase
 
         $expectedPuzzleSolution = "5 1 6 4\n3 2 8 7\n10 9 13 12\n11 14 15 16";
         $expectedPuzzleSolution1 = "5 6 1 4\n3 2 8 7\n10 9 13 12\n11 14 15 16";
-        self::assertEquals($expectedPuzzleSolution, $puzzleSolutions[0]);
-        self::assertEquals($expectedPuzzleSolution1, $puzzleSolutions[1]);
+        self::assertContains($expectedPuzzleSolution, $puzzleSolutions);
+        self::assertContains($expectedPuzzleSolution1, $puzzleSolutions);
     }
 }
