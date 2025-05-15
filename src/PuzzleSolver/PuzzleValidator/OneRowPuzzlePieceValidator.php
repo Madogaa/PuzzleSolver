@@ -28,7 +28,7 @@ final readonly class OneRowPuzzlePieceValidator
         }
 
         if (
-            $puzzleSolution->isPieceToBeSolvedInRightTopCorner()
+            self::isPieceToBeSolvedInRightEnd($puzzleSolution)
             && self::isPuzzleRightEnd($puzzlePiece)
             && $previousPuzzlePiece->matchHorizontally($puzzlePiece)
         ) {
@@ -42,7 +42,7 @@ final readonly class OneRowPuzzlePieceValidator
     {
         return $puzzleSolution->isPieceToBeSolvedInFirstRow()
             && !$puzzleSolution->isFirstPieceToBeSolved()
-            && !$puzzleSolution->isPieceToBeSolvedInRightTopCorner();
+            && !self::isPieceToBeSolvedInRightEnd($puzzleSolution);
     }
 
     private static function isPuzzleLeftEnd(PuzzlePiece $puzzlePiece): bool
@@ -58,5 +58,14 @@ final readonly class OneRowPuzzlePieceValidator
     private static function isPuzzleRightEnd(PuzzlePiece $puzzlePiece): bool
     {
         return $puzzlePiece->hasTopBorder() && $puzzlePiece->hasBottomBorder() && $puzzlePiece->hasRightBorder();
+    }
+
+    /**
+     * @param PuzzleSolution $puzzleSolution
+     * @return bool
+     */
+    private static function isPieceToBeSolvedInRightEnd(PuzzleSolution $puzzleSolution): bool
+    {
+        return $puzzleSolution->isPieceToBeSolvedInLastColumn();
     }
 }
